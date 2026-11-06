@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bestel rit online - Vlaams Go Taxi</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff;--alt:#f5f5f5;--fg:#222;--muted:#5d5d5d;--brand:#27785c;--pill:#27785c;--wa:#475a6a;--navy:#13223d;--yel:#fdc718;--line:#cfd8d4;--inp:#fff;--hdr:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a16;--alt:#18241f;--fg:#e8efec;--muted:#a3b3ac;--brand:#4cb28f;--line:#2b3c35;--inp:#111a16;--hdr:#111a16;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111a16;--alt:#18241f;--fg:#e8efec;--muted:#a3b3ac;--brand:#4cb28f;--line:#2b3c35;--inp:#111a16;--hdr:#111a16;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.7 Poppins,system-ui,sans-serif}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hdr)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hdr);z-index:21}
+.bar{max-width:1280px;margin:auto;padding:14px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.logo{font:400 2.1rem/1 Mulish,sans-serif;color:var(--brand);text-decoration:none;margin-right:auto}
+nav{display:flex;gap:30px}
+nav a{font:600 1.05rem Mulish,sans-serif;text-decoration:none;color:var(--fg)}
+nav a.on{color:var(--brand)}
+.wai{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#25d366;color:#fff;text-decoration:none}
+.usr{color:var(--fg);border-left:1px solid var(--line);padding-left:18px;display:flex}
+@media(max-width:760px){.logo{font-size:1.6rem}nav{order:3;width:100%;gap:16px;justify-content:center}.usr{display:none}}
+main{display:block}
+footer{background:var(--bg);border-top:1px solid var(--line);padding:22px 24px;text-align:center;color:var(--muted);font-size:.8rem}
+footer a{color:var(--brand);text-decoration:none;margin:0 8px}
+footer p{margin:4px 0}
+.pg{background:#fff;color:#14213d;color-scheme:light;min-height:60vh}
+</style>
+</head>
+<body>
+<header><div class="bar">
+<a class="logo" href="index.html">VlaamsGoTaxi</a>
+<nav><a href="index.html">Home</a><a href="bestel-rit-online.html" class="on">Bestel rit online</a><a href="rezervatie-wijzigen.html">Rezervatie wijzigen</a></nav>
+<a class="wai" href="https://wa.me/320474640788" target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<span class="usr" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>
+</div></header>
+<main class="pg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+.tx-res{--ink:#14213d;--sun:#ffc61a;--mut:#667089;--line:#ddd7c2;width:100%;max-width:none;margin:0;padding:16px 20px 36px;
+font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-height:1.45;box-sizing:border-box}
+.tx-res *,.tx-res *::before,.tx-res *::after{box-sizing:inherit}
+.tx-res .card{background:#fffdf6;border:1px solid var(--line);border-radius:24px;padding:30px 26px;box-shadow:0 18px 40px rgba(20,33,61,.08)}
+.tx-res h2{font-family:'Bricolage Grotesque','Figtree',system-ui,sans-serif;font-weight:800;font-size:clamp(1.7rem,5vw,2.2rem);line-height:1.1;margin:0}
+.tx-res .lead{color:var(--mut);margin:6px 0 4px}
+.tx-res .sec{padding-top:22px;margin-top:22px;border-top:1px solid var(--line)}
+.tx-res .sec:first-of-type{margin-top:18px}
+.tx-res h3{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--mut);font-weight:700;margin:0 0 12px}
+.tx-res .row{display:grid;grid-template-columns:1fr 104px;gap:12px;align-items:end}
+.tx-res .row.eq{grid-template-columns:1fr 1fr}
+.tx-res .f{position:relative}
+.tx-res label{display:block;font-size:.88rem;line-height:1.3;font-weight:600;margin:0 0 5px}
+.tx-res input,.tx-res select{width:100%;font:inherit;color:var(--ink);height:54px;min-height:54px;padding:10px 14px;border:1.5px solid #cfc8ae;border-radius:12px;background:#fff}
+.tx-res input:focus,.tx-res select:focus{outline:none;border-color:var(--ink);box-shadow:0 0 0 4px rgba(255,198,26,.55)}
+.tx-res ul{list-style:none;margin:6px 0 0;padding:6px;position:absolute;left:0;right:-116px;top:100%;z-index:30;background:#fff;border:1px solid var(--line);border-radius:14px;max-height:300px;overflow-y:auto;box-shadow:0 16px 36px rgba(20,33,61,.2)}
+.tx-res li{padding:13px 12px 13px 42px;border-radius:10px;cursor:pointer;position:relative}
+.tx-res li::before{content:"";position:absolute;left:14px;top:50%;width:14px;height:14px;margin-top:-9px;border:2.5px solid var(--ink);border-radius:50%;background:radial-gradient(var(--ink) 30%,transparent 35%)}
+.tx-res li:hover,.tx-res li:focus{background:#fff3c4;outline:none}
+.tx-res li small{display:block;color:var(--mut);font-size:.82rem}
+.tx-res .info{min-height:1.5em;margin-top:8px;font-size:.92rem;font-weight:600;color:#0b6b2e}
+.tx-res .info.err{color:#a3200f}
+.tx-res .chips{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:10px;font-size:.88rem;color:var(--mut)}
+.tx-res .chip{font:inherit;font-weight:600;padding:6px 14px;min-height:40px;border:1.5px solid var(--ink);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer}
+.tx-res .chip:hover{background:var(--sun)}
+.tx-res .gap{margin-top:12px}
+.tx-res .msg{color:#a3200f;font-weight:700;min-height:1.4em;margin:14px 0 6px}
+.tx-res .btn{display:block;width:100%;font:inherit;font-weight:700;font-size:1.05rem;min-height:58px;border-radius:14px;cursor:pointer;border:2px solid var(--ink);background:var(--ink);color:#fff;margin-top:10px}
+.tx-res a.btn{display:flex;align-items:center;justify-content:center;text-decoration:none}
+.tx-res .btn.alt{background:transparent;color:var(--ink)}
+.tx-res .btn:hover{filter:brightness(1.2)}
+.tx-res .btn:focus-visible{outline:4px solid var(--sun);outline-offset:2px}
+.tx-res .note{color:var(--mut);font-size:.82rem;margin:16px 4px 0}
+.tx-res .card{padding:30px 28px}
+.tx-res .card>h2,.tx-res .card>.lead,.tx-res .card>.msg,.tx-res .card>.btn{grid-column:1/-1}
+.tx-res .card>.btn,.tx-res .card>.msg{max-width:560px;width:100%;margin-left:auto;margin-right:auto}
+.tx-res .sec,.tx-res .sec:first-of-type{margin-top:22px}
+.tx-res .layout{display:grid;grid-template-columns:minmax(0,560px) minmax(0,1fr);gap:28px;align-items:start}
+.tx-res .mapbox{position:sticky;top:16px;height:min(720px,86vh);border-radius:24px;overflow:hidden;border:1px solid var(--line);box-shadow:0 18px 40px rgba(20,33,61,.08);background:#e8e4d4}
+.tx-res #map{position:absolute;top:0;right:0;bottom:0;left:0}
+.tx-res .mapnote{position:absolute;left:14px;right:14px;top:14px;z-index:2;background:rgba(255,253,246,.96);border:1px solid var(--line);border-radius:14px;padding:10px 14px;font-size:.92rem;font-weight:600}
+.tx-res .mapnote.hide{display:none}
+.tx-res .price{background:var(--sun);color:var(--ink);border-radius:24px;padding:26px 28px;margin-top:24px}
+.tx-res .price small{display:block;font-size:1rem}
+.tx-res .price .big{font-family:'Bricolage Grotesque','Figtree',system-ui,sans-serif;font-weight:800;font-size:clamp(3rem,10vw,4.6rem);line-height:1;margin:10px 0 12px}
+@media(max-width:940px){.tx-res .layout{grid-template-columns:minmax(0,1fr)}.tx-res .mapbox{position:relative;top:0;height:340px}}
+@media(max-width:820px){.tx-res .card{grid-template-columns:1fr;padding:24px 18px}.tx-res{padding:12px 10px 30px}}
+.tx-res .sec.wide{grid-column:1/-1}
+.tx-res .pay{display:grid;grid-template-columns:repeat(2,minmax(0,210px));gap:10px}
+.tx-res .pay-o{position:relative;margin:0;cursor:pointer;font-size:.95rem}
+.tx-res .pay-o input{position:absolute;opacity:0;width:1px;height:1px;min-height:0;padding:0;border:0}
+.tx-res .pay-o .box{display:flex;align-items:center;gap:10px;padding:10px 14px;border:1.5px solid #d6cfb6;border-radius:999px;background:#fff;transition:all .15s}
+.tx-res .pay-o .box svg{width:22px;height:22px;color:var(--ink);flex:none}
+.tx-res .pay-o .box b{font-weight:600}
+.tx-res .pay-o .box small{display:none}
+.tx-res .pay-o:hover .box{border-color:var(--ink)}
+.tx-res .pay-o input:checked+.box{border-color:var(--ink);background:#fff6d1;box-shadow:0 0 0 2px var(--sun)}
+.tx-res .pay-o input:focus-visible+.box{outline:3px solid var(--sun);outline-offset:2px}
+.tx-res .card>.btn.send{display:flex;align-items:center;justify-content:space-between;gap:22px;width:auto;min-width:300px;max-width:100%;background:#fff;color:var(--ink);border:1.5px solid var(--ink);border-radius:999px;padding:6px 6px 6px 32px;min-height:68px;font-size:1.1rem;font-weight:700;box-shadow:0 8px 20px rgba(20,33,61,.15);transition:box-shadow .15s}
+.tx-res .btn.send:hover{filter:none;box-shadow:0 12px 26px rgba(20,33,61,.25)}
+.tx-res .btn.send .ico{width:56px;height:56px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;flex:none}
+.tx-res .btn.send .ico svg{width:26px;height:26px;transition:transform .2s}
+.tx-res .btn.send:hover .ico svg{transform:translateX(4px)}
+.tx-res .btn.send:disabled{opacity:.7;cursor:default}
+/* mobiel (Android / iPhone) */
+.tx-res .row>*,.tx-res .f{min-width:0}
+.tx-res input,.tx-res select{min-width:0;max-width:100%;display:block;-webkit-appearance:none;appearance:none;line-height:1.2;border-radius:12px}
+.tx-res select{padding-right:40px;background:#fff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='10' viewBox='0 0 16 10'><path d='M1 1l7 7 7-7' fill='none' stroke='%2314213d' stroke-width='2' stroke-linecap='round'/></svg>") no-repeat right 16px center}
+.tx-res input[type=date],.tx-res input[type=time]{text-align:left}
+.tx-res input::-webkit-date-and-time-value{text-align:left;min-height:1.2em}
+.tx-res .info{overflow-wrap:anywhere}
+@media(max-width:560px){
+.tx-res{padding:10px 8px 28px}
+.tx-res .card{padding:20px 14px;border-radius:20px}
+.tx-res h3{margin-bottom:10px}
+.tx-res .sec,.tx-res .sec:first-of-type{padding-top:18px;margin-top:18px}
+.tx-res .row{grid-template-columns:minmax(0,1fr) 88px;gap:10px}
+.tx-res .row.eq{grid-template-columns:minmax(0,1fr);gap:12px}
+.tx-res .row.eq.dt{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.tx-res input,.tx-res select{font-size:16px;padding:10px 12px}
+.tx-res ul{right:0}
+.tx-res li{padding:14px 10px 14px 38px;font-size:1rem}
+.tx-res li::before{left:12px}
+.tx-res .chips{gap:6px;font-size:.85rem}
+.tx-res .chips .cl{width:100%}
+.tx-res .chip{flex:1 1 0;min-width:0;padding:4px 6px;min-height:36px;font-size:.88rem;text-align:center;white-space:nowrap}
+.tx-res input,.tx-res select{height:52px;min-height:52px}
+.tx-res .pay{grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px}
+.tx-res .pay-o .box{padding:10px 12px;gap:8px}
+.tx-res .card>.btn.send{width:100%;min-width:0;padding-left:22px;font-size:1rem}
+.tx-res .note{margin:14px 6px 0}
+.tx-res .price{padding:22px 18px;border-radius:20px}
+.tx-res .mapbox{height:300px;border-radius:20px}
+}
+/* compacte formulier */
+.tx-res{font-size:16px}
+.tx-res .layout{grid-template-columns:minmax(0,500px) minmax(0,1fr);gap:24px}
+.tx-res .card{padding:24px 22px;border-radius:20px}
+.tx-res h2{font-size:1.65rem}
+.tx-res .lead{font-size:.9rem;margin:4px 0 0}
+.tx-res .sec,.tx-res .sec:first-of-type{padding-top:14px;margin-top:14px}
+.tx-res h3{font-size:.7rem;margin-bottom:8px}
+.tx-res label{font-size:.78rem;margin-bottom:3px}
+.tx-res input,.tx-res select{height:44px;min-height:44px;padding:6px 12px;font-size:16px;border-radius:10px}
+.tx-res select{padding-right:34px;background-position:right 12px center}
+.tx-res .row{grid-template-columns:minmax(0,1fr) 84px;gap:10px}
+.tx-res .gap{margin-top:10px}
+.tx-res .info{font-size:.8rem;min-height:1.2em;margin-top:6px}
+.tx-res ul{right:-94px}
+.tx-res li{padding:10px 10px 10px 38px;font-size:.95rem}
+.tx-res li::before{left:12px;width:12px;height:12px;margin-top:-8px}
+.tx-res .chips{margin-top:6px;font-size:.8rem}
+.tx-res .chip{min-height:32px;padding:3px 12px;font-size:.8rem}
+.tx-res .pay-o{font-size:.88rem}
+.tx-res .pay-o .box{padding:6px 12px;gap:8px}
+.tx-res .pay-o .box svg{width:18px;height:18px}
+.tx-res .price{padding:18px 22px;margin-top:16px;border-radius:18px}
+.tx-res .price small{font-size:.88rem}
+.tx-res .price .big{font-size:clamp(2.4rem,8vw,3.2rem);margin:6px 0 8px}
+.tx-res .msg{font-size:.88rem;margin:10px 0 4px}
+.tx-res .card>.btn.send{min-height:54px;font-size:1rem}
+.tx-res .btn.send .ico{width:44px;height:44px}
+.tx-res .btn.send .ico svg{width:22px;height:22px}
+@media(min-width:561px){.tx-res .card>.btn.send{min-width:250px}}
+@media(max-width:940px){.tx-res .layout{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:560px){.tx-res ul{right:0}.tx-res .row{grid-template-columns:minmax(0,1fr) 78px}}
+/* prijs compact, kaart groter en even hoog als formulier */
+.tx-res .layout{grid-template-columns:minmax(300px,430px) minmax(0,1fr);align-items:stretch;gap:22px}
+.tx-res .mapbox{position:relative;top:auto;height:auto;min-height:460px}
+.tx-res .price{padding:12px 18px;margin-top:14px;border-radius:14px}
+.tx-res .price small{font-size:.78rem}
+.tx-res .price .big{font-size:clamp(1.8rem,6vw,2.3rem);margin:2px 0 4px}
+@media(max-width:940px){.tx-res .layout{grid-template-columns:minmax(0,1fr)}.tx-res .mapbox{height:340px;min-height:0}}
+@media(max-width:560px){.tx-res .mapbox{height:300px}.tx-res .price{padding:12px 16px}}
+.tx-res .codebox{display:flex;gap:10px}
+.tx-res .codebox input{flex:1;text-transform:uppercase}
+.tx-res .codebox .chip{height:44px;flex:none}
+.tx-res .pk{display:none;font-size:.78rem;font-weight:600}
+.tx-res .pk.on{display:block;background:rgba(255,255,255,.6);border-radius:10px;padding:6px 10px;margin:2px 0 6px;font-size:.85rem}
+.tx-res [hidden]{display:none!important}
+.tx-res .done{margin-top:16px;border:1.5px dashed var(--ink);border-radius:14px;padding:14px 16px;text-align:center;background:#fff}
+.tx-res .done[hidden]{display:none}
+.tx-res .done small{display:block;font-size:.8rem;color:var(--mut)}
+.tx-res .done .nr{font-family:'Bricolage Grotesque','Figtree',system-ui,sans-serif;font-weight:800;font-size:2rem;letter-spacing:.06em;margin:2px 0 6px}
+.tx-res .done p{margin:0;font-size:.88rem}
+.tx-res .chg{max-width:430px;margin-top:16px;background:#fffdf6;border:1px solid var(--line);border-radius:16px;padding:0 18px}
+.tx-res .chg summary{padding:14px 0;font-weight:700;cursor:pointer;font-size:.95rem}
+.tx-res .chgb{padding-bottom:16px}
+.tx-res .chgb p{font-size:.85rem;color:var(--mut);margin:0 0 10px}
+.tx-res .btn.cbtn{width:100%;min-height:46px;font-size:.95rem;margin-top:6px}
+@media(max-width:940px){.tx-res .chg{max-width:none}}
+.tx-res .far{background:#fff3c4;border:1px solid #f0d87a;border-radius:10px;padding:10px 12px;font-size:.82rem;line-height:1.4;margin-top:8px}
+.tx-res .far[hidden],.tx-res .pay-o[hidden]{display:none}
+.tx-res .chip.loc{display:inline-flex;align-items:center;gap:6px;margin-top:8px}
+.tx-res input:disabled{background:#f1eee2;color:var(--mut)}
+.tx-res .chglink{display:flex;justify-content:space-between;align-items:center;gap:12px;max-width:430px;margin-top:16px;padding:14px 18px;background:#fffdf6;border:1px solid var(--line);border-radius:16px;color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem}
+.tx-res .chglink span+span{font-weight:600;font-size:.85rem;color:var(--mut)}
+.tx-res .chglink:hover{border-color:var(--ink)}
+@media(max-width:940px){.tx-res .chglink{max-width:none}}
+.tx-res .via{display:inline-flex;align-items:center;gap:6px;background:#fff3c4;border:1px solid #f0d87a;border-radius:999px;padding:5px 14px;font-size:.85rem;margin-top:10px}
+.tx-res .via[hidden]{display:none}
+</style>
+
+<div class="tx-res">
+ <div class="layout">
+ <div class="card">
+  <h2>Reserveer uw taxi</h2>
+  <p class="lead">Vul uw rit in en zie meteen de prijs.</p>
+  <div class="via" id="via" hidden>Uw chauffeur: <b id="viaN"></b></div>
+
+  <div class="sec">
+    <h3>Ophalen</h3>
+    <div class="row">
+      <div class="f"><label for="aS">Straat</label><input id="aS" type="text" autocomplete="off" placeholder="Typ de straatnaam"><ul id="aL" hidden></ul></div>
+      <div class="f"><label for="aN">Nr.</label><input id="aN" type="text" placeholder="213"></div>
+    </div>
+    <button type="button" class="chip loc" id="loc"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true"><path d="M12 22s7-6.5 7-12a7 7 0 1 0-14 0c0 5.5 7 12 7 12z" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="2.5" fill="currentColor"/></svg>Gebruik mijn locatie</button>
+    <div class="info" id="aI"></div>
+    <div class="far" id="far" hidden><b>Betaling vooraf.</b> Dit ophaaladres ligt meer dan 30 km van Antwerpen centrum<span id="farKm"></span>. Voor deze rit vragen wij online betaling vooraf; u ontvangt na uw reservatie een betaallink. Bij annulering minder dan 2 uur voor vertrek of niet opdagen blijft het bedrag verschuldigd.</div>
+  </div>
+
+  <div class="sec">
+    <h3>Bestemming</h3>
+    <div class="row">
+      <div class="f"><label for="bS">Straat</label><input id="bS" type="text" autocomplete="off" placeholder="Typ de straatnaam"><ul id="bL" hidden></ul></div>
+      <div class="f"><label for="bN">Nr.</label><input id="bN" type="text" placeholder="1"></div>
+    </div>
+    <div class="info" id="bI"></div>
+    <div class="chips"><span class="cl">Luchthaven:</span>
+      <button type="button" class="chip" data-ap="0">Zaventem</button>
+      <button type="button" class="chip" data-ap="1">Charleroi</button>
+      <button type="button" class="chip" data-ap="2">Schiphol</button></div>
+  </div>
+
+  <div class="sec">
+    <h3>Wanneer</h3>
+    <div class="row eq dt">
+      <div class="f"><label for="dt">Datum</label><input id="dt" type="date"></div>
+      <div class="f"><label for="tm">Uur</label><input id="tm" type="time"></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>Uw gegevens</h3>
+    <div class="row eq">
+      <div class="f"><label for="nm">Naam</label><input id="nm" type="text" autocomplete="name"></div>
+      <div class="f"><label for="ph">Telefoon</label><input id="ph" type="tel" autocomplete="tel" placeholder="0470 12 34 56"></div>
+    </div>
+    <div class="row eq gap">
+      <div class="f"><label for="pp">Personen</label><select id="pp"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
+      <div class="f"><label for="op">Opmerking</label><input id="op" type="text" placeholder="bv. rolstoel"></div>
+    </div>
+    <div class="f gap"><label for="em" id="emT">E-mail <span style="font-weight:400">(optioneel)</span></label><input id="em" type="email" autocomplete="email" placeholder="uw@email.be"></div>
+    <div class="f gap"><label for="cc">Chauffeurs- of kortingscode <span style="font-weight:400">(optioneel)</span></label><input id="cc" type="text" placeholder="bv. 589DB" autocapitalize="characters" maxlength="12" autocomplete="off"><div class="info" id="ccI"></div></div>
+  </div>
+
+  <div class="sec wide">
+    <h3>Betaling</h3>
+    <div class="pay" role="radiogroup" aria-label="Betaalmethode">
+      <label class="pay-o"><input type="radio" name="pay" value="Cash" checked>
+        <div class="box"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="12" width="40" height="24" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><circle cx="24" cy="24" r="6" fill="none" stroke="currentColor" stroke-width="3"/><path d="M10 18v.1M38 30v.1" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+        <b>Cash</b><small>Contant betalen aan de chauffeur</small></div></label>
+      <label class="pay-o"><input type="radio" name="pay" value="Bankkaart in de wagen">
+        <div class="box"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="10" width="40" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M4 19h40" stroke="currentColor" stroke-width="5"/><path d="M10 31h10" stroke="currentColor" stroke-width="3" stroke-linecap="round"/></svg>
+        <b>Bankkaart</b><small>Met kaart betalen in de wagen</small></div></label>
+      <label class="pay-o" hidden><input type="radio" name="pay" value="Online betaling vooraf (betaallink)">
+        <div class="box"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="10" width="40" height="28" rx="4" fill="none" stroke="currentColor" stroke-width="3"/><path d="M15 25l6 6 12-12" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <b>Online vooraf</b><small></small></div></label>
+    </div>
+  </div>
+
+  <div class="price" aria-live="polite">
+    <small>Geschatte prijs</small>
+    <div class="big" id="pV">€ –</div>
+    <small class="pk" id="pK"></small>
+    <small id="pD">Vul beide adressen in om de prijs te zien.</small>
+  </div>
+
+  <input id="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+  <p class="msg" id="msg" role="alert"></p>
+  <button type="button" class="btn send" id="sendMail">
+    <span class="lbl">Reservatie versturen</span>
+    <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h15M13 5.5L19.5 12 13 18.5" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+  </button>
+  <div class="done" id="done" hidden>
+    <small>Uw reservatienummer</small>
+    <div class="nr" id="doneNr"></div>
+    <p>Noteer dit nummer. Wijzigen of annuleren kan tot 2 uur voor vertrek. Bel ons op <b id="doneTel"></b> of gebruik de link onderaan, en geef dit nummer door.</p>
+    <p id="donePay" hidden style="margin-top:8px"><b>Betaling vooraf:</b> wij sturen u een betaallink. Uw rit is bevestigd na ontvangst van de betaling.</p>
+  </div>
+ </div>
+ <aside class="mapbox"><div id="map"></div><div class="mapnote" id="mapNote">Uw route verschijnt hier zodra beide adressen zijn ingevuld.</div></aside>
+ </div>
+ <a class="chglink" id="chgLink" href="/wijzigen"><span>Wijzigen of annuleren?</span><span>Naar het formulier →</span></a>
+ <p class="note">Wij bevestigen uw reservatie en de prijs telefonisch. Gratis wijzigen of annuleren kan tot 2 uur voor vertrek, telefonisch of via bovenstaande knop. Uw gegevens worden enkel gebruikt voor deze reservatie.</p>
+</div>
+
+<script>
+(function(){
+var AP=[{s:"Luchthaven Zaventem",r:"1930 Zaventem",lat:50.9010,lon:4.4844,p:110,t:"D"},
+{s:"Luchthaven Charleroi",r:"6041 Gosselies",lat:50.4592,lon:4.4538,p:220,t:"E"},
+{s:"Luchthaven Schiphol",r:"1118 Schiphol (NL)",lat:52.3105,lon:4.7683,p:340,t:"F"}];
+var $=function(i){return document.getElementById(i)},E=encodeURIComponent;
+/* CHAUFFEURS: code uit de QR-link (?c=CODE) en naam. Maak codes met qr-kaartjes.html en plak hier. */
+var DRIVERS={
+  "7W6FK":"Chauffeur 1",
+  "AP5E6":"Chauffeur 2",
+  "EKZY7":"Chauffeur 3",
+  "J68JK":"Chauffeur 4",
+  "JE5B5":"Chauffeur 5",
+  "SJ9YG":"Chauffeur 6",
+  "WFMWE":"Chauffeur 7",
+  "XXYDK":"Chauffeur 8"
+};
+var cdrv=null,ccode="";
+function applyCode(c){
+  ccode=String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12);
+  cdrv=ccode&&DRIVERS[ccode]?{code:ccode,name:DRIVERS[ccode]}:null;
+  disc=cdrv?{code:ccode,t:"p",v:DISCOUNT}:null;
+  var v=$("via"),I=$("ccI");
+  v.hidden=!cdrv;if(cdrv)$("viaN").textContent=cdrv.name;
+  if(cdrv){I.className="info";I.textContent="✓ Code herkend: "+cdrv.name+" · "+DISCOUNT+"% korting"}
+  else if(ccode&&listOk){I.className="info err";I.textContent="Deze code bestaat niet. Controleer de code. U kunt toch gewoon reserveren."}
+  else{I.className="info";I.textContent=""}
+  if($("cc")&&$("cc").value.toUpperCase()!==ccode)$("cc").value=ccode;
+  show()}
+/* de code uit de QR-link (?c=CODE) zoeken: eigen adres, bovenliggende pagina, verwijzer, of onthouden voor deze sessie */
+(function(){
+  var src=[],m,found="";
+  try{src.push(window.top.location.search+window.top.location.hash)}catch(e){}
+  try{src.push(window.parent.location.search+window.parent.location.hash)}catch(e){}
+  src.push(location.search+location.hash);
+  try{if(document.referrer.indexOf("?")>-1)src.push("?"+document.referrer.split("#")[0].split("?")[1])}catch(e){}
+  for(var i=0;i<src.length&&!found;i++){m=String(src[i]).match(/[?&#](?:c|chauffeur)=([A-Za-z0-9]{3,12})/);if(m)found=m[1]}
+  try{if(found)sessionStorage.setItem("vgt_c",found);else found=sessionStorage.getItem("vgt_c")||""}catch(e){}
+  ccode=found.toUpperCase();
+})();
+var CHANGE_URL="/wijzigen"; /* <-- adres van uw GoDaddy-pagina met het wijzigen/annuleren-formulier */
+var TEL="0474 64 07 88"; /* <-- UW TELEFOONNUMMER voor wijzigen/annuleren */
+/* KORTINGSCODES: maak ze met korting-code-maker.html en plak de regels hier.
+   t:"p" = percentage, t:"a" = vast bedrag in euro, until = laatste geldige dag (optioneel) */
+var CODES=[
+  /* voorbeeld: code VLAAMS10 = 10% korting */
+  {h:"cf4602cd1f59b442049b31670c1041bd86385e6d66da6ff906c34762d6b25d84",t:"p",v:10}
+];
+var W=["APPEL","BOOM","BRUG","FIETS","HUIS","KERK","LEEUW","MAAN","ROOS","STER","TAART","TULP","VLAG","VIS","WOLK","ZON","BOOT","BANK","KAT","HOND","MELK","KLOK","SOEP","BROOD"];
+function genNr(){return W[Math.floor(Math.random()*W.length)]+"-"+(10+Math.floor(Math.random()*90))}
+var PRC={price:null,km:null,tarief:"",disc:false},disc=null,DISCOUNT=20,DISC_AIRPORT=true; /* DISCOUNT = % korting met een geldige chauffeurscode; DISC_AIRPORT=false sluit luchthaven-vaste prijzen uit */
+function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t)).then(function(b){return Array.prototype.map.call(new Uint8Array(b),function(x){return("0"+x.toString(16)).slice(-2)}).join("")})}
+var st={a:null,b:null},cs={a:null,b:null},tm={},km=null,tk=0,info="",map=null,mk=[],pl=[],T={A:[7.5,3],B:[8.5,3.7]};
+function fmt(n){return"€"+n.toFixed(2).replace(".",",")}
+function lbl(x){return x.s+", "+x.r}
+function json(r){if(!r.ok)throw 0;return r.json()}
+
+/* straten zoeken in België met Google Places */
+var GKEY="AIzaSyBWynBy4wBsHwuT7UdLb8i2CntFZKkioPY",G=null,tok=null;
+function loadG(){
+  if(G)return G;
+  G=new Promise(function(res,rej){
+    window.__txg=function(){google.maps.importLibrary("places").then(res,rej)};
+    var s=document.createElement("script");
+    s.src="https://maps.googleapis.com/maps/api/js?key="+GKEY+"&loading=async&callback=__txg&v=weekly&language=nl&region=BE";
+    s.onerror=rej;document.head.appendChild(s)});
+  return G}
+function find(q){
+  return loadG().then(function(P){
+    tok=tok||new P.AutocompleteSessionToken();
+    return P.AutocompleteSuggestion.fetchAutocompleteSuggestions({input:q,includedRegionCodes:["be"],language:"nl",region:"be",sessionToken:tok,origin:{lat:51.22,lng:4.40}})})
+  .then(function(r){return r.suggestions.filter(function(x){return x.placePrediction}).map(function(x){
+    var p=x.placePrediction,main=p.mainText?p.mainText.text:p.text.text,sec=p.secondaryText?p.secondaryText.text:"",nr="",ty=p.types||[];
+    var place=ty.indexOf("establishment")>-1||ty.indexOf("point_of_interest")>-1||ty.indexOf("transit_station")>-1||ty.indexOf("train_station")>-1;
+    if(!place){var m=main.match(/^(.*?)\s+(\d{1,4}\s?[a-zA-Z]?)$/);if(m){main=m[1];nr=m[2].replace(/\s/g,"")}}
+    sec=sec.replace(/,?\s*België$/,"").replace(/^\d{4}\s*/,"");
+    return{name:main,city:sec,nr:nr,place:place,pred:p}})})}
+function pickPlace(k,c){
+  var pl=c.pred.toPlace(),i=$(k+"I");$(k+"L").hidden=true;$(k+"S").value=c.name;
+  i.className="info";i.textContent="Plaats wordt opgehaald…";
+  pl.fetchFields({fields:["displayName","formattedAddress","location"]}).then(function(){
+    cs[k]={place:1};var N=$(k+"N");N.value="";N.disabled=true;N.placeholder="—";
+    st[k]={s:pl.displayName||c.name,r:(pl.formattedAddress||"").replace(/,\s*(België|Belgium)\s*$/,""),lat:pl.location.lat(),lon:pl.location.lng()};
+    i.className="info";i.textContent="✓ "+lbl(st[k]);update()
+  }).catch(function(){i.className="info err";i.textContent="Plaats niet gevonden. Probeer opnieuw."})}
+
+function setup(k){
+  var inp=$(k+"S"),ul=$(k+"L"),t;$(k+"N").dataset.ph=$(k+"N").placeholder;
+  function msg(s,e){var i=$(k+"I");i.textContent=s;i.className="info"+(e?" err":"")}
+  inp.addEventListener("input",function(){
+    var N=$(k+"N");if(N.disabled){N.disabled=false;N.placeholder=N.dataset.ph||""}cs[k]=null;st[k]=null;msg("");update();clearTimeout(t);
+    var q=inp.value.trim();if(q.length<3){ul.hidden=true;return}
+    t=setTimeout(function(){
+      find(q).then(function(list){
+        ul.innerHTML="";var seen={},n=0;
+        list.forEach(function(c){var key=c.name+"|"+c.city;if(seen[key]||n>=8)return;seen[key]=1;n++;
+          var li=document.createElement("li");li.tabIndex=0;li.innerHTML="";
+          li.appendChild(document.createTextNode(c.name+", "+c.city+", België"));
+          var pick=function(){if(c.place){pickPlace(k,c);return}cs[k]=c;inp.value=c.name+", "+c.city;ul.hidden=true;
+            if(c.nr)$(k+"N").value=c.nr;var m=q.match(/(?:^|\s)(\d{1,3}[a-z]?)(?=\s|,|$)/i);if(m&&!$(k+"N").value)$(k+"N").value=m[1];
+            if($(k+"N").value.trim())go(k);else $(k+"N").focus()};
+          li.onclick=pick;li.onkeydown=function(e){if(e.key==="Enter")pick()};ul.appendChild(li)});
+        ul.hidden=!n;
+        if(!n)msg("Geen straat gevonden. Controleer de spelling of typ ook de gemeente.",1);
+      }).catch(function(){msg("Zoeken lukt nu niet. Probeer later opnieuw of bel ons.",1)});
+    },350);
+  });
+  $(k+"N").addEventListener("input",function(){if(!(st[k]&&st[k].p))st[k]=null;update();clearTimeout(tm[k]);tm[k]=setTimeout(function(){go(k)},700)});
+}
+setup("a");setup("b");
+document.addEventListener("click",function(e){if(!e.target.closest(".f")){$("aL").hidden=true;$("bL").hidden=true}});
+
+/* exact adres (huisnummer + postcode) bepalen */
+function go(k){
+  var c=cs[k],n=$(k+"N").value.trim();
+  if(!c||c.place||!n||(st[k]&&st[k].p))return;
+  var i=$(k+"I");
+  loadG().then(function(){return new google.maps.Geocoder().geocode({address:c.name+" "+n+", "+c.city+", België",componentRestrictions:{country:"BE"}})})
+  .then(function(res){
+    if(cs[k]!==c||$(k+"N").value.trim()!==n)return;
+    var r=res.results[0];if(!r)throw 0;
+    var zip="",sub="",loc="";
+    r.address_components.forEach(function(a){var t=a.types;
+      if(t.indexOf("postal_code")>-1)zip=a.long_name;
+      if(t.indexOf("sublocality")>-1||t.indexOf("sublocality_level_1")>-1)sub=a.long_name;
+      if(t.indexOf("locality")>-1)loc=a.long_name});
+    st[k]={s:c.name+" "+n,r:(zip+" "+(sub||loc||c.city)).trim(),lat:r.geometry.location.lat(),lon:r.geometry.location.lng()};
+    i.className="info";i.textContent="✓ "+lbl(st[k]);update();
+  }).catch(function(){if(cs[k]===c){i.className="info err";i.textContent="Adres niet gevonden. Controleer het huisnummer."}});
+}
+Array.prototype.forEach.call(document.querySelectorAll("[data-ap]"),function(c){
+  c.onclick=function(){var a=AP[c.dataset.ap];st.b=a;cs.b={air:1};$("bS").value=a.s;$("bN").value="";$("bL").hidden=true;
+    var i=$("bI");i.className="info";i.textContent="✓ "+lbl(a);update()}});
+
+
+/* kaart, route, afstand en prijs */
+function getMap(){return loadG().then(function(){return google.maps.importLibrary("maps")}).then(function(M){
+  if(!map)map=new M.Map($("map"),{center:{lat:51.22,lng:4.40},zoom:11,mapTypeControl:false,streetViewControl:false,fullscreenControl:false});return map})}
+function clearRoute(){mk.concat(pl).forEach(function(x){x.setMap(null)});mk=[];pl=[];$("mapNote").className="mapnote"}
+function drawRoute(path,a,b){getMap().then(function(m){
+  clearRoute();$("mapNote").className="mapnote hide";
+  pl.push(new google.maps.Polyline({path:path,strokeColor:"#14213d",strokeWeight:7,map:m}));
+  pl.push(new google.maps.Polyline({path:path,strokeColor:"#ffc61a",strokeWeight:3,zIndex:2,map:m}));
+  [[a,"A"],[b,"B"]].forEach(function(p){mk.push(new google.maps.Marker({position:{lat:p[0].lat,lng:p[0].lon},map:m,
+    label:{text:p[1],color:"#14213d",fontWeight:"700"},icon:{path:google.maps.SymbolPath.CIRCLE,scale:13,fillColor:"#ffc61a",fillOpacity:1,strokeColor:"#14213d",strokeWeight:3}}))});
+  var bd=new google.maps.LatLngBounds();path.forEach(function(p){bd.extend(p)});m.fitBounds(bd,60)}).catch(function(){})}
+function viaG(a,b){
+  var o={lat:a.lat,lng:a.lon},d={lat:b.lat,lng:b.lon};
+  return loadG().then(function(){return google.maps.importLibrary("routes")}).then(function(R){
+    return Promise.resolve().then(function(){return R.Route.computeRoutes({origin:o,destination:d,travelMode:"DRIVING",fields:["distanceMeters","path"]})})
+    .then(function(r){var x=r.routes[0];return{km:x.distanceMeters/1000,path:x.path.map(function(p){return{lat:p.lat,lng:p.lng}})}})
+    .catch(function(){return new R.DirectionsService().route({origin:o,destination:d,travelMode:"DRIVING"}).then(function(r){
+      var x=r.routes[0];return{km:x.legs[0].distance.value/1000,path:x.overview_path.map(function(p){return{lat:p.lat(),lng:p.lng()}})}})})})}
+function osrm(a,b){
+  return fetch("https://router.project-osrm.org/route/v1/driving/"+a.lon+","+a.lat+";"+b.lon+","+b.lat+"?overview=full&geometries=geojson").then(json).then(function(j){
+    var x=j.routes[0];return{km:x.distance/1000,path:x.geometry.coordinates.map(function(c){return{lat:c[1],lng:c[0]}})}})}
+function getRoute(a,b){return viaG(a,b).catch(function(){return osrm(a,b)})}
+function tarief(){var v=$("tm").value;if(!v)return"A";var h=parseInt(v.split(":")[0],10);return(h>=22||h<6)?"B":"A"}
+function show(){
+  var V=$("pV"),D=$("pD");$("pK").className="pk";PRC={price:null,km:null,tarief:"",disc:false};
+  if(!st.a||!st.b){V.textContent="€ –";D.textContent="Vul beide adressen in om de prijs te zien.";info="";return}
+  if(km===null){V.textContent="…";D.textContent="Afstand en prijs worden berekend…";return}
+  if(km===false){V.textContent="€ –";D.textContent="Afstand niet berekend. Bel ons gerust.";info="";return}
+  var kk=Math.round(km*10)/10,k=kk.toFixed(1).replace(".",","),t=tarief(),base;
+  if(st.b.p){base=st.b.p;D.textContent=k+" km · Tarief "+st.b.t+" · vaste prijs";info="Afstand: "+k+" km · Tarief "+st.b.t+" (vaste prijs)"}
+  else{var x=T[t];base=Math.round((x[0]+kk*x[1])*100)/100;D.textContent=k+" km · Tarief "+t+" · exclusief wachttijd";info="Afstand: "+k+" km · Tarief "+t+" (exclusief wachttijd)"}
+  var dd=disc&&(DISC_AIRPORT||!st.b.p)?disc:null,fin=base;
+  if(dd){
+    fin=Math.round(base*(1-dd.v/100)*100)/100;var sv=Math.round((base-fin)*100)/100;
+    $("pK").innerHTML="<b>Gefeliciteerd!</b> U ontvangt "+dd.v+"% korting: −"+fmt(sv)+" (was "+fmt(base)+")";$("pK").className="pk on";
+    info+="\nKorting: "+dd.v+"% via code "+dd.code+" (−"+fmt(sv)+")\nPrijs voor korting: "+fmt(base);
+  }
+  PRC={price:fin,km:kk,tarief:(st.b.p?st.b.t:t),disc:!!dd};
+  V.textContent=(!dd&&st.b.p)?"€"+st.b.p:fmt(fin);
+}
+
+var FAR=30,ANT={lat:51.2194,lon:4.4025},far=false;
+function dkm(a,b){var r=Math.PI/180,x=(b.lat-a.lat)*r,y=(b.lon-a.lon)*r,h=Math.sin(x/2)*Math.sin(x/2)+Math.cos(a.lat*r)*Math.cos(b.lat*r)*Math.sin(y/2)*Math.sin(y/2);return 12742*Math.asin(Math.sqrt(h))}
+var farKm={};
+function setFar(f,k){
+  if(k)$("farKm").textContent=" ("+Math.round(k)+" km)";
+  if(f===far)return;far=f;$("far").hidden=!f;
+  $("emT").innerHTML=f?"E-mail <b>(verplicht bij betaling vooraf)</b>":"E-mail <span style=\"font-weight:400\">(optioneel)</span>";
+  Array.prototype.forEach.call(document.querySelectorAll("input[name=pay]"),function(r){r.closest("label").hidden=(r.value.indexOf("Online")===0)?!f:f});
+  document.querySelector(f?"input[name=pay][value^=Online]":"input[name=pay][value=Cash]").checked=true;
+}
+function checkFar(){
+  var a=st.a;
+  if(!a){setFar(false);return}
+  var key=a.lat.toFixed(4)+","+a.lon.toFixed(4);
+  if(farKm[key]!==undefined){setFar(farKm[key]>FAR,farKm[key]);return}
+  var sl=dkm(ANT,a);
+  setFar(sl>FAR,sl);
+  getRoute(ANT,a).then(function(r){farKm[key]=Math.max(r.km,sl);if(st.a===a)setFar(farKm[key]>FAR,farKm[key])}).catch(function(){})
+}
+function update(){
+  checkFar();var id=++tk;km=null;
+  if(!st.a||!st.b){clearRoute();show();return}
+  show();
+  getRoute(st.a,st.b).then(function(r){if(id!==tk)return;km=r.km;show();drawRoute(r.path,st.a,st.b)})
+  .catch(function(){if(id!==tk)return;km=false;show()});
+}
+$("tm").addEventListener("input",show);$("tm").addEventListener("change",show);
+getMap().catch(function(){$("mapNote").textContent="De kaart kon niet geladen worden."});
+
+$("doneTel").textContent=TEL;
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxVVxK7z_qXJTMM89h2JYY8oh7y64pkq16PI0NW2qZTLBjADj1s-6zlDnDM8bicPjGf/exec";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
+if(SCRIPT_URL){
+  fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
+  .then(function(r){return r.json()}).then(function(j){
+    if(!j.ok)return;listOk=true;DRIVERS={};j.drivers.forEach(function(d){DRIVERS[d.c]=d.n});
+    applyCode(ccode);
+  }).catch(function(){});
+}
+applyCode(ccode);$("cc").addEventListener("input",function(){applyCode(this.value)});$("chgLink").href=CHANGE_URL;
+
+var d=new Date();$("dt").min=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
+
+/* versturen */
+function text(nr,cust){
+  return "Reservatie "+(nr||"")+(cdrv?"\nChauffeur: "+cdrv.name+" ("+cdrv.code+")":(cust?"":"\nChauffeur: ŞOFÖR ATAMASI YAPILMALIDIR ("+(ccode?"ingevoerde code niet herkend: "+ccode:"anonieme aanvraag")+")"))+"\nOphaal: "+lbl(st.a)+"\nAfzet: "+lbl(st.b)+"\nDatum: "+$("dt").value+" om "+$("tm").value+
+  "\nPersonen: "+$("pp").value+"\nNaam: "+$("nm").value+"\nTel: "+$("ph").value+($("em").value.trim()?"\nE-mail: "+$("em").value.trim():"")+"\n"+info+"\nGeschatte prijs: "+$("pV").textContent+
+  "\nBetaling: "+document.querySelector("input[name=pay]:checked").value+(far?"\nLET OP: ophaaladres is meer dan "+FAR+" km van Antwerpen centrum. Betaling vooraf vereist: betaallink sturen.":"")+($("op").value?"\nOpmerking: "+$("op").value:"")}
+function auto(nr){
+  return "Beste "+$("nm").value.trim()+",\n\nBedankt voor uw reservatie bij VlaamsGoTaxi. Uw reservatienummer is "+nr+".\n\n"+text(nr,true)+
+  "\n\nWij bevestigen uw reservatie en de prijs telefonisch."+(far?" Omdat uw ophaaladres meer dan "+FAR+" km van Antwerpen centrum ligt, vragen wij betaling vooraf. U ontvangt van ons een betaallink.":"")+
+  "\nWijzigen of annuleren kan tot 2 uur voor vertrek, telefonisch op "+TEL+" of via "+new URL(CHANGE_URL,location.href).href+" (vermeld uw reservatienummer).\n\nVlaamsGoTaxi"}
+function ok(){
+  var m="";
+  if(!st.a)m="Ophaaladres: kies een straat of plaats uit de lijst en vul bij een straat het huisnummer in.";
+  else if(!st.b)m="Bestemming: kies een straat of plaats uit de lijst en vul bij een straat het huisnummer in.";
+  else if(!$("dt").value||!$("tm").value)m="Vul de datum en het uur in.";
+  else if(far&&!$("em").value.trim())m="Bij betaling vooraf is een e-mailadres verplicht, zodat wij u de betaallink kunnen sturen.";
+  else if($("em").value.trim()&&!/^\S+@\S+\.\S+$/.test($("em").value.trim()))m="Controleer het e-mailadres.";
+  else if(km===null)m="Even geduld, de prijs wordt nog berekend.";
+  else if(!$("nm").value.trim()||!$("ph").value.trim())m="Vul uw naam en telefoonnummer in.";
+  $("msg").style.color="";$("msg").textContent=m;return!m}
+/*SEND_START*/
+var FKEY="VUL_HIER_UW_WEB3FORMS_SLEUTEL_IN"; /* reserve: enkel gebruikt als de Google Sheet niet bereikbaar is (gratis sleutel op web3forms.com) */
+function DET(e){return e&&e.name==="AbortError"?" (time-out)":e&&e.error==="pin"?" (de Apps Script-versie is niet bijgewerkt: maak een nieuwe versie van de implementatie)":e&&e.error==="unknown action"?" (oude Apps Script-versie)":e&&(e.error||e.message)?" ("+String(e.error||e.message).slice(0,160)+")":""}
+function api(b){
+  var AC=new AbortController(),t=setTimeout(function(){AC.abort()},25000);
+  return fetch(SCRIPT_URL,{method:"POST",signal:AC.signal,headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(b)}).then(function(r){clearTimeout(t);return r.json()})}
+function payload(){
+  return {datum:$("dt").value,uur:$("tm").value,ophaal:lbl(st.a),afzet:lbl(st.b),km:PRC.km,tarief:PRC.tarief,prijs:PRC.price,korting:PRC.disc?DISCOUNT:0,
+    betaling:document.querySelector("input[name=pay]:checked").value,vooraf:far,naam:$("nm").value.trim(),telefoon:$("ph").value.trim(),email:$("em").value.trim(),
+    personen:$("pp").value,opmerking:$("op").value.trim(),code:ccode,website:$("hp").value}}
+$("sendMail").onclick=function(){
+  if(!ok())return;
+  var b=this,m=$("msg"),L=b.querySelector(".lbl");m.style.color="";m.textContent="";
+  b.disabled=true;L.textContent="Bezig met versturen…";
+  var done=function(nr,mailed){$("doneNr").textContent=nr;$("donePay").hidden=!far;$("done").hidden=false;m.style.color="#0b6b2e";
+    m.textContent="✓ Bedankt! Uw reservatie is verzonden."+(mailed?" Een bevestiging is naar uw e-mail verstuurd.":" Wij bevestigen telefonisch.");L.textContent="Verzonden ✓"};
+  var fail=function(e){b.disabled=false;L.textContent="Reservatie versturen";
+    m.textContent="Verzenden mislukt"+DET(e)+". Probeer opnieuw of bel ons."};
+  var fb=function(e0){
+    if(FKEY.indexOf("VUL_HIER")===0){fail(SCRIPT_URL&&e0?e0:{message:"verzending niet ingesteld: vul SCRIPT_URL in"});return}
+    var nr=genNr(),AC=new AbortController();setTimeout(function(){AC.abort()},20000);
+    fetch("https://api.web3forms.com/submit",{signal:AC.signal,method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},
+      body:JSON.stringify({access_key:FKEY,subject:"Reservatie "+nr+" - "+$("nm").value+(cdrv?" [via "+cdrv.name+"]":" [ŞOFÖR ATAMASI GEREKLİ]"),from_name:"Website reservatie",name:$("nm").value,phone:$("ph").value,email:$("em").value.trim()||undefined,message:text(nr)})})
+    .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=="true")throw j;done(nr,false)}).catch(fail)};
+  if(!SCRIPT_URL){fb();return}
+  api({action:"book",d:payload()}).then(function(j){if(!j.ok)throw j;done(j.nr,j.mailed)})
+  .catch(function(e){if(e&&e.error==="invalid"){fail({message:"controleer uw gegevens"});return}fb(e)});
+};
+/*SEND_END*/
+
+$("loc").onclick=function(){
+  var i=$("aI");i.className="info";
+  if(!navigator.geolocation){i.className="info err";i.textContent="Uw toestel geeft geen locatie door. Typ het adres.";return}
+  i.textContent="Uw locatie wordt bepaald…";
+  navigator.geolocation.getCurrentPosition(function(pos){
+    var la=pos.coords.latitude,lo=pos.coords.longitude;
+    loadG().then(function(){return new google.maps.Geocoder().geocode({location:{lat:la,lng:lo},language:"nl"})}).then(function(res){
+      var r=res.results.filter(function(x){return x.types.indexOf("street_address")>-1||x.types.indexOf("premise")>-1})[0]||res.results.filter(function(x){return x.types.indexOf("route")>-1})[0]||res.results[0];
+      var route="",nr="",zip="",sub="",loc2="";
+      r.address_components.forEach(function(a){var t=a.types;
+        if(t.indexOf("route")>-1)route=a.long_name;if(t.indexOf("street_number")>-1)nr=a.long_name;if(t.indexOf("postal_code")>-1)zip=a.long_name;
+        if(t.indexOf("sublocality")>-1||t.indexOf("sublocality_level_1")>-1)sub=a.long_name;if(t.indexOf("locality")>-1)loc2=a.long_name});
+      var city=sub||loc2;if(!route)throw 0;
+      var N=$("aN");N.disabled=false;N.placeholder=N.dataset.ph||"";
+      cs.a={name:route,city:city,lat:la,lon:lo};$("aS").value=route+", "+city;$("aL").hidden=true;
+      if(nr){N.value=nr;st.a={s:route+" "+nr,r:(zip+" "+city).trim(),lat:la,lon:lo};i.textContent="✓ "+lbl(st.a)+" (uw locatie)";update()}
+      else{N.value="";st.a=null;update();i.textContent="Locatie gevonden. Vul nog het huisnummer in.";N.focus()}
+    }).catch(function(){i.className="info err";i.textContent="Adres niet gevonden. Typ het adres."})
+  },function(e){i.className="info err";i.textContent=e&&e.code===1?"Locatie geweigerd. Sta locatie toe in uw browser of typ het adres.":"Uw locatie kon niet bepaald worden. Typ het adres."},{enableHighAccuracy:true,timeout:12000});
+};
+
+/* hoogte automatisch aanpassen (werkt als het kader van de pagina dit toelaat) */
+(function(){
+  function send(){
+    var h=Math.max(document.documentElement.scrollHeight,document.body.scrollHeight);
+    try{if(window.frameElement){window.frameElement.style.height=h+"px";window.frameElement.style.width="100%"}}catch(e){}
+    try{parent.postMessage({type:"vgt-height",height:h},"*")}catch(e){}}
+  window.addEventListener("load",send);
+  if(window.ResizeObserver)new ResizeObserver(send).observe(document.body);
+})();
+})();
+</script>
+
+</main>
+<footer>
+<p><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Rezervatie wijzigen</a><a href="chauffeursbeheer.html">Chauffeursbeheer</a></p>
+<p>Copyright © 2026 VlaamsGoTaxi – Alle rechten voorbehouden.</p>
+</footer>
+</body>
+</html>
