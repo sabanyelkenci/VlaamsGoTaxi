@@ -210,7 +210,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
  <div class="layout">
  <div class="card">
   <h2>Wijzigen of annuleren</h2>
-  <p class="lead">Vul uw reservatienummer en telefoonnummer in. Wilt u wijzigen? Vul dan hieronder de nieuwe gegevens in en u ziet meteen de prijs.</p>
+  <p class="lead">Vul uw reservatienummer in (u vindt het in uw bevestigingsmail). Wilt u wijzigen? Vul dan hieronder de nieuwe gegevens in en u ziet meteen de prijs.</p>
   <div class="via" id="via" hidden>Uw chauffeur: <b id="viaN"></b></div>
 
   <div class="sec" id="chgTop">
@@ -255,11 +255,11 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 
   </div>
 
-  <div class="sec">
+  <div class="sec" id="chgWho" hidden>
     <h3>Uw gegevens</h3>
     <div class="row eq">
-      <div class="f"><label for="nm">Naam</label><input id="nm" type="text" autocomplete="name"></div>
-      <div class="f"><label for="ph">Telefoon</label><input id="ph" type="tel" autocomplete="tel" placeholder="0470 12 34 56"></div>
+      <div class="f"><label for="nm">Naam <span style="font-weight:400">(optioneel)</span></label><input id="nm" type="text" autocomplete="name"></div>
+      <div class="f"><label for="ph">Telefoon <span style="font-weight:400">(optioneel)</span></label><input id="ph" type="tel" autocomplete="tel" placeholder="0470 12 34 56"></div>
     </div>
     <div class="row eq gap">
       <div class="f"><label for="pp">Personen</label><select id="pp"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option></select></div>
@@ -308,7 +308,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
   </div>
  </div>
  </div>
- <p class="note">Wij bevestigen uw reservatie en de prijs telefonisch. Gratis wijzigen of annuleren kan tot 2 uur voor vertrek, telefonisch of via bovenstaande knop. Uw gegevens worden enkel gebruikt voor deze reservatie.</p>
+ <p class="note">Wij bevestigen uw wijziging en de prijs. Gratis wijzigen of annuleren kan tot 2 uur voor vertrek. Uw gegevens worden enkel gebruikt voor deze reservatie.</p>
 </div>
 
 <script>
@@ -351,7 +351,7 @@ function applyCode(c){
   try{if(found)sessionStorage.setItem("vgt_c",found);else found=sessionStorage.getItem("vgt_c")||""}catch(e){}
   ccode=found.toUpperCase();
 })();
-var CHANGE_URL="/wijzigen"; /* <-- adres van uw GoDaddy-pagina met het wijzigen/annuleren-formulier */
+var CHANGE_URL="/rezervatie-wijzigen"; /* <-- adres van uw GoDaddy-pagina met het wijzigen/annuleren-formulier */
 var TEL="0474 64 07 88"; /* <-- UW TELEFOONNUMMER voor wijzigen/annuleren */
 /* KORTINGSCODES: maak ze met korting-code-maker.html en plak de regels hier.
    t:"p" = percentage, t:"a" = vast bedrag in euro, until = laatste geldige dag (optioneel) */
@@ -369,7 +369,7 @@ function lbl(x){return x.s+", "+x.r}
 function json(r){if(!r.ok)throw 0;return r.json()}
 
 /* straten zoeken in België met Google Places */
-var GKEY="AIzaSyBWynBy4wBsHwuT7UdLb8i2CntFZKkioPY",G=null,tok=null;
+var GKEY="AIzaSyAbDMW4dWU6C8d9RD_IDgJ7K6lm6ndJQWU",G=null,tok=null; /* Google Cloud > Credentials: nieuwe sleutel, beperkt tot uw website */
 function loadG(){
   if(G)return G;
   G=new Promise(function(res,rej){
@@ -515,7 +515,7 @@ function update(){
 $("tm").addEventListener("input",show);$("tm").addEventListener("change",show);
 
 $("doneTel").textContent=TEL;
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbz08utg6Po31m6Le_HnN0XoQQ-yJ1T4F5A_Qgux3YK8FCV7X7R1b1kZM9mMRGW-V8U8Wg/exec";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxVVxK7z_qXJTMM89h2JYY8oh7y64pkq16PI0NW2qZTLBjADj1s-6zlDnDM8bicPjGf/exec";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
 if(SCRIPT_URL){
   fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
   .then(function(r){return r.json()}).then(function(j){
@@ -528,16 +528,17 @@ applyCode(ccode);$("cc").addEventListener("input",function(){applyCode(this.valu
 var d=new Date();$("dt").min=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
 
 /* versturen */
+function who(){return($("nm").value.trim()?"\nNaam: "+$("nm").value.trim():"")+($("ph").value.trim()?"\nTel: "+$("ph").value.trim():"")}
 function textRide(nr,cust){
   return "Reservatie "+(nr||"")+(cdrv?"\nChauffeur: "+cdrv.name+" ("+cdrv.code+")":(cust?"":"\nChauffeur: ŞOFÖR ATAMASI YAPILMALIDIR ("+(ccode?"ingevoerde code niet herkend: "+ccode:"anonieme aanvraag")+")"))+"\nOphaal: "+lbl(st.a)+"\nAfzet: "+lbl(st.b)+"\nDatum: "+$("dt").value+" om "+$("tm").value+
-  "\nPersonen: "+$("pp").value+"\nNaam: "+$("nm").value+"\nTel: "+$("ph").value+($("em").value.trim()?"\nE-mail: "+$("em").value.trim():"")+"\n"+info+"\nGeschatte prijs: "+$("pV").textContent+
+  "\nPersonen: "+$("pp").value+who()+($("em").value.trim()?"\nE-mail: "+$("em").value.trim():"")+"\n"+info+"\nGeschatte prijs: "+$("pV").textContent+
   "\nBetaling: "+document.querySelector("input[name=pay]:checked").value+(far?"\nLET OP: ophaaladres is meer dan "+FAR+" km van Antwerpen centrum. Betaling vooraf vereist: betaallink sturen.":"")+($("op").value?"\nOpmerking: "+$("op").value:"")}
 function auto(nr){
   return "Beste "+$("nm").value.trim()+",\n\nBedankt voor uw reservatie bij VlaamsGoTaxi. Uw reservatienummer is "+nr+".\n\n"+text(nr,true)+
   "\n\nWij bevestigen uw reservatie en de prijs telefonisch."+(far?" Omdat uw ophaaladres meer dan "+FAR+" km van Antwerpen centrum ligt, vragen wij betaling vooraf. U ontvangt van ons een betaallink.":"")+
   "\nWijzigen of annuleren kan tot 2 uur voor vertrek, telefonisch op "+TEL+" of via "+new URL(CHANGE_URL,location.href).href+" (vermeld uw reservatienummer).\n\nVlaamsGoTaxi"}
 function text(nr,cust){
-  var c=$("cw").value,h="WIJZIGING/ANNULERING van reservatie "+$("cn").value.trim().toUpperCase()+"\nAanvraag: "+c+"\nNaam: "+$("nm").value+"\nTel: "+$("ph").value+($("em").value.trim()?"\nE-mail: "+$("em").value.trim():"")+($("op").value&&c==="Annuleren"?"\nOpmerking: "+$("op").value:"");
+  var c=$("cw").value,h="WIJZIGING/ANNULERING van reservatie "+$("cn").value.trim().toUpperCase()+"\nAanvraag: "+c+who()+($("em").value.trim()?"\nE-mail: "+$("em").value.trim():"")+($("op").value&&c==="Annuleren"?"\nOpmerking: "+$("op").value:"");
   return c==="Annuleren"?h:h+"\n\nNIEUWE GEGEVENS:\n"+textRide(nr,cust)}
 function okRide(){
   var m="";
@@ -547,17 +548,15 @@ function okRide(){
   else if(far&&!$("em").value.trim())m="Bij betaling vooraf is een e-mailadres verplicht, zodat wij u de betaallink kunnen sturen.";
   else if($("em").value.trim()&&!/^\S+@\S+\.\S+$/.test($("em").value.trim()))m="Controleer het e-mailadres.";
   else if(km===null)m="Even geduld, de prijs wordt nog berekend.";
-  else if(!$("nm").value.trim()||!$("ph").value.trim())m="Vul uw naam en telefoonnummer in.";
   $("msg").style.color="";$("msg").textContent=m;return!m}
 function ok(){
   var m="",c=$("cw").value==="Annuleren";$("msg").style.color="";
   if(!$("cn").value.trim())m="Vul uw reservatienummer in.";
-  else if(!$("nm").value.trim()||!$("ph").value.trim())m="Vul uw naam en telefoonnummer in.";
   else if($("em").value.trim()&&!/^\S+@\S+\.\S+$/.test($("em").value.trim()))m="Controleer het e-mailadres.";
   if(m){$("msg").textContent=m;return false}
   if(c){$("msg").textContent="";return true}
   return okRide()}
-$("cw").addEventListener("change",function(){var c=this.value==="Annuleren";$("chgRide").hidden=c;$("chgPay").hidden=c});
+$("cw").addEventListener("change",function(){var c=this.value==="Annuleren";$("chgRide").hidden=c;$("chgPay").hidden=c;$("chgWho").hidden=c});
 /*SEND_START*/
 var FKEY="VUL_HIER_UW_WEB3FORMS_SLEUTEL_IN"; /* reserve: enkel gebruikt als de Google Sheet niet bereikbaar is */
 function DET(e){return e&&e.name==="AbortError"?" (time-out)":e&&e.error==="pin"?" (de Apps Script-versie is niet bijgewerkt: maak een nieuwe versie van de implementatie)":e&&e.error==="unknown action"?" (oude Apps Script-versie)":e&&(e.error||e.message)?" ("+String(e.error||e.message).slice(0,160)+")":""}
@@ -578,13 +577,13 @@ $("sendMail").onclick=function(){
       body:JSON.stringify({access_key:FKEY,subject:"WIJZIGING/ANNULERING "+nr+" - "+c+" - "+$("nm").value,from_name:"Website reservatie",name:$("nm").value,phone:$("ph").value,email:$("em").value.trim()||undefined,message:text(nr)})})
     .then(function(r){return r.json()}).then(function(j){if(String(j.success)!=="true")throw j;done("✓ Bedankt! Uw aanvraag is verzonden. Wij nemen zo snel mogelijk contact met u op.")}).catch(fail)};
   if(!SCRIPT_URL){fb();return}
-  api({action:"change",d:{nr:nr,telefoon:$("ph").value.trim(),actie:c,tekst:c==="Annuleren"?"":textRide(nr,true)+"\nNaam: "+$("nm").value+"\nTel: "+$("ph").value+($("op").value?"\nOpmerking: "+$("op").value:"")}})
+  api({action:"change",d:{nr:nr,actie:c,tekst:c==="Annuleren"?"":textRide(nr,true)}})
   .then(function(j){
-    if(!j.ok){if(j.error==="notfound"){reset("Geen reservatie gevonden met dit nummer en telefoonnummer. Controleer uw gegevens of bel ons op "+TEL+".");return}throw j}
+    if(!j.ok){if(j.error==="notfound"){reset("Geen reservatie gevonden met dit reservatienummer. Controleer het nummer in uw bevestigingsmail.");return}if(j.error==="locked"){reset("Te veel pogingen. Probeer het later opnieuw.");return}throw j}
     if(j.already){done("Deze reservatie is al geannuleerd.");return}
     if(c==="Annuleren")done(j.late?"Uw annulering is genoteerd, maar het is minder dan 2 uur voor vertrek. Bel ons zo snel mogelijk op "+TEL+".":"✓ Uw reservatie is geannuleerd.",j.late);
     else done("✓ Uw wijzigingsaanvraag is verzonden. Wij bevestigen de nieuwe gegevens en de prijs telefonisch.")})
-  .catch(function(e){if(e&&e.error==="invalid"){reset("Controleer uw reservatienummer en telefoonnummer.");return}fb(e)});
+  .catch(function(e){if(e&&e.error==="invalid"){reset("Controleer uw reservatienummer.");return}fb(e)});
 };
 /*SEND_END*/
 
