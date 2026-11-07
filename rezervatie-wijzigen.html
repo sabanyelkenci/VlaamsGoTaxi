@@ -22,10 +22,17 @@ nav a{font:600 1.05rem Mulish,sans-serif;text-decoration:none;color:var(--fg)}
 nav a.on{color:var(--brand)}
 .wai{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#25d366;color:#fff;text-decoration:none}
 .usr{color:var(--fg);border-left:1px solid var(--line);padding-left:18px;display:flex}
-@media(max-width:760px){.logo{font-size:1.6rem}nav{order:3;width:100%;gap:16px;justify-content:center}.usr{display:none}}
+@media(max-width:760px){
+.bar{padding:10px 16px;gap:6px 12px}
+.logo{font-size:1.55rem}
+.wai{width:40px;height:40px}.wai svg{width:23px;height:23px}
+nav{order:3;width:100%;justify-content:space-between;gap:6px;border-top:1px solid var(--line);padding-top:6px;margin-top:2px}
+nav a{font-size:.92rem;white-space:nowrap;padding:6px 0}
+.usr{display:none}}
+@media(max-width:380px){nav a{font-size:.84rem}}
 main{display:block}
 footer{background:var(--bg);border-top:1px solid var(--line);padding:22px 24px;text-align:center;color:var(--muted);font-size:.8rem}
-footer a{color:var(--brand);text-decoration:none;margin:0 8px}
+footer a{color:var(--brand);text-decoration:none;margin:2px 8px;display:inline-block;white-space:nowrap}
 footer p{margin:4px 0}
 .pg{background:#fff;color:#14213d;color-scheme:light;min-height:60vh}
 </style>
@@ -369,7 +376,7 @@ function lbl(x){return x.s+", "+x.r}
 function json(r){if(!r.ok)throw 0;return r.json()}
 
 /* straten zoeken in België met Google Places */
-var GKEY="AIzaSyAbDMW4dWU6C8d9RD_IDgJ7K6lm6ndJQWU",G=null,tok=null; /* Google Cloud > Credentials: nieuwe sleutel, beperkt tot uw website */
+var GKEY="PLAK_HIER_UW_NIEUWE_GOOGLE_SLEUTEL",G=null,tok=null; /* Google Cloud > Credentials: nieuwe sleutel, beperkt tot uw website */
 function loadG(){
   if(G)return G;
   G=new Promise(function(res,rej){
@@ -515,7 +522,7 @@ function update(){
 $("tm").addEventListener("input",show);$("tm").addEventListener("change",show);
 
 $("doneTel").textContent=TEL;
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxVVxK7z_qXJTMM89h2JYY8oh7y64pkq16PI0NW2qZTLBjADj1s-6zlDnDM8bicPjGf/exec";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
+var SCRIPT_URL="https://script.google.com/macros/s/AKfycbz08utg6Po31m6Le_HnN0XoQQ-yJ1T4F5A_Qgux3YK8FCV7X7R1b1kZM9mMRGW-V8U8Wg/exec";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
 if(SCRIPT_URL){
   fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
   .then(function(r){return r.json()}).then(function(j){
