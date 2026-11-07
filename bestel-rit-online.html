@@ -306,8 +306,8 @@ var AP=[{s:"Luchthaven Zaventem",r:"1930 Zaventem",lat:50.9010,lon:4.4844,p:110,
 var $=function(i){return document.getElementById(i)},E=encodeURIComponent;
 /* CHAUFFEURS: code uit de QR-link (?c=CODE) en naam. Maak codes met qr-kaartjes.html en plak hier. */
 var DRIVERS={
-  "MCELIK":"MESUT CELIK",
-  "SYELKENCI":"SABAN YELKENCI",
+  "7W6FK":"Chauffeur 1",
+  "AP5E6":"Chauffeur 2",
   "EKZY7":"Chauffeur 3",
   "J68JK":"Chauffeur 4",
   "JE5B5":"Chauffeur 5",
@@ -338,7 +338,7 @@ function applyCode(c){
   try{if(found)sessionStorage.setItem("vgt_c",found);else found=sessionStorage.getItem("vgt_c")||""}catch(e){}
   ccode=found.toUpperCase();
 })();
-var CHANGE_URL="/wijzigen"; /* <-- adres van uw GoDaddy-pagina met het wijzigen/annuleren-formulier */
+var CHANGE_URL="/rezervatie-wijzigen"; /* <-- adres van uw GoDaddy-pagina met het wijzigen/annuleren-formulier */
 var TEL="0474 64 07 88"; /* <-- UW TELEFOONNUMMER voor wijzigen/annuleren */
 /* KORTINGSCODES: maak ze met korting-code-maker.html en plak de regels hier.
    t:"p" = percentage, t:"a" = vast bedrag in euro, until = laatste geldige dag (optioneel) */
@@ -356,7 +356,7 @@ function lbl(x){return x.s+", "+x.r}
 function json(r){if(!r.ok)throw 0;return r.json()}
 
 /* straten zoeken in België met Google Places */
-var GKEY="AIzaSyAbDMW4dWU6C8d9RD_IDgJ7K6lm6ndJQWU",G=null,tok=null;
+var GKEY="AIzaSyBWynBy4wBsHwuT7UdLb8i2CntFZKkioPY",G=null,tok=null;
 function loadG(){
   if(G)return G;
   G=new Promise(function(res,rej){
