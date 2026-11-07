@@ -390,7 +390,7 @@ function json(r){if(!r.ok)throw 0;return r.json()}
 var orig=null,touch={a:false,b:false},MID=["dt","tm","aS","aN","bS","bN","pp","nm","ph","em","op"];
 
 /* straten zoeken in België met Google Places */
-var GKEY="AIzaSyAbDMW4dWU6C8d9RD_IDgJ7K6lm6ndJQWU",G=null,tok=null;
+var GKEY="AIzaSyBWynBy4wBsHwuT7UdLb8i2CntFZKkioPY",G=null,tok=null;
 function loadG(){
   if(G)return G;
   G=new Promise(function(res,rej){
@@ -677,8 +677,8 @@ function fillAddr(k,label){
 function setPay(){if(!orig||!orig.Betaling)return;
   Array.prototype.forEach.call(document.querySelectorAll("input[name=pay]"),function(x){if(x.value===orig.Betaling&&!x.closest("label").hidden)x.checked=true})}
 function showWrap(f){$("chgWrap").hidden=!f}
-function resetLook(){if(!LOOK)return;if(orig||!$("chgWrap").hidden){orig=null;touch={a:false,b:false};showWrap(false);$("sum").hidden=true;$("lkI").textContent="";markMods()}}
-function manual(t){var I=$("lkI");I.className="info";I.textContent=t;orig=null;showWrap(true);if(!$("ph").value)$("ph").value=$("lp").value;
+function resetLook(){if(!LOOK)return;if(orig||!$("chgWrap").hidden){orig=null;touch={a:false,b:false};showWrap(false);$("sum").hidden=true;$("lpF").hidden=false;$("lkI").textContent="";markMods()}}
+function manual(t){$("lpF").hidden=false;var I=$("lkI");I.className="info";I.textContent=t;orig=null;showWrap(true);if(!$("ph").value)$("ph").value=$("lp").value;
   $("hint").textContent="Vul hieronder uw nieuwe gegevens in en u ziet meteen de prijs."}
 function loadRes(r){
   var I=$("lkI"),stt=String(r.Status||"");
@@ -694,6 +694,7 @@ function loadRes(r){
   orig=o;touch={a:false,b:false};st={a:null,b:null};cs={a:null,b:null};km=null;
   $("cw").value="Wijzigen";$("chgRide").hidden=false;$("chgPay").hidden=false;
   $("hint").textContent="Hieronder staan uw gegevens al ingevuld. Pas alleen aan wat u wilt wijzigen; de rest blijft zoals gereserveerd.";
+  if(!$("lp").value)$("lp").value=o.Telefoon;
   $("dt").value=o.Datum;$("tm").value=o.Uur;$("pp").value=o.Personen;$("nm").value=o.Naam;$("ph").value=o.Telefoon||$("lp").value;
   $("em").value=o.Email;$("op").value=o.Opmerking;applyCode(o.Code);
   var h="<small>Uw huidige reservatie</small><b>"+esc(o.Nr)+"</b> · "+esc(nl(o.Datum))+" om "+esc(o.Uur)+"<br>Van: "+esc(o.Ophaal)+"<br>Naar: "+esc(o.Afzet)+"<br>"+esc(o.Personen)+(o.Personen==="1"?" persoon":" personen")+(o.Prijs?" · "+esc(prTxt(o.Prijs)):"");
@@ -702,21 +703,24 @@ function loadRes(r){
   I.className="info";I.textContent="✓ Reservatie gevonden. Pas hieronder alleen aan wat u wilt wijzigen.";
   Promise.all([fillAddr("a",o.Ophaal),fillAddr("b",o.Afzet)]).then(function(){update();setPay();markMods()});
   markMods()}
-function look(){
-  var nr=$("cn").value.trim().toUpperCase(),lp=$("lp").value.trim(),I=$("lkI"),b=$("lk");
-  if(!nr||!lp){I.className="info err";I.textContent="Vul uw reservatienummer en telefoonnummer in.";return}
+function look(tok){
+  var tk=typeof tok==="string"?tok:"",nr=$("cn").value.trim().toUpperCase(),lp=$("lp").value.trim(),I=$("lkI"),b=$("lk");
+  if(!nr||(!tk&&!lp)){I.className="info err";I.textContent="Vul uw reservatienummer en telefoonnummer in.";return}
   b.disabled=true;I.className="info";I.textContent="Reservatie wordt opgezocht…";
-  api({action:"lookup",d:{nr:nr,telefoon:lp}}).then(function(j){
+  api({action:"lookup",d:tk?{nr:nr,t:tk}:{nr:nr,telefoon:lp}}).then(function(j){
     b.disabled=false;
     if(j&&j.ok&&j.r){loadRes(j.r);return}
     var e=j&&j.error;
-    if(e==="notfound"||e==="invalid"){I.className="info err";I.textContent="Geen reservatie gevonden met dit nummer en telefoonnummer. Controleer uw gegevens of bel ons op "+TEL+".";return}
+    if(e==="notfound"||e==="invalid"){$("lpF").hidden=false;I.className="info err";I.textContent=tk?"Deze link is niet (meer) geldig. Vul uw reservatienummer en telefoonnummer in.":"Geen reservatie gevonden met dit nummer en telefoonnummer. Controleer uw gegevens of bel ons op "+TEL+".";return}
     if(e==="locked"){I.className="info err";I.textContent="Te veel pogingen. Probeer later opnieuw of bel ons op "+TEL+".";return}
     manual("Uw gegevens konden niet automatisch worden opgehaald. Vul de nieuwe gegevens zelf in.")})
   .catch(function(){b.disabled=false;manual("Opzoeken lukt nu niet. Vul de nieuwe gegevens zelf in of bel ons op "+TEL+".")})}
-$("lk").onclick=look;
+$("lk").onclick=function(){look()};
 ["cn","lp"].forEach(function(i){$(i).addEventListener("input",resetLook);$(i).addEventListener("keydown",function(e){if(e.key==="Enter"&&LOOK){e.preventDefault();look()}})});
 if(!LOOK){$("lkRow").hidden=true;$("lpF").hidden=true;showWrap(true);$("hint").textContent="Vul hieronder uw nieuwe gegevens in en u ziet meteen de prijs."}
+/* link uit de e-mail: ?nr=...&t=... zoekt de reservatie meteen op, zonder nummer of telefoon in te typen */
+try{var qs=new URLSearchParams(location.search),qNr=(qs.get("nr")||"").trim(),qT=(qs.get("t")||"").trim();
+  if(LOOK&&qNr&&qT){$("cn").value=qNr.toUpperCase();$("lpF").hidden=true;history.replaceState(null,"",location.pathname);look(qT)}}catch(x){}
 
 $("loc").onclick=function(){
   var i=$("aI");i.className="info";
