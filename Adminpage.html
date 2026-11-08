@@ -176,9 +176,10 @@ font-family:'Figtree',system-ui,sans-serif;font-size:15px;color:var(--ink);line-
 
 </div>
 
+<script src="config.js"></script>
 <script>
 (function(){
-var URL_="https://script.google.com/macros/s/AKfycbz08utg6Po31m6Le_HnN0XoQQ-yJ1T4F5A_Qgux3YK8FCV7X7R1b1kZM9mMRGW-V8U8Wg/exec"; /* <-- Apps Script web app-adres */
+var URL_=window.VGT_SCRIPT_URL||"PLAK_HIER_DE_WEB_APP_URL"; /* <-- Apps Script web app-adres */
 var BOOK_URL="https://vlaamsgotaxi.be/bestel-rit-online"; /* <-- adres van uw reservatiepagina (voor de QR-codes) */
 var lastY=80;document.addEventListener("click",function(e){lastY=e.pageY||80},true);
 var $=function(i){return document.getElementById(i)},PIN="",D={Reserveringen:[],Chauffeurs:[],Voertuigen:[]},tab="Reserveringen",cur=null,delArm=false;

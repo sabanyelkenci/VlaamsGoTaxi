@@ -333,6 +333,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
  <p class="note">Wij bevestigen uw reservatie en de prijs telefonisch. Gratis wijzigen of annuleren kan tot 2 uur voor vertrek, telefonisch of via bovenstaande knop. Uw gegevens worden enkel gebruikt voor deze reservatie.</p>
 </div>
 
+<script src="config.js"></script>
 <script>
 (function(){
 var AP=[{s:"Luchthaven Zaventem",r:"1930 Zaventem",lat:50.9010,lon:4.4844,p:110,t:"D"},
@@ -391,7 +392,7 @@ function lbl(x){return x.s+", "+x.r}
 function json(r){if(!r.ok)throw 0;return r.json()}
 
 /* straten zoeken in België met Google Places */
-var GKEY="AIzaSyBWynBy4wBsHwuT7UdLb8i2CntFZKkioPY",G=null,tok=null;
+var GKEY=window.VGT_GKEY||"",G=null,tok=null;
 function loadG(){
   if(G)return G;
   G=new Promise(function(res,rej){
@@ -539,7 +540,7 @@ $("tm").addEventListener("input",show);$("tm").addEventListener("change",show);
 getMap().catch(function(){$("mapNote").textContent="De kaart kon niet geladen worden."});
 
 $("doneTel").textContent=TEL;
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbz08utg6Po31m6Le_HnN0XoQQ-yJ1T4F5A_Qgux3YK8FCV7X7R1b1kZM9mMRGW-V8U8Wg/exec";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
+var SCRIPT_URL=window.VGT_SCRIPT_URL||"";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
 if(SCRIPT_URL){
   fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
   .then(function(r){return r.json()}).then(function(j){
