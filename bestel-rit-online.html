@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="nl-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Bestel rit online - Vlaams Go Taxi</title>
+<title>Taxi bestellen Antwerpen | Bestel rit online | VlaamsGoTaxi</title>
+<meta name="description" content="Bestel uw taxi in Antwerpen online: vul ophaaladres en bestemming in en zie meteen de prijs. Ook vaste prijzen naar Zaventem, Charleroi en Schiphol.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://vlaamsgotaxi.be/bestel-rit-online">
+<link rel="alternate" hreflang="nl-be" href="https://vlaamsgotaxi.be/bestel-rit-online">
+<meta property="og:type" content="website"><meta property="og:locale" content="nl_BE"><meta property="og:site_name" content="VlaamsGoTaxi">
+<meta property="og:title" content="Taxi bestellen Antwerpen | Bestel rit online | VlaamsGoTaxi"><meta property="og:description" content="Bestel uw taxi in Antwerpen online: vul ophaaladres en bestemming in en zie meteen de prijs. Ook vaste prijzen naar Zaventem, Charleroi en Schiphol."><meta property="og:url" content="https://vlaamsgotaxi.be/bestel-rit-online"><meta property="og:image" content="https://vlaamsgotaxi.be/images/taxi.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#27785c">
 
 <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -383,7 +391,7 @@ function lbl(x){return x.s+", "+x.r}
 function json(r){if(!r.ok)throw 0;return r.json()}
 
 /* straten zoeken in België met Google Places */
-var GKEY="AIzaSyAbDMW4dWU6C8d9RD_IDgJ7K6lm6ndJQWU",G=null,tok=null;
+var GKEY="AIzaSyBWynBy4wBsHwuT7UdLb8i2CntFZKkioPY",G=null,tok=null;
 function loadG(){
   if(G)return G;
   G=new Promise(function(res,rej){
@@ -531,7 +539,7 @@ $("tm").addEventListener("input",show);$("tm").addEventListener("change",show);
 getMap().catch(function(){$("mapNote").textContent="De kaart kon niet geladen worden."});
 
 $("doneTel").textContent=TEL;
-var SCRIPT_URL="https://script.google.com/macros/s/AKfycbxVVxK7z_qXJTMM89h2JYY8oh7y64pkq16PI0NW2qZTLBjADj1s-6zlDnDM8bicPjGf/exec";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
+var SCRIPT_URL="";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
 if(SCRIPT_URL){
   fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
   .then(function(r){return r.json()}).then(function(j){
