@@ -289,7 +289,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
       <div class="f"><label for="op">Opmerking</label><input id="op" type="text" placeholder="bv. rolstoel"></div>
     </div>
     <div class="f gap"><label for="em" id="emT">E-mail <span style="font-weight:400">(optioneel)</span></label><input id="em" type="email" autocomplete="email" placeholder="uw@email.be"></div>
-    <div class="f gap"><label for="cc">Chauffeurs- of kortingscode <span style="font-weight:400">(optioneel)</span></label><input id="cc" type="text" placeholder="bv. 589DB" autocapitalize="characters" maxlength="12" autocomplete="off"><div class="info" id="ccI"></div></div>
+    <div class="f gap"><label for="cc">Chauffeurs- of kortingscode <span style="font-weight:400">(optioneel)</span></label><input id="cc" type="text" placeholder="bv. syelkenci" autocapitalize="none" autocorrect="off" spellcheck="false" maxlength="30" autocomplete="off"><div class="info" id="ccI"></div></div>
   </div>
 
   <div class="sec wide">
@@ -340,28 +340,19 @@ var AP=[{s:"Luchthaven Zaventem",r:"1930 Zaventem",lat:50.9010,lon:4.4844,p:110,
 {s:"Luchthaven Charleroi",r:"6041 Gosselies",lat:50.4592,lon:4.4538,p:220,t:"E"},
 {s:"Luchthaven Schiphol",r:"1118 Schiphol (NL)",lat:52.3105,lon:4.7683,p:340,t:"F"}];
 var $=function(i){return document.getElementById(i)},E=encodeURIComponent;
-/* CHAUFFEURS: code uit de QR-link (?c=CODE) en naam. Maak codes met qr-kaartjes.html en plak hier. */
-var DRIVERS={
-  "7W6FK":"Chauffeur 1",
-  "AP5E6":"Chauffeur 2",
-  "EKZY7":"Chauffeur 3",
-  "J68JK":"Chauffeur 4",
-  "JE5B5":"Chauffeur 5",
-  "SJ9YG":"Chauffeur 6",
-  "WFMWE":"Chauffeur 7",
-  "XXYDK":"Chauffeur 8"
-};
+/* CHAUFFEURS: komen automatisch uit de Google Sheet (adminpage > Chauffeurs). Hier niets invullen. */
+var DRIVERS={};
 var cdrv=null,ccode="";
 function applyCode(c){
-  ccode=String(c||"").toUpperCase().replace(/[^A-Z0-9]/g,"").slice(0,12);
+  ccode=String(c||"").toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,30);
   cdrv=ccode&&DRIVERS[ccode]?{code:ccode,name:DRIVERS[ccode]}:null;
-  disc=cdrv?{code:ccode,t:"p",v:DISCOUNT}:null;
+  disc=(cdrv&&DISCOUNT>0)?{code:ccode,t:"p",v:DISCOUNT}:null;
   var v=$("via"),I=$("ccI");
   v.hidden=!cdrv;if(cdrv)$("viaN").textContent=cdrv.name;
-  if(cdrv){I.className="info";I.textContent="✓ Code herkend: "+cdrv.name+" · "+DISCOUNT+"% korting"}
+  if(cdrv){I.className="info";I.textContent="✓ Code herkend: "+cdrv.name+(DISCOUNT>0?" · "+DISCOUNT+"% korting":"")}
   else if(ccode&&listOk){I.className="info err";I.textContent="Deze code bestaat niet. Controleer de code. U kunt toch gewoon reserveren."}
   else{I.className="info";I.textContent=""}
-  if($("cc")&&$("cc").value.toUpperCase()!==ccode)$("cc").value=ccode;
+  if($("cc")&&$("cc").value.toLowerCase()!==ccode)$("cc").value=ccode;
   show()}
 /* de code uit de QR-link (?c=CODE) zoeken: eigen adres, bovenliggende pagina, verwijzer, of onthouden voor deze sessie */
 (function(){
@@ -370,9 +361,9 @@ function applyCode(c){
   try{src.push(window.parent.location.search+window.parent.location.hash)}catch(e){}
   src.push(location.search+location.hash);
   try{if(document.referrer.indexOf("?")>-1)src.push("?"+document.referrer.split("#")[0].split("?")[1])}catch(e){}
-  for(var i=0;i<src.length&&!found;i++){m=String(src[i]).match(/[?&#](?:c|chauffeur)=([A-Za-z0-9]{3,12})/);if(m)found=m[1]}
+  for(var i=0;i<src.length&&!found;i++){m=String(src[i]).match(/[?&#](?:c|chauffeur)=([A-Za-z0-9]{3,30})/);if(m)found=m[1]}
   try{if(found)sessionStorage.setItem("vgt_c",found);else found=sessionStorage.getItem("vgt_c")||""}catch(e){}
-  ccode=found.toUpperCase();
+  ccode=found.toLowerCase();
 })();
 var CHANGE_URL="/rezervatie-wijzigen"; /* <-- adres van uw GoDaddy-pagina met het wijzigen/annuleren-formulier */
 var TEL="0474 64 07 88"; /* <-- UW TELEFOONNUMMER voor wijzigen/annuleren */
@@ -544,7 +535,7 @@ var SCRIPT_URL=window.VGT_SCRIPT_URL||"";var listOk=!SCRIPT_URL; /* <-- Apps Scr
 if(SCRIPT_URL){
   fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
   .then(function(r){return r.json()}).then(function(j){
-    if(!j.ok)return;listOk=true;DRIVERS={};j.drivers.forEach(function(d){DRIVERS[d.c]=d.n});
+    if(!j.ok)return;listOk=true;DRIVERS={};j.drivers.forEach(function(d){DRIVERS[String(d.c).toLowerCase()]=d.n});if(typeof j.discount==="number"&&j.discount>=0&&j.discount<=100)DISCOUNT=j.discount;
     applyCode(ccode);
   }).catch(function(){});
 }

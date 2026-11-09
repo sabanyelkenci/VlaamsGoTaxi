@@ -135,7 +135,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:15px;color:var(--ink);line-
   <div id="app" hidden>
     <div class="top">
       <h2>adminpage</h2>
-      <div class="tabs"><button data-t="Reserveringen" class="on">Reservaties</button><button data-t="Chauffeurs">Chauffeurs</button><button data-t="Voertuigen">Voertuigen</button><button data-t="QR">QR-codes</button></div>
+      <div class="tabs"><button data-t="Reserveringen" class="on">Reservaties</button><button data-t="Chauffeurs">Chauffeurs</button><button data-t="Voertuigen">Voertuigen</button><button data-t="QR">QR-codes</button><button data-t="SET">Instellingen</button></div>
       <div class="tools"><select id="sf" style="width:auto"><option value="">Alle statussen</option><option>Nieuw</option><option>Toegewezen</option><option>Bevestigd</option><option>Voltooid</option><option>Geannuleerd</option><option>Wijziging aangevraagd</option><option>Annulering &lt; 2u</option><option>No-show</option></select><input id="q" type="search" placeholder="Zoeken…"><button id="new">+ Nieuw</button><button id="rl" class="alt">Vernieuwen</button></div>
     </div>
   <div class="pop" id="ov" hidden>
@@ -156,8 +156,14 @@ font-family:'Figtree',system-ui,sans-serif;font-size:15px;color:var(--ink);line-
       <div class="tw"><table id="cl"></table></div>
       <div class="mb"><button id="cpl" class="alt">Lijst kopiëren</button></div>
       <p class="msg" id="cm2" role="status"></p>
-      <p style="color:var(--mut);font-size:.85rem;margin:4px 0">CSV (Code, Naam, Status, Link). Selecteer en kopieer, of download vanuit Google Sheets: Bestand → Downloaden.</p>
+      <p style="color:var(--mut);font-size:.85rem;margin:4px 0">CSV (Code, Naam). Selecteer en kopieer, of download vanuit Google Sheets: Bestand → Downloaden.</p>
       <textarea id="cx2" readonly></textarea>
+    </div>
+    <div id="setw" hidden>
+      <h3 style="margin:6px 0 8px;font-size:1.1rem">Korting voor chauffeurscodes</h3>
+      <p style="color:var(--mut);margin:0 0 12px">Klanten die reserveren via de QR-link of de code van een chauffeur krijgen dit percentage korting. De wijziging geldt direct op de site, u hoeft niets te uploaden. Vul 0 in om de korting uit te zetten.</p>
+      <div class="mb" style="align-items:center"><input id="disc" type="number" min="0" max="100" step="1" inputmode="decimal" style="width:110px"><b>%</b><button id="dsv">Opslaan</button></div>
+      <p class="msg" id="dsm" role="status"></p>
     </div>
     <p class="msg" id="am" role="alert"></p>
   </div>
@@ -182,7 +188,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:15px;color:var(--ink);line-
 var URL_=window.VGT_SCRIPT_URL||"PLAK_HIER_DE_WEB_APP_URL"; /* <-- Apps Script web app-adres */
 var BOOK_URL="https://vlaamsgotaxi.be/bestel-rit-online"; /* <-- adres van uw reservatiepagina (voor de QR-codes) */
 var lastY=80;document.addEventListener("click",function(e){lastY=e.pageY||80},true);
-var $=function(i){return document.getElementById(i)},PIN="",D={Reserveringen:[],Chauffeurs:[],Voertuigen:[]},tab="Reserveringen",cur=null,delArm=false;
+var ST={discount:20},$=function(i){return document.getElementById(i)},PIN="",D={Reserveringen:[],Chauffeurs:[],Voertuigen:[]},tab="Reserveringen",cur=null,delArm=false;
 var F={
  Reserveringen:{key:"Nr",list:["Nr","Datum","Uur","Naam","Ophaal","Prijs","ChauffeurCode","Status"],
   fields:[["Wijziging","Wijzigingsaanvraag van de klant","ro","full"],["Status","Status","sel:Nieuw,Toegewezen,Bevestigd,Voltooid,Geannuleerd,Wijziging aangevraagd,Annulering < 2u,No-show"],["ChauffeurCode","Chauffeur","drv"],["Toewijzing","Toewijzing","sel:,QR,Pool,Handmatig"],["Betaald","Betaald (bij betaling vooraf)","sel:nee,ja"],["Datum","Datum","date"],["Uur","Uur","time"],["Ophaal","Ophaaladres","text","full"],["Afzet","Afzetadres","text","full"],["Personen","Personen","number"],["Prijs","Prijs (€)","text"],["Betaling","Betaling","text","full"],["Naam","Naam"],["Telefoon","Telefoon","tel"],["Email","E-mail","email"],["Opmerking","Opmerking klant","text","full"],["Intern","Interne notitie","text","full"],["_info","Details","ro","full"]]},
@@ -203,7 +209,7 @@ function call(b){
   return fetch(URL_,{method:"POST",signal:AC.signal,headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(b)})
     .then(function(r){clearTimeout(t);return r.json()})}
 function load(){
-  return call({action:"list"}).then(function(j){if(!j.ok)throw j;D=j.data;render()})}
+  return call({action:"list"}).then(function(j){if(!j.ok)throw j;D=j.data;if(j.settings)ST=j.settings;render()})}
 function alerts(){
   var n=0,p=0;
   [["Chauffeurs","VergunningTot"],["Chauffeurs","RijbewijsTot"],["Voertuigen","VerzekeringTot"],["Voertuigen","KeuringTot"]].forEach(function(q){
@@ -212,7 +218,8 @@ function alerts(){
   $("al").hidden=!(n||p);
   $("al").textContent=(p?"🔔 "+p+" reservatie(s) vragen aandacht (nieuw, wijziging of late annulering). ":"")+(n?"⚠ "+n+" document(en) verlopen of binnen 30 dagen.":"")}
 function render(){
-  var isQ=tab==="QR";$("sf").hidden=tab!=="Reserveringen";$("tbw").hidden=isQ;$("qrw").hidden=!isQ;$("new").hidden=isQ;
+  var isQ=tab==="QR",isS=tab==="SET";$("sf").hidden=tab!=="Reserveringen";$("tbw").hidden=isQ||isS;$("qrw").hidden=!isQ;$("setw").hidden=!isS;$("new").hidden=isQ||isS;$("q").hidden=isS;
+  if(isS){if(document.activeElement!==$("disc"))$("disc").value=ST.discount;alerts();return}
   if(isQ){renderQR();renderCodes();alerts();return}
   var c=F[tab],q=$("q").value.toLowerCase();
   var sf=$("sf").value,rs=D[tab].filter(function(r){return(!q||JSON.stringify(r).toLowerCase().indexOf(q)>-1)&&(tab!=="Reserveringen"||!sf||r.Status===sf)});
@@ -233,7 +240,7 @@ function openForm(k){
   $("mt").textContent=(cur?"Bewerken: ":"Nieuw: ")+({Chauffeurs:"chauffeur",Voertuigen:"voertuig",Reserveringen:"reservatie"})[tab]+(cur&&tab==="Reserveringen"?" "+cur.Nr:"");
   $("fmsg").textContent="";$("dl").textContent="Verwijderen";$("dl").hidden=!cur;
   var fm=$("fm");fm.innerHTML="";
-  if(tab==="Chauffeurs"){var i=document.createElement("div");i.className="full";i.style.color="#667089";i.textContent=cur?"Code: "+cur.Code+" (voor de QR-code)":"De code wordt automatisch gemaakt.";fm.appendChild(i)}
+  if(tab==="Chauffeurs"){var i=document.createElement("div");i.className="full";i.style.color="#667089";i.textContent=cur?"Code: "+cur.Code+" (blijft gelijk, ook als u de naam wijzigt)":"De code wordt automatisch gemaakt: eerste letter van de voornaam + achternaam (bv. syelkenci).";fm.appendChild(i)}
   c.fields.forEach(function(f){
     var d=document.createElement("div");if(f[3])d.className=f[3];
     var l=document.createElement("label");l.textContent=f[1];d.appendChild(l);
@@ -287,6 +294,12 @@ function msg(t,ok){var m=$("am");m.className="msg"+(ok?" ok":"");m.textContent=t
 Array.prototype.forEach.call(document.querySelectorAll(".tabs button"),function(b){b.onclick=function(){
   tab=b.getAttribute("data-t");Array.prototype.forEach.call(document.querySelectorAll(".tabs button"),function(x){x.className=x===b?"on":""});$("q").value="";$("sf").value="";render()}});
 $("q").addEventListener("input",render);$("sf").addEventListener("change",render);
+$("dsv").onclick=function(){
+  var v=String($("disc").value).replace(",","."),n=Number(v),m=$("dsm"),b=this;
+  if(v===""||!isFinite(n)||n<0||n>100){m.className="msg";m.textContent="Vul een getal tussen 0 en 100 in.";return}
+  b.disabled=true;m.className="msg";m.textContent="Bezig…";
+  call({action:"saveSettings",discount:n}).then(function(j){b.disabled=false;if(!j.ok)throw j;ST=j.settings;$("disc").value=ST.discount;m.className="msg ok";m.textContent="✓ Opgeslagen: "+ST.discount+"% korting"})
+  .catch(function(e){b.disabled=false;m.className="msg";m.textContent="Opslaan mislukt"+(e&&(e.error||e.message)?" ("+(e.error||e.message)+")":"")+". Staat de nieuwste Code.gs live (Nieuwe versie)?"})};
 $("rl").onclick=function(){load().then(function(){msg("✓ Vernieuwd",1)}).catch(function(){msg("Vernieuwen mislukt.")})};
 function login(){
   if(URL_.indexOf("PLAK_HIER")===0){$("lm").textContent="De web app-URL is nog niet ingesteld.";return}
@@ -339,11 +352,11 @@ function copyText(t){
   var ok=false;try{ok=document.execCommand("copy")}catch(e){}document.body.removeChild(ta);return ok}
 function note2(t,ok){var m=$("cm2");m.className="msg"+(ok?" ok":"");m.textContent=t;setTimeout(function(){m.textContent=""},4000)}
 function renderCodes(){
-  var L=D.Chauffeurs.filter(function(r){return r.Code}),h="<tr><th>Code</th><th>Naam</th><th>Status</th><th>Link</th><th></th></tr>",csv=["Code,Naam,Status,Link"];
-  L.forEach(function(r){var u=qlink(r.Code),st_=String(r.Status||"actief");
-    h+="<tr><td>"+esc(r.Code)+"</td><td>"+esc(r.Naam)+"</td><td>"+esc(st_)+"</td><td style='word-break:break-all'>"+esc(u)+"</td><td><button class='alt' data-u='"+esc(u)+"' style='height:32px;font-size:.8rem'>Kopieer link</button></td></tr>";
-    csv.push([r.Code,r.Naam,st_,u].map(function(x){return'"'+String(x).replace(/"/g,'""')+'"'}).join(","))});
-  if(!L.length)h+='<tr><td class="empty" colspan="5">Nog geen codes.</td></tr>';
+  var L=D.Chauffeurs.filter(function(r){return r.Code}),h="<tr><th>Code</th><th>Naam</th><th></th></tr>",csv=["Code,Naam"];
+  L.forEach(function(r){var u=qlink(r.Code),off=String(r.Status||"").toLowerCase()==="inactief";
+    h+="<tr><td>"+esc(r.Code)+"</td><td>"+esc(r.Naam)+(off?" <span style='color:#667089'>(inactief)</span>":"")+"</td><td><button class='alt' data-u='"+esc(u)+"' style='height:32px;font-size:.8rem'>Kopieer link</button></td></tr>";
+    csv.push([r.Code,r.Naam].map(function(x){return'"'+String(x).replace(/"/g,'""')+'"'}).join(","))});
+  if(!L.length)h+='<tr><td class="empty" colspan="3">Nog geen codes.</td></tr>';
   $("cl").innerHTML=h;$("cx2").value=csv.join("\n")}
 $("cl").onclick=function(e){var u=e.target.getAttribute&&e.target.getAttribute("data-u");if(u)note2(copyText(u)?"✓ Link gekopieerd":"Kopiëren niet toegestaan. Selecteer de tekst en druk Ctrl+C.",1)};
 $("cpl").onclick=function(){var t=$("cx2").value,ok=copyText(t);if(!ok){$("cx2").select()}note2(ok?"✓ Lijst gekopieerd (plakbaar in Excel of Google Sheets)":"Selecteer de tekst hieronder en druk Ctrl+C.",ok)};
