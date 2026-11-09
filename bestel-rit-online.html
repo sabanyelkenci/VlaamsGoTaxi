@@ -342,6 +342,8 @@ var AP=[{s:"Luchthaven Zaventem",r:"1930 Zaventem",lat:50.9010,lon:4.4844,p:110,
 var $=function(i){return document.getElementById(i)},E=encodeURIComponent;
 /* CHAUFFEURS: komen automatisch uit de Google Sheet (adminpage > Chauffeurs). Hier niets invullen. */
 var DRIVERS={};
+var DBG=/[?&]debug=1/.test(location.search),PAGE_BUILD="2026-11-09-b";
+function dbg(t){var d=document.getElementById("dbg");if(!d){d=document.createElement("pre");d.id="dbg";d.style.cssText="white-space:pre-wrap;font:12px/1.4 monospace;background:#fff3c4;border:1px solid #e0c200;border-radius:8px;padding:8px;margin:8px 0;position:relative;z-index:5";var m=document.querySelector("main")||document.body;m.insertBefore(d,m.firstChild)}d.textContent+=t+"\n"}
 var cdrv=null,ccode="";
 function applyCode(c){
   ccode=String(c||"").toLowerCase().replace(/[^a-z0-9]/g,"").slice(0,30);
@@ -353,6 +355,7 @@ function applyCode(c){
   else if(ccode&&listOk){I.className="info err";I.textContent="Deze code bestaat niet. Controleer de code. U kunt toch gewoon reserveren."}
   else{I.className="info";I.textContent=""}
   if($("cc")&&$("cc").value.toLowerCase()!==ccode)$("cc").value=ccode;
+  if(DBG)dbg("pagina-versie "+PAGE_BUILD+" · code uit link/veld: '"+ccode+"' · herkend: "+(cdrv?cdrv.name:"nee")+" · lijst geladen: "+listOk);
   show()}
 /* de code uit de QR-link (?c=CODE) zoeken: eigen adres, bovenliggende pagina, verwijzer, of onthouden voor deze sessie */
 (function(){
@@ -535,9 +538,10 @@ var SCRIPT_URL=window.VGT_SCRIPT_URL||"";var listOk=!SCRIPT_URL; /* <-- Apps Scr
 if(SCRIPT_URL){
   fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
   .then(function(r){return r.json()}).then(function(j){
+    if(DBG)dbg("sunucu: ok="+j.ok+(j.error?" fout="+j.error:"")+" · codes: "+((j.drivers||[]).map(function(d){return d.c}).join(", ")||"(geen)")+" · korting="+j.discount);
     if(!j.ok)return;listOk=true;DRIVERS={};j.drivers.forEach(function(d){DRIVERS[String(d.c).toLowerCase()]=d.n});if(typeof j.discount==="number"&&j.discount>=0&&j.discount<=100)DISCOUNT=j.discount;
     applyCode(ccode);
-  }).catch(function(){});
+  }).catch(function(e){if(DBG)dbg("sunucu niet bereikbaar: "+e)});
 }
 applyCode(ccode);$("cc").addEventListener("input",function(){applyCode(this.value)});$("chgLink").href=CHANGE_URL;
 
