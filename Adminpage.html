@@ -121,6 +121,40 @@ font-family:'Figtree',system-ui,sans-serif;font-size:15px;color:var(--ink);line-
 .tx-adm .pop .mod{margin-left:0;margin-right:0;padding:16px}
 .tx-adm .mb button{flex:1 1 30%}
 }
+.tx-adm .flt{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px 12px;align-items:end;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:12px;margin-bottom:12px}
+.tx-adm .flt label{display:block;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--mut);margin-bottom:3px}
+.tx-adm .flt .fc{display:grid;grid-template-columns:1fr 1fr;gap:8px;grid-column:span 2}
+.tx-adm .flt .fa{display:flex;gap:10px;align-items:center;flex-wrap:wrap;grid-column:1/-1}
+.tx-adm .fsum{font-weight:600;color:var(--mut);font-size:.88rem;margin:0 0 10px}
+.tx-adm .fsum b{color:var(--ink)}
+.tx-adm td.f{white-space:normal}
+.tx-adm #ft{display:none}
+@media(max-width:700px){
+.tx-adm .flt{grid-template-columns:1fr 1fr}.tx-adm .flt .fc{grid-column:1/-1}
+.tx-adm .flt:not(.open){display:none}
+.tx-adm .tools{display:flex!important;flex-wrap:wrap}.tx-adm .tools input,.tx-adm .tools select{flex:1 1 100%}.tx-adm .tools button{flex:1 1 0;min-width:0;padding:0 6px}
+.tx-adm #ft{display:block!important}
+.tx-adm .tabs{display:flex!important;overflow-x:auto;gap:8px;padding-bottom:4px;margin-bottom:10px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.tx-adm .tabs::-webkit-scrollbar{display:none}
+.tx-adm .tabs button{flex:0 0 auto;width:auto!important;padding:0 14px!important}
+.tx-adm .top h2{margin-bottom:8px;font-size:1.5rem}
+.tx-adm .al{font-size:.88rem}
+.tx-adm table.res tr[data-k]{grid-template-columns:1fr auto}
+.tx-adm table.res td:nth-child(1){order:1}.tx-adm table.res td:nth-child(8){order:2;text-align:right}
+.tx-adm table.res td:nth-child(2){order:3}.tx-adm table.res td:nth-child(3){order:4;text-align:right}
+.tx-adm table.res td:nth-child(4){order:5}.tx-adm table.res td:nth-child(6){order:6;text-align:right}
+.tx-adm table.res td:nth-child(5){order:7}.tx-adm table.res td:nth-child(7){order:8}
+.tx-adm table.res td:nth-child(5),.tx-adm table.res td:nth-child(7){grid-column:1/-1;text-align:left}
+.tx-adm .tw{background:transparent;border:0;border-radius:0}
+.tx-adm table.cards{min-width:0;display:block}
+.tx-adm table.cards tbody{display:block}
+.tx-adm table.cards tr:first-child:has(th){display:none}
+.tx-adm table.cards tr[data-k],.tx-adm table.cards tr:has(td.empty){display:grid;grid-template-columns:1fr 1fr;gap:4px 12px;background:#fffdf6;border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin-bottom:10px}
+.tx-adm table.cards td{display:block;padding:2px 0;border:0;min-width:0;overflow-wrap:anywhere}
+.tx-adm table.cards td[data-l]::before{content:attr(data-l);display:block;font-size:.64rem;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);font-weight:700}
+.tx-adm table.cards td.f,.tx-adm table.cards td.empty{grid-column:1/-1}
+.tx-adm table.cards td.warn,.tx-adm table.cards td.bad{border-radius:8px;padding:4px 8px}
+}
 </style>
 
 <div class="tx-adm">
@@ -136,7 +170,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:15px;color:var(--ink);line-
     <div class="top">
       <h2>adminpage</h2>
       <div class="tabs"><button data-t="Reserveringen" class="on">Reservaties</button><button data-t="Chauffeurs">Chauffeurs</button><button data-t="Voertuigen">Voertuigen</button><button data-t="QR">QR-codes</button><button data-t="SET">Instellingen</button></div>
-      <div class="tools"><select id="sf" style="width:auto"><option value="">Alle statussen</option><option>Nieuw</option><option>Toegewezen</option><option>Bevestigd</option><option>Voltooid</option><option>Geannuleerd</option><option>Wijziging aangevraagd</option><option>Annulering &lt; 2u</option><option>No-show</option></select><input id="q" type="search" placeholder="Zoeken…"><button id="new">+ Nieuw</button><button id="rl" class="alt">Vernieuwen</button></div>
+      <div class="tools"><select id="sf" style="width:auto"><option value="">Alle statussen</option><option>Nieuw</option><option>Toegewezen</option><option>Bevestigd</option><option>Voltooid</option><option>Geannuleerd</option><option>Wijziging aangevraagd</option><option>Annulering &lt; 2u</option><option>No-show</option></select><input id="q" type="search" placeholder="Zoeken…"><button id="new">+ Nieuw</button><button id="rl" class="alt">Vernieuwen</button><button id="ft" class="alt" type="button" aria-expanded="false">Filters</button></div>
     </div>
   <div class="pop" id="ov" hidden>
     <div class="mod">
@@ -146,8 +180,18 @@ font-family:'Figtree',system-ui,sans-serif;font-size:15px;color:var(--ink);line-
       <div class="mb"><button id="sv">Opslaan</button><button id="dl" class="warn">Verwijderen</button><button id="cx" class="alt">Annuleren</button></div>
     </div>
   </div>
+    <div class="flt" id="flt" hidden>
+      <div><label for="fp">Periode (ritdatum)</label><select id="fp"><option value="">Alle data</option><option value="today">Vandaag</option><option value="tomorrow">Morgen</option><option value="week">Deze week</option><option value="nweek">Volgende week</option><option value="n7">Komende 7 dagen</option><option value="month">Deze maand</option><option value="nmonth">Volgende maand</option><option value="future">Vanaf vandaag</option><option value="past">Verleden</option><option value="custom">Zelf kiezen…</option></select></div>
+      <div class="fc" id="fcw" hidden><div><label for="fa1">Van</label><input id="fa1" type="date"></div><div><label for="fa2">Tot</label><input id="fa2" type="date"></div></div>
+      <div><label for="fd">Chauffeur</label><select id="fd"></select></div>
+      <div><label for="pmin">Prijs van (€)</label><input id="pmin" type="number" min="0" step="1" inputmode="decimal" placeholder="0"></div>
+      <div><label for="pmax">Prijs tot (€)</label><input id="pmax" type="number" min="0" step="1" inputmode="decimal" placeholder="∞"></div>
+      <div><label for="fs">Sorteren</label><select id="fs"><option value="new">Nieuwste aanvraag eerst</option><option value="da">Ritdatum (vroegste eerst)</option><option value="dd">Ritdatum (laatste eerst)</option><option value="pd">Prijs (hoogste eerst)</option><option value="pa">Prijs (laagste eerst)</option></select></div>
+      <div class="fa"><button id="fx" class="alt" type="button">Filters wissen</button></div>
+    </div>
+    <div class="fsum" id="fc2" role="status" hidden></div>
     <div class="al" id="al" hidden></div>
-    <div class="tw" id="tbw"><table id="tb"></table></div>
+    <div class="tw" id="tbw"><table id="tb" class="cards"></table></div>
     <div id="qrw" hidden>
       <p style="color:var(--mut);margin:0 0 10px">QR-codes van alle <b>actieve</b> chauffeurs. Ze volgen automatisch de lijst. Wijzig een code nooit nadat kaartjes gedrukt zijn.</p>
       <p style="margin:0 0 12px"><button id="shb" class="alt">Afdrukblad</button></p>
@@ -201,7 +245,7 @@ var LB={Nr:"Nr",Code:"Code",Plaat:"Nummerplaat",VerzekeringTot:"Verzekering tot"
 function lab(t,k){if(LB[k])return LB[k];var f=F[t].fields.filter(function(x){return x[0]===k})[0];return f?f[1]:k}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
 function info(r){return "Aangemaakt: "+r.Aangemaakt+" · "+(r.Km?r.Km+" km · Tarief "+r.Tarief:"")+(r.Korting?" · korting "+r.Korting:"")+(r.Vooraf==="ja"?" · BETALING VOORAF":"")+(r.IngevoerdeCode?" · code "+r.IngevoerdeCode:"")}
-function drv(c){var d=D.Chauffeurs.filter(function(x){return x.Code===c})[0];return d?d.Naam:(c?"(onbekend)":"")}
+function drv(c){var k=String(c||"").toLowerCase(),d=D.Chauffeurs.filter(function(x){return String(x.Code).toLowerCase()===k})[0];return d?d.Naam:(c?"(onbekend: "+c+")":"")}
 function ds(v){if(!v)return"";var d=new Date(v+"T00:00:00");if(isNaN(d))return"";var t=new Date();t.setHours(0,0,0,0);var n=Math.round((d-t)/864e5);return n<0?"bad":n<=30?"warn":""}
 function call(b){
   var AC=new AbortController(),t=setTimeout(function(){AC.abort()},25000);
@@ -217,21 +261,62 @@ function alerts(){
   D.Reserveringen.forEach(function(r){if(/^(Nieuw|Wijziging|Annulering)/.test(r.Status))p++});
   $("al").hidden=!(n||p);
   $("al").textContent=(p?"🔔 "+p+" reservatie(s) vragen aandacht (nieuw, wijziging of late annulering). ":"")+(n?"⚠ "+n+" document(en) verlopen of binnen 30 dagen.":"")}
+/* ---- filters (Reservaties) ---- */
+function ymd(d){return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2)}
+function addD(d,n){var x=new Date(d.getTime());x.setDate(x.getDate()+n);return x}
+function prange(){
+  var p=$("fp").value,t=new Date();t.setHours(12,0,0,0);var dow=(t.getDay()+6)%7,y=t.getFullYear(),m=t.getMonth(),a,b;
+  switch(p){
+    case"today":a=b=t;break;
+    case"tomorrow":a=b=addD(t,1);break;
+    case"week":a=addD(t,-dow);b=addD(a,6);break;
+    case"nweek":a=addD(t,7-dow);b=addD(a,6);break;
+    case"n7":a=t;b=addD(t,6);break;
+    case"month":a=new Date(y,m,1,12);b=new Date(y,m+1,0,12);break;
+    case"nmonth":a=new Date(y,m+1,1,12);b=new Date(y,m+2,0,12);break;
+    case"future":return[ymd(t),null];
+    case"past":return[null,ymd(addD(t,-1))];
+    case"custom":return[$("fa1").value||null,$("fa2").value||null];
+    default:return[null,null]}
+  return[ymd(a),ymd(b)]}
+function pnum(v){var n=parseFloat(String(v==null?"":v).replace(",","."));return isFinite(n)?n:null}
+function fillFd(){
+  var el=$("fd"),v=el.value,h='<option value="">Alle chauffeurs</option><option value="_none">Niet toegewezen</option>';
+  D.Chauffeurs.forEach(function(x){if(x.Code)h+='<option value="'+esc(String(x.Code).toLowerCase())+'">'+esc(x.Naam)+(String(x.Status).toLowerCase()==="inactief"?" (inactief)":"")+"</option>"});
+  if(el.getAttribute("data-h")!==h){el.innerHTML=h;el.setAttribute("data-h",h)}
+  el.value=v&&Array.prototype.some.call(el.options,function(o){return o.value===v})?v:""}
+function filt(){
+  var pr=prange(),fd=$("fd").value,mn=pnum($("pmin").value),mx=pnum($("pmax").value);
+  return function(r){
+    if(pr[0]||pr[1]){var d=String(r.Datum||"");if(!d||(pr[0]&&d<pr[0])||(pr[1]&&d>pr[1]))return false}
+    if(fd==="_none"){if(r.ChauffeurCode)return false}
+    else if(fd&&String(r.ChauffeurCode||"").toLowerCase()!==fd)return false;
+    if(mn!==null||mx!==null){var p=pnum(r.Prijs);if(p===null||(mn!==null&&p<mn)||(mx!==null&&p>mx))return false}
+    return true}}
+function sorter(){
+  var k=$("fs").value;
+  return function(a,b){
+    if(k==="da"||k==="dd"){var x=String(a.Datum)+" "+String(a.Uur),y=String(b.Datum)+" "+String(b.Uur);return k==="da"?x.localeCompare(y):y.localeCompare(x)}
+    if(k==="pd"||k==="pa"){var p=pnum(a.Prijs)||0,q=pnum(b.Prijs)||0;return k==="pd"?q-p:p-q}
+    return String(b.Aangemaakt).localeCompare(String(a.Aangemaakt))}}
 function render(){
-  var isQ=tab==="QR",isS=tab==="SET";$("sf").hidden=tab!=="Reserveringen";$("tbw").hidden=isQ||isS;$("qrw").hidden=!isQ;$("setw").hidden=!isS;$("new").hidden=isQ||isS;$("q").hidden=isS;
+  var isQ=tab==="QR",isS=tab==="SET";$("sf").hidden=tab!=="Reserveringen";$("tbw").hidden=isQ||isS;$("qrw").hidden=!isQ;$("setw").hidden=!isS;$("new").hidden=isQ||isS;$("q").hidden=isS;$("flt").hidden=tab!=="Reserveringen";$("ft").hidden=tab!=="Reserveringen";$("fc2").hidden=tab!=="Reserveringen";$("tb").className="cards"+(tab==="Reserveringen"?" res":"");if(tab==="Reserveringen"){fillFd();$("fcw").hidden=$("fp").value!=="custom"}
   if(isS){if(document.activeElement!==$("disc"))$("disc").value=ST.discount;alerts();return}
   if(isQ){renderQR();renderCodes();alerts();return}
   var c=F[tab],q=$("q").value.toLowerCase();
-  var sf=$("sf").value,rs=D[tab].filter(function(r){return(!q||JSON.stringify(r).toLowerCase().indexOf(q)>-1)&&(tab!=="Reserveringen"||!sf||r.Status===sf)});
-  if(tab==="Reserveringen")rs.sort(function(a,b){return String(b.Aangemaakt).localeCompare(String(a.Aangemaakt))});
+  var sf=$("sf").value,ff=tab==="Reserveringen"?filt():null,rs=D[tab].filter(function(r){return(!q||JSON.stringify(r).toLowerCase().indexOf(q)>-1)&&(tab!=="Reserveringen"||((!sf||r.Status===sf)&&ff(r)))});
+  if(tab==="Reserveringen"){rs.sort(sorter());
+    var tot=0;rs.forEach(function(r){if(!/^Geannuleerd/.test(r.Status))tot+=pnum(r.Prijs)||0});
+    var fn=fcount();$("ft").textContent="Filters"+(fn?" ("+fn+")":"");
+    $("fc2").innerHTML="<b>"+rs.length+"</b> van "+D[tab].length+" reservaties · totaal <b>€"+String(Math.round(tot*100)/100).replace(".",",")+"</b> (zonder geannuleerde)"}
   var h="<tr>"+c.list.map(function(k){return"<th>"+esc(lab(tab,k))+"</th>"}).join("")+"</tr>";
   h+=rs.map(function(r){return'<tr data-k="'+esc(r[c.key])+'">'+c.list.map(function(k){
-    var v=r[k],cl=/Tot$/.test(k)?ds(r[k]):"";
+    var v=r[k],cl=/Tot$/.test(k)?ds(r[k]):"";var ex=(k==="Ophaal")?" f":"";
     if(k==="Chauffeur"||k==="ChauffeurCode"){v=drv(v);if(tab==="Reserveringen"&&!v&&!/^Geannuleerd/.test(r.Status)){v="— toewijzen —";cl="warn"}}
-    if(k==="Ophaal"&&v&&v.length>34)v=v.slice(0,34)+"…";
+    if(k==="Ophaal"&&v&&v.length>34&&window.innerWidth>700)v=v.slice(0,34)+"…";
     if(k==="Prijs"&&v)v="€"+String(v).replace(".",",");
     if(k==="Status"&&/^(Nieuw|Wijziging|Annulering)/.test(v))cl="warn";
-    return'<td class="'+cl+'">'+esc(v)+"</td>"}).join("")+"</tr>"}).join("");
+    return'<td class="'+cl+ex+'" data-l="'+esc(lab(tab,k))+'">'+esc(v)+"</td>"}).join("")+"</tr>"}).join("");
   if(!rs.length)h+='<tr><td class="empty" colspan="'+c.list.length+'">Geen gegevens. Klik op "+ Nieuw".</td></tr>';
   $("tb").innerHTML=h;alerts()}
 $("tb").onclick=function(e){var tr=e.target.closest("tr[data-k]");if(tr)openForm(tr.getAttribute("data-k"))};
@@ -282,17 +367,30 @@ $("sv").onclick=function(){
   if(tab==="Reserveringen"&&(!row.Naam||!row.Datum||!row.Uur||!row.Ophaal||!row.Afzet)){$("fmsg").textContent="Vul naam, datum, uur, ophaal- en afzetadres in.";return}
   if(tab==="Chauffeurs"&&!row.Naam){$("fmsg").textContent="Vul de naam in.";return}
   if(tab==="Voertuigen"&&(!row.Plaat||!row.Chauffeur)){$("fmsg").textContent="Kies een chauffeur en vul de nummerplaat in.";return}
-  var b=this;b.disabled=true;$("fmsg").className="msg";$("fmsg").textContent="Bezig…";
-  call({action:"save",table:tab,row:row}).then(function(j){if(!j.ok)throw j;return load()}).then(function(){b.disabled=false;closeForm();msg("✓ Opgeslagen",1)})
-  .catch(function(e){b.disabled=false;$("fmsg").textContent="Opslaan mislukt"+(e&&(e.error||e.message)?" ("+(e.error||e.message)+")":"")+"."})};
+  var b=this,key=c.key,prev=cur?Object.assign({},cur):null;
+  function put(r){var L=D[tab],n=-1;L.forEach(function(x,i){if(String(x[key])===String(r[key]))n=i});if(n<0)L.push(r);else L[n]=r}
+  function fail(e){return"Opslaan mislukt"+(e&&(e.error||e.message)?" ("+(e.error||e.message)+")":"")+"."}
+  if(prev){ /* bestaande rij: direct sluiten, server op de achtergrond (voelt meteen klaar) */
+    put(row);closeForm();msgN("Bezig met opslaan…");
+    call({action:"save",table:tab,row:row}).then(function(j){if(!j.ok)throw j;put(j.row);render();msg("✓ Opgeslagen",1)})
+    .catch(function(e){put(prev);render();msg(fail(e)+" De wijziging is teruggedraaid.")});return}
+  b.disabled=true;$("fmsg").className="msg";$("fmsg").textContent="Bezig…";
+  call({action:"save",table:tab,row:row}).then(function(j){if(!j.ok)throw j;put(j.row);b.disabled=false;closeForm();msg("✓ Opgeslagen",1)})
+  .catch(function(e){b.disabled=false;$("fmsg").textContent=fail(e)})};
 $("dl").onclick=function(){
   if(!delArm){delArm=true;this.textContent="Zeker? Klik nogmaals";return}
-  var c=F[tab],b=this;b.disabled=true;
-  call({action:"delete",table:tab,id:cur[c.key]}).then(function(j){if(!j.ok)throw j;return load()}).then(function(){b.disabled=false;closeForm();msg("✓ Verwijderd",1)})
-  .catch(function(){b.disabled=false;$("fmsg").textContent="Verwijderen mislukt."})};
-function msg(t,ok){var m=$("am");m.className="msg"+(ok?" ok":"");m.textContent=t;if(ok)setTimeout(function(){m.textContent=""},3000)}
+  var c=F[tab],id=cur[c.key],gone=cur,L=D[tab],n=L.indexOf(gone);
+  if(n>-1)L.splice(n,1);closeForm();msgN("Bezig met verwijderen…");
+  call({action:"delete",table:tab,id:id}).then(function(j){if(!j.ok)throw j;msg("✓ Verwijderd",1)})
+  .catch(function(){L.splice(Math.min(n,L.length),0,gone);render();msg("Verwijderen mislukt. De rij is teruggezet.")})};
+function msgN(t){var m=$("am");m.className="msg";m.style.color="#667089";m.textContent=t}
+function msg(t,ok){var m=$("am");m.style.color="";m.className="msg"+(ok?" ok":"");m.textContent=t;if(ok)setTimeout(function(){m.textContent=""},3000)}
 Array.prototype.forEach.call(document.querySelectorAll(".tabs button"),function(b){b.onclick=function(){
   tab=b.getAttribute("data-t");Array.prototype.forEach.call(document.querySelectorAll(".tabs button"),function(x){x.className=x===b?"on":""});$("q").value="";$("sf").value="";render()}});
+["fp","fa1","fa2","fd","pmin","pmax","fs"].forEach(function(id){$(id).addEventListener(id==="pmin"||id==="pmax"?"input":"change",render)});
+function fcount(){var n=0;if($("fp").value)n++;if($("fd").value)n++;if($("pmin").value)n++;if($("pmax").value)n++;if($("fs").value!=="new")n++;return n}
+$("ft").onclick=function(){var o=$("flt").classList.toggle("open");this.setAttribute("aria-expanded",o)};
+$("fx").onclick=function(){$("fp").value="";$("fa1").value="";$("fa2").value="";$("fd").value="";$("pmin").value="";$("pmax").value="";$("fs").value="new";$("sf").value="";$("q").value="";render()};
 $("q").addEventListener("input",render);$("sf").addEventListener("change",render);
 $("dsv").onclick=function(){
   var v=String($("disc").value).replace(",","."),n=Number(v),m=$("dsm"),b=this;
