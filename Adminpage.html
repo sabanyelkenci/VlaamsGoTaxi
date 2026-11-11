@@ -244,7 +244,7 @@ var F={
 var LB={Nr:"Nr",Code:"Code",Plaat:"Nummerplaat",VerzekeringTot:"Verzekering tot",KeuringTot:"Keuring tot",VergunningTot:"Vergunning tot",RijbewijsTot:"Rijbewijs tot"};
 function lab(t,k){if(LB[k])return LB[k];var f=F[t].fields.filter(function(x){return x[0]===k})[0];return f?f[1]:k}
 function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
-function info(r){return "Aangemaakt: "+r.Aangemaakt+" · "+(r.Km?r.Km+" km · Tarief "+r.Tarief:"")+(r.Korting?" · korting "+r.Korting:"")+(r.Vooraf==="ja"?" · BETALING VOORAF":"")+(r.IngevoerdeCode?" · code "+r.IngevoerdeCode:"")}
+function info(r){return "Aangemaakt: "+r.Aangemaakt+" · "+(r.Km?r.Km+" km · Tarief "+r.Tarief:"")+(r.Korting?" · korting "+r.Korting:"")+(r.Vooraf==="ja"?" · BETALING VOORAF":"")+(r.Melding==="sms"||r.Melding==="beide"?" · melding "+r.Melding.toUpperCase()+(r.Herinnering?" (herinnering: "+r.Herinnering+")":""):"")+(r.IngevoerdeCode?" · code "+r.IngevoerdeCode:"")}
 function drv(c){var k=String(c||"").toLowerCase(),d=D.Chauffeurs.filter(function(x){return String(x.Code).toLowerCase()===k})[0];return d?d.Naam:(c?"(onbekend: "+c+")":"")}
 function ds(v){if(!v)return"";var d=new Date(v+"T00:00:00");if(isNaN(d))return"";var t=new Date();t.setHours(0,0,0,0);var n=Math.round((d-t)/864e5);return n<0?"bad":n<=30?"warn":""}
 function call(b){
