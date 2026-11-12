@@ -1,0 +1,28 @@
+# Alles in deze map staat publiek op vlaamsgotaxi.be.
+# Deze bestanden horen NIET in de repository:
+
+# Projectnotities (staan in het claude.ai-project)
+PROJE-DURUMU.md
+*DURUM*.md
+NOTES*.md
+notities*.md
+
+# Backend-code (staat in Google Apps Script)
+*.gs
+Code*.txt
+
+# Geheimen / sleutels
+.env
+*.env
+*.key
+*.pem
+secrets*
+*credentials*.json
+
+# Systeem- en editorbestanden
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+*.swp
+*~
