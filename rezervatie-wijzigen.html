@@ -11,70 +11,131 @@
 <meta property="og:type" content="website"><meta property="og:locale" content="nl_BE"><meta property="og:site_name" content="VlaamsGoTaxi">
 <meta property="og:title" content="Rezervatie wijzigen of annuleren | VlaamsGoTaxi"><meta property="og:description" content="Wijzig of annuleer uw taxireservatie bij VlaamsGoTaxi eenvoudig online met uw reservatienummer."><meta property="og:url" content="https://vlaamsgotaxi.be/rezervatie-wijzigen"><meta property="og:image" content="https://vlaamsgotaxi.be/images/taxi.jpg">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#27785c">
+<meta name="theme-color" content="#0d1726">
 
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;800&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff;--alt:#f5f5f5;--fg:#222;--muted:#5d5d5d;--brand:#27785c;--pill:#27785c;--wa:#475a6a;--navy:#13223d;--yel:#fdc718;--line:#cfd8d4;--inp:#fff;--hdr:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a16;--alt:#18241f;--fg:#e8efec;--muted:#a3b3ac;--brand:#4cb28f;--line:#2b3c35;--inp:#111a16;--hdr:#111a16;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#111a16;--alt:#18241f;--fg:#e8efec;--muted:#a3b3ac;--brand:#4cb28f;--line:#2b3c35;--inp:#111a16;--hdr:#111a16;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+/* ===== VlaamsGoTaxi huisstijl (gedeeld: header, footer, knoppen, WhatsApp) ===== */
+:root{
+  --bg:#ffffff;--surface:#f3f5f4;--card:#ffffff;--fg:#14201b;--muted:#56635d;--line:#dde3e0;
+  --brand:#1f7a5a;--brand-soft:#e3f1ea;
+  --ink:#0d1726;--ink-2:#16233a;--on-ink:#f4f6f8;--on-ink-muted:#b5bfcc;
+  --taxi:#fdc718;--on-taxi:#0d1726;
+  --display:"Bricolage Grotesque","Plus Jakarta Sans",system-ui,sans-serif;
+  --body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:14px;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1714;--surface:#141e1a;--card:#18241f;--fg:#e8efec;--muted:#a2b1aa;--line:#26352f;--brand:#4cb28f;--brand-soft:#1b2e27;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1714;--surface:#141e1a;--card:#18241f;--fg:#e8efec;--muted:#a2b1aa;--line:#26352f;--brand:#4cb28f;--brand-soft:#1b2e27;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.7 Poppins,system-ui,sans-serif}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hdr)}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hdr);z-index:21}
-.bar{max-width:1280px;margin:auto;padding:14px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.logo{font:400 2.1rem/1 Mulish,sans-serif;color:var(--brand);text-decoration:none;margin-right:auto}
-nav{display:flex;gap:30px}
-nav a{font:600 1.05rem Mulish,sans-serif;text-decoration:none;color:var(--fg)}
-nav a.on{color:var(--brand)}
-.wai{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#25d366;color:#fff;text-decoration:none}
-.usr{color:var(--fg);border-left:1px solid var(--line);padding-left:18px;display:flex}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%}
+.in{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--taxi);outline-offset:3px}
 
-main{display:block}
-footer{background:var(--bg);border-top:1px solid var(--line);padding:22px 24px;text-align:center;color:var(--muted);font-size:.8rem}
-footer a{color:var(--brand);text-decoration:none;margin:2px 8px;display:inline-block;white-space:nowrap}
-footer p{margin:4px 0}
-.pg{background:#fff;color:#14213d;color-scheme:light;min-height:60vh}
-
-.logo{display:flex;align-items:center;gap:10px}.logo-img{height:44px;width:auto;display:block}
-.burger{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;padding:0;position:relative}
-.burger span{position:absolute;left:11px;right:11px;height:2.5px;border-radius:2px;background:var(--fg);transition:transform .25s,opacity .2s,top .25s}
+body::before{content:"";position:fixed;top:0;right:0;left:0;height:env(safe-area-inset-top,0px);background:var(--ink);z-index:41}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:#0d1726;color:var(--on-ink);border-bottom:1px solid rgba(255,255,255,.08)}
+.bar{display:flex;align-items:center;gap:26px;min-height:68px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.25rem/1 var(--display);letter-spacing:-.02em;margin-right:auto;white-space:nowrap;color:var(--on-ink)}
+.logo-img{height:40px;width:auto;display:block}
+.logo .mark{width:34px;height:34px;border-radius:9px;background:var(--taxi);color:var(--on-taxi);display:grid;place-items:center;flex:none}
+.logo .wm{display:flex;align-items:center;gap:10px}
+.logo b{color:var(--taxi);font-weight:800}
+#nav{display:flex;gap:24px}
+#nav a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--on-ink-muted);transition:color .15s;padding:6px 0;border-bottom:2px solid transparent}
+#nav a:hover{color:var(--on-ink)}
+#nav a.on{color:var(--on-ink);border-bottom-color:var(--taxi)}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font:700 .95rem/1 var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{flex:none}
+.btn-taxi{background:var(--taxi);color:var(--on-taxi);box-shadow:0 6px 20px -8px rgba(253,199,24,.7)}
+.btn-taxi:hover{box-shadow:0 10px 26px -8px rgba(253,199,24,.85)}
+.btn-ghost{background:rgba(255,255,255,.08);color:var(--on-ink);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.15)}
+.btn-wa{background:#25d366;color:#fff;box-shadow:0 6px 18px -8px rgba(37,211,102,.7)}
+.btn-wa:hover{background:#1ebe5b}
+.btn-sm{min-height:40px;padding:0 16px;font-size:.88rem}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;padding:0;position:relative;color:var(--on-ink)}
+.burger span{position:absolute;left:11px;right:11px;height:2.5px;border-radius:2px;background:currentColor;transition:transform .25s,opacity .2s,top .25s}
 .burger span:nth-child(1){top:14px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:28px}
 .burger[aria-expanded=true] span:nth-child(1){top:21px;transform:rotate(45deg)}
 .burger[aria-expanded=true] span:nth-child(2){opacity:0}
 .burger[aria-expanded=true] span:nth-child(3){top:21px;transform:rotate(-45deg)}
-@media(max-width:760px){
-.bar{padding:10px 16px;gap:8px}.logo{font-size:1.55rem}
-.wai{width:40px;height:40px}.wai svg{width:23px;height:23px}
-.burger{display:block}
-nav{display:none;order:3;width:100%;flex-direction:column;gap:0;border-top:1px solid var(--line);margin-top:4px}
-nav.open{display:flex}
-nav a{font-size:1.05rem;padding:14px 4px;border-bottom:1px solid var(--line)}nav a:last-child{border-bottom:0}}
+@media(max-width:900px){
+  .bar{gap:10px}
+  .burger{display:block}
+  #nav{display:none;order:3;width:100%;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.1);padding-bottom:6px}
+  #nav.open{display:flex}
+  #nav a{font-size:1.05rem;padding:14px 2px;border-bottom:1px solid rgba(255,255,255,.08);color:var(--on-ink)}
+  #nav a:last-child{border-bottom:0}
+  #nav a.on{color:var(--taxi);border-bottom-color:rgba(255,255,255,.08)}
+}
+@media(max-width:560px){.hdr-cta .btn-taxi,.hdr-cta .btn-wa span{display:none}.hdr-cta .btn-wa{padding:0 11px}.logo{font-size:1.1rem}}
 
-.wa-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;animation:wa-in .6s cubic-bezier(.2,1.4,.4,1) .8s backwards}
+footer{padding-block:34px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;background:var(--bg)}
+footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+footer .fnav{display:flex;gap:20px;flex-wrap:wrap}
+footer .fnav a{color:var(--muted);text-decoration:none;font-weight:500}
+footer .fnav a:hover{color:var(--fg)}
+
+.wa-fab{display:none!important;position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;animation:wa-in .6s cubic-bezier(.2,1.4,.4,1) .8s backwards}
 .wa-fab:hover{transform:scale(1.08)}
-.wa-fab svg{width:32px;height:32px;animation:wa-wig 6s ease-in-out 3s infinite}
-.wa-fab::before,.wa-fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:wa-ring 2.4s ease-out infinite;pointer-events:none}
-.wa-fab::after{animation-delay:1.2s}
-.wa-tip{position:absolute;right:70px;background:#fff;color:#1c2b25;padding:6px 12px;border-radius:999px;font:600 .85rem Mulish,sans-serif;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.2);opacity:0;transform:translateX(8px);transition:.2s;pointer-events:none}
+.wa-fab svg{width:32px;height:32px}
+.wa-fab::before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;border:2px solid #25d366;animation:wa-ring 2.4s ease-out infinite;pointer-events:none}
+.wa-tip{position:absolute;right:70px;background:#fff;color:#1c2b25;padding:6px 12px;border-radius:999px;font:600 .85rem var(--body);white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.2);opacity:0;transform:translateX(8px);transition:.2s;pointer-events:none}
 .wa-fab:hover .wa-tip{opacity:1;transform:none}
 @keyframes wa-ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
-@keyframes wa-in{from{transform:scale(0) rotate(-90deg);opacity:0}to{transform:none;opacity:1}}
-@keyframes wa-wig{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-14deg)}96%{transform:rotate(12deg)}}
-@media(prefers-reduced-motion:reduce){.wa-fab,.wa-fab svg,.wa-fab::before,.wa-fab::after{animation:none}}
+@keyframes wa-in{from{transform:scale(0);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+/* ===== Mobiel contactmenu (alleen telefoon) ===== */
+.cdial{display:none}
+@media(max-width:700px){
+  .hdr-cta .btn-wa{display:none}
+  .wa-fab{display:none!important}
+  .cdial{display:flex;flex-direction:column;align-items:flex-end;gap:12px;position:fixed;z-index:55;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px))}
+  .cdial::before{content:"";position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:rgba(13,23,38,.55);opacity:0;pointer-events:none;transition:opacity .2s}
+  .cdial.open::before{opacity:1}
+  .cd-btn{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.9);background:#0d1726;color:#fdc718;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px -6px rgba(13,23,38,.55);transition:transform .2s;-webkit-tap-highlight-color:transparent}
+  .cd-btn:active{transform:scale(.94)}
+  .cd-btn svg{grid-area:1/1;transition:transform .25s,opacity .2s}
+  .cd-i2{opacity:0;transform:rotate(-90deg)}
+  .cdial.open .cd-i1{opacity:0;transform:rotate(90deg)}
+  .cdial.open .cd-i2{opacity:1;transform:none}
+  .cd-items{display:flex;flex-direction:column;align-items:flex-end;gap:12px;visibility:hidden;opacity:0;transform:translateY(12px);transition:opacity .2s,transform .2s,visibility 0s .2s}
+  .cdial.open .cd-items{visibility:visible;opacity:1;transform:none;transition:opacity .2s,transform .2s,visibility 0s}
+  .cd-bestel{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:999px;background:#fdc718;color:#0d1726;font:700 .95rem/1 var(--body);text-decoration:none;white-space:nowrap;box-shadow:0 8px 20px -8px rgba(13,23,38,.5)}
+  .cd-tel{width:52px;height:52px;margin-right:2px;border-radius:50%;background:#fff;color:#0d1726;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 20px -6px rgba(0,0,0,.35)}
+  .cd-wa{width:52px;height:52px;margin-right:2px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 20px -6px rgba(0,0,0,.35)}
+  .cd-wa svg{width:30px;height:30px}
+}
+/* ===== Reservatiepagina's: fotoband + huisstijl (alleen uiterlijk, geen functies gewijzigd) ===== */
+main{display:block}
+.pg{position:relative;isolation:isolate;background:#eef2f1;color:#0d1726;color-scheme:light;min-height:calc(100vh - 170px)}
+.pg::before{content:"";position:absolute;left:0;right:0;top:0;height:min(340px,46vh);z-index:-1;background:linear-gradient(180deg,rgba(13,23,38,.80) 0%,rgba(13,23,38,.92) 100%),url('images/band.jpg') center/cover no-repeat;
+background-image:linear-gradient(180deg,rgba(13,23,38,.80) 0%,rgba(13,23,38,.92) 100%),image-set(url('images/band.webp') type('image/webp'),url('images/band.jpg') type('image/jpeg'))}
+.pg::after{content:"";position:absolute;left:0;right:0;top:min(340px,46vh);height:10px;z-index:-1;background:conic-gradient(#0d1726 25%,#fdc718 0 50%,#0d1726 0 75%,#fdc718 0) 0 0/10px 10px}
+@media(max-width:940px){.pg::before{height:240px}.pg::after{top:240px}}
 </style>
 </head>
 <body>
-<!-- LOGO: Logonuzu "logo.png" adıyla (veya logo.svg) bu sayfayla aynı klasöre yükleyin. İdeal ölçü: 400x120 px, şeffaf arka plan. Dosya orada olduğu anda burada otomatik görünür ve "VlaamsGoTaxi" yazısı gizlenir. Yazıyı logonun yanında tutmak için <img> içindeki onload="..." kısmını silin. -->
-<header><div class="bar">
-<a class="logo" href="index.html"><img class="logo-img" src="logo.png" alt="VlaamsGoTaxi" onerror="this.remove()" onload="this.nextElementSibling.style.display='none'"><span>VlaamsGoTaxi</span></a>
-<nav id="nav"><a href="index.html">Home</a><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html" class="on">Rezervatie wijzigen</a></nav>
+<!-- LOGO: Logonuzu "logo.png" adıyla bu sayfayla aynı klasöre yükleyin (ideal 400x120 px, şeffaf arka plan, koyu zemin üzerinde okunur olmalı). Dosya varsa otomatik görünür ve yazılı logo gizlenir. -->
+<header><div class="in bar">
+<a class="logo" href="index.html"><img class="logo-img" src="logo.png" alt="VlaamsGoTaxi" onerror="this.remove()" onload="this.nextElementSibling.style.display='none'"><span class="wm"><span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-5.5A2 2 0 0 1 9.4 10h5.2a2 2 0 0 1 1.9 1.5L18 17M9 10l.8-3h4.4l.8 3"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/></svg></span><span>Vlaams<b>Go</b>Taxi</span></span></a>
+<nav id="nav" aria-label="Hoofdmenu"><a href="index.html">Home</a><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html" class="on" aria-current="page">Reservatie wijzigen</a><a href="index.html#contact">Contact</a></nav>
+<div class="hdr-cta">
+<a class="btn btn-wa btn-sm" href="https://wa.me/32474640788" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9 0-3.17-1.24-6.16-3.48-8.41z"/></svg><span>WhatsApp</span></a>
+<a class="btn btn-taxi btn-sm" href="bestel-rit-online.html">Bestel rit</a>
+</div>
 <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
 </div></header>
+
 <main class="pg">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 .tx-res{--ink:#14213d;--sun:#ffc61a;--mut:#667089;--line:#ddd7c2;width:100%;max-width:none;margin:0;padding:16px 20px 36px;
 font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-height:1.45;box-sizing:border-box}
@@ -239,6 +300,36 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 .tx-res .via[hidden]{display:none}
 .tx-res .layout{grid-template-columns:minmax(0,680px);justify-content:center}
 .tx-res .card{max-width:680px}
+
+/* ===== Nieuwe huisstijl voor het formulier (overschrijft alleen kleuren en lettertypes) ===== */
+.tx-res{--ink:#0d1726;--sun:#fdc718;--mut:#5b6675;--line:#dde3e0;font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif}
+.tx-res h2,.tx-res .price .big,.tx-res .done .nr{font-family:'Bricolage Grotesque','Plus Jakarta Sans',system-ui,sans-serif;letter-spacing:-.02em}
+.tx-res .card{background:#fff;border:1px solid rgba(13,23,38,.06);box-shadow:0 30px 60px -28px rgba(13,23,38,.55)}
+.tx-res .mapbox{background:#e6ebe9;border-color:rgba(13,23,38,.06);box-shadow:0 30px 60px -28px rgba(13,23,38,.55)}
+.tx-res .mapnote{background:rgba(255,255,255,.96);border-color:var(--line)}
+.tx-res input,.tx-res select{border-color:#d3dad7;background-color:#fff}
+.tx-res input:focus,.tx-res select:focus{border-color:var(--ink);box-shadow:0 0 0 4px rgba(253,199,24,.5)}
+.tx-res input:disabled{background:#eef1f0}
+.tx-res li:hover,.tx-res li:focus{background:#fff6cf}
+.tx-res .step{border-color:#dde3e0;border-radius:12px}
+.tx-res .step:hover{border-color:var(--ink)}
+.tx-res .step.lock:hover{border-color:#dde3e0}
+.tx-res .pay-o .box{border-color:#d3dad7}
+.tx-res .pay-o.soon:hover .box{border-color:#d3dad7}
+.tx-res .pay-o:hover .box{border-color:var(--ink)}
+.tx-res .pay-o input:checked+.box{border-color:var(--ink);background:#fff8dc;box-shadow:0 0 0 2px var(--sun)}
+.tx-res .pay-o .badge{background:#eef1f0}
+.tx-res .chip{border-color:#c9d1ce}
+.tx-res .chip:hover{border-color:var(--ink);background:var(--sun)}
+.tx-res .btn{border-radius:999px}
+.tx-res .nav .btn.nx,.tx-res .btn.nx{background:var(--sun);border-color:var(--sun);color:var(--ink)}
+.tx-res .nav .btn.nx:hover{filter:none;box-shadow:0 10px 24px -10px rgba(253,199,24,.9)}
+.tx-res .price{background:var(--ink);color:#fff}
+.tx-res .price .big{color:var(--sun)}
+.tx-res .price small{color:#c7cfda}
+.tx-res .pk.on{background:rgba(255,255,255,.1);color:#fff}
+.tx-res .chg,.tx-res .chglink{background:#fff;border-color:var(--line)}
+.tx-res .sum{border-color:var(--line)}
 </style>
 
 <div class="tx-res">
@@ -647,11 +738,24 @@ $("loc").onclick=function(){
 })();
 </script>
 </main>
-<footer>
-<p><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Rezervatie wijzigen</a></p>
-<p>Copyright © 2026 VlaamsGoTaxi – Alle rechten voorbehouden.</p>
-</footer>
+<footer><div class="in">
+<span>© 2026 VlaamsGoTaxi · Antwerpen, België · <a href="tel:+32474640788" style="color:inherit;text-decoration:none">+32 474 64 07 88</a></span>
+<nav class="fnav" aria-label="Footer"><a href="index.html">Home</a><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Reservatie wijzigen</a></nav>
+</div></footer>
 <script>(function(){var b=document.getElementById("burger"),n=document.getElementById("nav");b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o)});n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.remove("open");b.setAttribute("aria-expanded","false")}})})();</script>
-<a class="wa-fab" href="https://wa.me/320474640788?text=Hallo%20VlaamsGoTaxi%2C%20ik%20wil%20mijn%20reservatie%20wijzigen%20of%20annuleren.%0A%0AReservatienummer%3A%0ANaam%3A%0AWijzigen%20of%20annuleren%3A%0AWat%20wilt%20u%20wijzigen%20%28datum%2C%20uur%2C%20adres%2C%20...%29%3A%0A%0AAlvast%20bedankt%21" target="_blank" rel="noopener" aria-label="WhatsApp"><span class="wa-tip">Chat met ons</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<div class="cdial" id="cdial">
+<div class="cd-items" id="cdItems" role="menu" aria-label="Contact">
+<a class="cd-bestel" role="menuitem" href="bestel-rit-online.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-5.5A2 2 0 0 1 9.4 10h5.2a2 2 0 0 1 1.9 1.5L18 17M9 10l.8-3h4.4l.8 3"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/></svg>Bestel rit online</a>
+<a class="cd-tel" role="menuitem" href="tel:+32474640788" aria-label="Bel +32 474 64 07 88"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></a>
+<a class="cd-wa" role="menuitem" href="https://wa.me/32474640788?text=Hallo%20VlaamsGoTaxi%2C%20ik%20wil%20mijn%20reservatie%20wijzigen%20of%20annuleren.%0A%0AReservatienummer%3A%0ANaam%3A%0AWijzigen%20of%20annuleren%3A%0AWat%20wilt%20u%20wijzigen%20%28datum%2C%20uur%2C%20adres%2C%20...%29%3A%0A%0AAlvast%20bedankt%21" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+</div>
+<button class="cd-btn" id="cdBtn" type="button" aria-expanded="false" aria-controls="cdItems" aria-label="Contact"><svg class="cd-i1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.4A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="3"/></svg><svg class="cd-i2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+</div>
+<script>(function(){var d=document.getElementById("cdial"),b=document.getElementById("cdBtn");
+function set(o){d.classList.toggle("open",o);b.setAttribute("aria-expanded",o)}
+b.addEventListener("click",function(e){e.stopPropagation();set(!d.classList.contains("open"))});
+document.addEventListener("click",function(e){if(!d.contains(e.target))set(false)});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")set(false)});
+d.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){set(false)})});})();</script>
 </body>
 </html>
