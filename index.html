@@ -9,294 +9,537 @@
 <link rel="canonical" href="https://vlaamsgotaxi.be/">
 <link rel="alternate" hreflang="nl-be" href="https://vlaamsgotaxi.be/">
 <meta property="og:type" content="website"><meta property="og:locale" content="nl_BE"><meta property="og:site_name" content="VlaamsGoTaxi">
-<meta property="og:title" content="Taxi Antwerpen | Bestel online, 24/7 &amp; vaste prijs luchthaven | VlaamsGoTaxi"><meta property="og:description" content="Taxi in Antwerpen nodig? VlaamsGoTaxi: bestel of reserveer uw rit online, 24/7 beschikbaar, duidelijke tarieven en vaste prijzen naar Zaventem, Charleroi en Schiphol."><meta property="og:url" content="https://vlaamsgotaxi.be/"><meta property="og:image" content="https://vlaamsgotaxi.be/images/taxi.jpg">
+<meta property="og:title" content="Taxi Antwerpen | Bestel online, 24/7 &amp; vaste prijs luchthaven | VlaamsGoTaxi"><meta property="og:description" content="Taxi in Antwerpen nodig? VlaamsGoTaxi: bestel of reserveer uw rit online, 24/7 beschikbaar, duidelijke tarieven en vaste prijzen naar Zaventem, Charleroi en Schiphol."><meta property="og:url" content="https://vlaamsgotaxi.be/"><meta property="og:image" content="https://vlaamsgotaxi.be/images/grote-markt.jpg">
+<link rel="preload" as="image" type="image/webp" href="images/grote-markt.webp" media="(min-width:701px)" fetchpriority="high">
+<link rel="preload" as="image" type="image/webp" href="images/grote-markt-m.webp" media="(max-width:700px)" fetchpriority="high">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#27785c">
-<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TaxiService", "name": "VlaamsGoTaxi", "url": "https://vlaamsgotaxi.be/", "telephone": "+32474640788", "image": "https://vlaamsgotaxi.be/images/taxi.jpg", "description": "Taxi in Antwerpen: bestel of reserveer uw rit online, 24/7, duidelijke prijzen en vaste prijzen naar Zaventem, Charleroi en Schiphol.", "areaServed": [{"@type": "City", "name": "Antwerpen"}, {"@type": "Country", "name": "België"}], "address": {"@type": "PostalAddress", "addressLocality": "Antwerpen", "addressCountry": "BE"}, "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59"}, "priceRange": "€€"}</script>
+<meta name="theme-color" content="#0d1726">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "TaxiService", "name": "VlaamsGoTaxi", "url": "https://vlaamsgotaxi.be/", "telephone": "+32474640788", "image": "https://vlaamsgotaxi.be/images/grote-markt.jpg", "description": "Taxi in Antwerpen: bestel of reserveer uw rit online, 24/7, duidelijke prijzen en vaste prijzen naar Zaventem, Charleroi en Schiphol.", "areaServed": [{"@type": "City", "name": "Antwerpen"}, {"@type": "Country", "name": "België"}], "address": {"@type": "PostalAddress", "addressLocality": "Antwerpen", "addressCountry": "BE"}, "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"], "opens": "00:00", "closes": "23:59"}, "priceRange": "€€"}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@300;400;600;800&family=Poppins:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#fff;--alt:#f5f5f5;--fg:#222;--muted:#5d5d5d;--brand:#27785c;--pill:#27785c;--wa:#475a6a;--navy:#13223d;--yel:#fdc718;--line:#cfd8d4;--inp:#fff;--hdr:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111a16;--alt:#18241f;--fg:#e8efec;--muted:#a3b3ac;--brand:#4cb28f;--line:#2b3c35;--inp:#111a16;--hdr:#111a16;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#111a16;--alt:#18241f;--fg:#e8efec;--muted:#a3b3ac;--brand:#4cb28f;--line:#2b3c35;--inp:#111a16;--hdr:#111a16;color-scheme:dark}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
+/* ===== VlaamsGoTaxi huisstijl (gedeeld: header, footer, knoppen, WhatsApp) ===== */
+:root{
+  --bg:#ffffff;--surface:#f3f5f4;--card:#ffffff;--fg:#14201b;--muted:#56635d;--line:#dde3e0;
+  --brand:#1f7a5a;--brand-soft:#e3f1ea;
+  --ink:#0d1726;--ink-2:#16233a;--on-ink:#f4f6f8;--on-ink-muted:#b5bfcc;
+  --taxi:#fdc718;--on-taxi:#0d1726;
+  --display:"Bricolage Grotesque","Plus Jakarta Sans",system-ui,sans-serif;
+  --body:"Plus Jakarta Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --r:14px;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1714;--surface:#141e1a;--card:#18241f;--fg:#e8efec;--muted:#a2b1aa;--line:#26352f;--brand:#4cb28f;--brand-soft:#1b2e27;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1714;--surface:#141e1a;--card:#18241f;--fg:#e8efec;--muted:#a2b1aa;--line:#26352f;--brand:#4cb28f;--brand-soft:#1b2e27;color-scheme:dark}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.7 Poppins,system-ui,sans-serif}
+html{scroll-behavior:smooth;scroll-padding-top:calc(76px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--fg);font:400 16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
 a{color:inherit}
-header{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--hdr)}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);background:var(--hdr);z-index:21}
-.bar{max-width:1280px;margin:auto;padding:14px 24px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-.logo{font:400 2.1rem/1 Mulish,sans-serif;color:var(--brand);text-decoration:none;margin-right:auto}
-nav{display:flex;gap:30px}
-nav a{font:600 1.05rem Mulish,sans-serif;text-decoration:none;color:var(--fg)}
-nav a.on{color:var(--brand)}
-.wai{display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:#25d366;color:#fff;text-decoration:none}
-.usr{color:var(--fg);border-left:1px solid var(--line);padding-left:18px;display:flex}
+img{max-width:100%}
+.in{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+:focus-visible{outline:3px solid var(--taxi);outline-offset:3px}
 
-main{display:block}
-.view{display:none}.view.on{display:block}
-.hero{--h:max(420px,31.43vw);height:var(--h);background:url('images/hero.jpg') center/cover no-repeat;position:relative;overflow:hidden}
-.hero .c{position:absolute;left:50%;top:53%;width:calc(var(--h)*.885);height:calc(var(--h)*.885);transform:translate(-50%,-50%);border-radius:50%;background:#2f7f65;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:8%}
-.hero h1{margin:0;font:400 clamp(1.5rem,3.2vw,2.5rem)/1.45 Mulish,sans-serif}
-.hero h1 span{display:block;margin-top:.9em}
-.pill{display:inline-flex;align-items:center;gap:14px;background:var(--pill);color:#fff;border:0;border-radius:40px;padding:6px 6px 6px 22px;font:600 .9rem Poppins,sans-serif;text-decoration:none;cursor:pointer}
-.pill i{width:36px;height:36px;border-radius:50%;background:#fff;color:var(--pill);display:grid;place-items:center}
-.hero .pill{background:#fff;color:#222;margin-top:1.2em;padding:5px 5px 5px 22px;font-size:.85rem}
-.hero .pill i{background:var(--pill);color:#fff}
-.sec{padding:56px 24px}
-.alt{background:var(--alt)}
-.wrap{max-width:1000px;margin:auto}
-.t{display:flex;align-items:center;gap:22px;color:var(--brand);font:400 clamp(1.3rem,3vw,2.2rem)/1.3 Mulish,sans-serif;text-align:center;margin:0 0 34px}
-.t::before,.t::after{content:"";flex:1;height:1px;background:var(--brand);min-width:16px}
-.zv{text-align:center;max-width:660px;margin:auto}
-.zv h3{font:400 1.45rem Poppins,sans-serif;margin:0 0 18px}
-.zv p{color:var(--muted);margin:0}
-.wave{display:block;width:100%;height:46px}
-.w1{background:var(--bg);color:var(--alt)}.w2{background:var(--alt);color:var(--bg)}
-.photo{display:block;max-width:100%;width:924px;height:auto;margin:auto;border-radius:6px}
-.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;max-width:670px;margin:auto;font-family:"Plus Jakarta Sans",sans-serif}
-.plan{border:1.5px solid var(--navy);border-radius:14px;padding:18px;background:#fff;color:var(--navy)}
-.plan.b{background:var(--navy);color:#fff}.plan.c{background:var(--yel);border-color:var(--navy)}
-.plan svg{width:34px;height:34px;display:block;margin-bottom:6px}
-.plan h4{margin:0;font-size:1.05rem;font-weight:800}
-.plan small{display:block;font-size:.7rem;opacity:.7;margin-bottom:12px}
-.plan div{display:flex;justify-content:space-between;align-items:baseline;border-top:1px dashed currentColor;border-color:rgba(128,128,128,.55);padding:10px 0 2px;font-size:.7rem}
-.plan div b{font-size:1rem;font-weight:800}
-.ap{display:flex;align-items:center;gap:10px;background:#f5f2ea;border:1px solid #e6e0d0;border-radius:12px;padding:10px 12px;margin-top:14px;color:var(--navy);font-family:"Plus Jakarta Sans",sans-serif}
-.ap span:first-child{width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--yel);display:grid;place-items:center;flex:none}
-.ap em{font-style:normal;display:block;font-size:.62rem;opacity:.65;font-weight:400}
-.ap strong{font-size:.75rem;display:block;line-height:1.3}.ap b{margin-left:auto;font-size:.95rem;font-weight:800}
-.calc{max-width:760px;margin:auto;font-family:"Plus Jakarta Sans",sans-serif;color:var(--fg)}
-.calc h3{font:800 1.9rem "Plus Jakarta Sans",sans-serif;margin:0;color:var(--navy)}
-.calc .sub{font-size:.72rem;color:#5c6b86;margin:6px 0 18px}
-.cg{display:grid;grid-template-columns:1.25fr 1fr;gap:20px}
-@media(max-width:640px){.cg{grid-template-columns:1fr}}
-.cl label{display:block;font-size:.72rem;font-weight:600;margin:12px 0 5px;color:var(--navy)}
-.cl input,.cl select{width:100%;padding:10px 12px;border:1.5px solid var(--navy);border-radius:8px;background:#fff;color:#13223d;font:inherit;font-size:.78rem}
-.res{background:var(--yel);border-radius:12px;padding:26px 20px;color:var(--navy);display:flex;flex-direction:column;justify-content:center;min-height:190px}
-.res small{font-size:.72rem}.res strong{font-size:3rem;line-height:1.1;font-weight:800;margin:6px 0}
-.calc .fine{font-size:.72rem;color:var(--navy);margin:12px 0 0}
-.sub-row{max-width:924px;margin:auto;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-.sub-row h3{margin:0;font:400 1.9rem Mulish,sans-serif;color:var(--brand)}
-.sub-row input{flex:1;min-width:180px}
-input,textarea,select.f{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:2px;background:var(--inp);color:var(--fg);font:400 .85rem Poppins,sans-serif}
-.cont{display:grid;grid-template-columns:1fr 1fr;gap:36px;max-width:924px;margin:auto}
-@media(max-width:700px){.cont{grid-template-columns:1fr}}
-.cont h4{font:400 1.35rem Poppins,sans-serif;margin:0 0 20px}
-.cont form>*{margin-bottom:16px}
-.cont .pill{width:100%;justify-content:space-between;padding-left:0;padding-right:5px}
-.cont .pill span{flex:1;text-align:center}
-.cont p{color:var(--muted);margin:0 0 20px}
-.cont .wa{background:var(--wa);width:auto;margin-bottom:22px}
-.cont .wa span{text-align:left}
-.cont h5{font:400 1.3rem Poppins,sans-serif;margin:0 0 14px;color:var(--fg)}
-.cont a.p{color:var(--brand);text-decoration:none}
-.recap{font-size:.7rem;color:var(--muted);text-align:center;margin:0!important}
-.recap a{color:var(--brand)}
-.form{max-width:620px;margin:0 auto;padding:40px 24px 60px}
-.form label{display:block;font-size:.85rem;font-weight:500;margin:14px 0 5px}
-.form .row{display:grid;gap:12px;grid-template-columns:1fr 1fr}
-@media(max-width:560px){.form .row{grid-template-columns:1fr}}
-.form .pill{margin-top:22px}
-footer{background:var(--bg);border-top:1px solid var(--line);padding:22px 24px;text-align:center;color:var(--muted);font-size:.8rem}
-footer a{color:var(--brand);text-decoration:none;margin:2px 8px;display:inline-block;white-space:nowrap}
-footer p{margin:4px 0}
-
-/* mobiel */
-@media(max-width:700px){
-.plans{grid-template-columns:minmax(0,1fr);max-width:440px}
-.plan{padding:18px 20px}
-.plan small{font-size:.78rem}
-.plan div{font-size:.82rem}
-.plan div b{font-size:1.1rem}
-.ap{padding:12px 16px}.ap strong{font-size:.85rem}.ap em{font-size:.72rem}.ap b{font-size:1.05rem}
-}
-@media(max-width:560px){
-.hero{--h:max(340px,31.43vw)}
-.hero h1{font-size:1.35rem}
-.hero .pill{font-size:.8rem}
-.sec{padding:36px 16px}
-.t{gap:12px;margin-bottom:24px;font-size:1.25rem;justify-content:center}
-.t::before,.t::after{display:none}
-.zv h3{font-size:1.25rem}
-.sub-row{flex-direction:column;align-items:stretch;gap:12px}
-.sub-row h3{font-size:1.5rem}
-.sub-row .pill{justify-content:space-between;width:100%}
-input,textarea{font-size:16px}
-.cl input,.cl select{font-size:16px}
-.cont .wa{padding-left:20px}
-.cont .wa span{font-size:.85rem}
-footer{padding:20px 16px}
-}
-
-.logo{display:flex;align-items:center;gap:10px}.logo-img{height:44px;width:auto;display:block}
-.burger{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;padding:0;position:relative}
-.burger span{position:absolute;left:11px;right:11px;height:2.5px;border-radius:2px;background:var(--fg);transition:transform .25s,opacity .2s,top .25s}
+body::before{content:"";position:fixed;top:0;right:0;left:0;height:env(safe-area-inset-top,0px);background:var(--ink);z-index:41}
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:40;background:#0d1726;color:var(--on-ink);border-bottom:1px solid rgba(255,255,255,.08)}
+.bar{display:flex;align-items:center;gap:26px;min-height:68px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font:800 1.25rem/1 var(--display);letter-spacing:-.02em;margin-right:auto;white-space:nowrap;color:var(--on-ink)}
+.logo-img{height:40px;width:auto;display:block}
+.logo .mark{width:34px;height:34px;border-radius:9px;background:var(--taxi);color:var(--on-taxi);display:grid;place-items:center;flex:none}
+.logo .wm{display:flex;align-items:center;gap:10px}
+.logo b{color:var(--taxi);font-weight:800}
+#nav{display:flex;gap:24px}
+#nav a{text-decoration:none;font-weight:600;font-size:.94rem;color:var(--on-ink-muted);transition:color .15s;padding:6px 0;border-bottom:2px solid transparent}
+#nav a:hover{color:var(--on-ink)}
+#nav a.on{color:var(--on-ink);border-bottom-color:var(--taxi)}
+.hdr-cta{display:flex;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:999px;font:700 .95rem/1 var(--body);text-decoration:none;border:0;cursor:pointer;transition:transform .15s,background .15s,box-shadow .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn svg{flex:none}
+.btn-taxi{background:var(--taxi);color:var(--on-taxi);box-shadow:0 6px 20px -8px rgba(253,199,24,.7)}
+.btn-taxi:hover{box-shadow:0 10px 26px -8px rgba(253,199,24,.85)}
+.btn-ghost{background:rgba(255,255,255,.08);color:var(--on-ink);box-shadow:inset 0 0 0 1.5px rgba(255,255,255,.28)}
+.btn-ghost:hover{background:rgba(255,255,255,.15)}
+.btn-wa{background:#25d366;color:#08311a}
+.btn-sm{min-height:40px;padding:0 16px;font-size:.88rem}
+.burger{display:none;width:44px;height:44px;border:0;background:transparent;cursor:pointer;padding:0;position:relative;color:var(--on-ink)}
+.burger span{position:absolute;left:11px;right:11px;height:2.5px;border-radius:2px;background:currentColor;transition:transform .25s,opacity .2s,top .25s}
 .burger span:nth-child(1){top:14px}.burger span:nth-child(2){top:21px}.burger span:nth-child(3){top:28px}
 .burger[aria-expanded=true] span:nth-child(1){top:21px;transform:rotate(45deg)}
 .burger[aria-expanded=true] span:nth-child(2){opacity:0}
 .burger[aria-expanded=true] span:nth-child(3){top:21px;transform:rotate(-45deg)}
-@media(max-width:760px){
-.bar{padding:10px 16px;gap:8px}.logo{font-size:1.55rem}
-.wai{width:40px;height:40px}.wai svg{width:23px;height:23px}
-.burger{display:block}
-nav{display:none;order:3;width:100%;flex-direction:column;gap:0;border-top:1px solid var(--line);margin-top:4px}
-nav.open{display:flex}
-nav a{font-size:1.05rem;padding:14px 4px;border-bottom:1px solid var(--line)}nav a:last-child{border-bottom:0}}
+@media(max-width:900px){
+  .bar{gap:10px}
+  .burger{display:block}
+  #nav{display:none;order:3;width:100%;flex-direction:column;gap:0;border-top:1px solid rgba(255,255,255,.1);padding-bottom:6px}
+  #nav.open{display:flex}
+  #nav a{font-size:1.05rem;padding:14px 2px;border-bottom:1px solid rgba(255,255,255,.08);color:var(--on-ink)}
+  #nav a:last-child{border-bottom:0}
+  #nav a.on{color:var(--taxi);border-bottom-color:rgba(255,255,255,.08)}
+}
+@media(max-width:560px){.hdr-cta .btn-taxi,.hdr-cta .btn-ghost span{display:none}.hdr-cta .btn-ghost{padding:0 11px}.logo{font-size:1.1rem}}
 
-.wa-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;animation:wa-in .6s cubic-bezier(.2,1.4,.4,1) .8s backwards}
+footer{padding-block:34px;border-top:1px solid var(--line);color:var(--muted);font-size:.85rem;background:var(--bg)}
+footer .in{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px}
+footer .fnav{display:flex;gap:20px;flex-wrap:wrap}
+footer .fnav a{color:var(--muted);text-decoration:none;font-weight:500}
+footer .fnav a:hover{color:var(--fg)}
+
+.wa-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;animation:wa-in .6s cubic-bezier(.2,1.4,.4,1) .8s backwards}
 .wa-fab:hover{transform:scale(1.08)}
-.wa-fab svg{width:32px;height:32px;animation:wa-wig 6s ease-in-out 3s infinite}
-.wa-fab::before,.wa-fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #25d366;animation:wa-ring 2.4s ease-out infinite;pointer-events:none}
-.wa-fab::after{animation-delay:1.2s}
-.wa-tip{position:absolute;right:70px;background:#fff;color:#1c2b25;padding:6px 12px;border-radius:999px;font:600 .85rem Mulish,sans-serif;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.2);opacity:0;transform:translateX(8px);transition:.2s;pointer-events:none}
+.wa-fab svg{width:32px;height:32px}
+.wa-fab::before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;border:2px solid #25d366;animation:wa-ring 2.4s ease-out infinite;pointer-events:none}
+.wa-tip{position:absolute;right:70px;background:#fff;color:#1c2b25;padding:6px 12px;border-radius:999px;font:600 .85rem var(--body);white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.2);opacity:0;transform:translateX(8px);transition:.2s;pointer-events:none}
 .wa-fab:hover .wa-tip{opacity:1;transform:none}
 @keyframes wa-ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.7);opacity:0}}
-@keyframes wa-in{from{transform:scale(0) rotate(-90deg);opacity:0}to{transform:none;opacity:1}}
-@keyframes wa-wig{0%,90%,100%{transform:rotate(0)}93%{transform:rotate(-14deg)}96%{transform:rotate(12deg)}}
-@media(prefers-reduced-motion:reduce){.wa-fab,.wa-fab svg,.wa-fab::before,.wa-fab::after{animation:none}}
+@keyframes wa-in{from{transform:scale(0);opacity:0}to{transform:none;opacity:1}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}}
+/* ===== Home ===== */
+h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.02em}
 
-.gal{position:relative;max-width:924px;margin:auto;border-radius:16px;overflow:hidden;background:#222}
-.gal-t{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}.gal-t::-webkit-scrollbar{display:none}
-.gal-t img{flex:0 0 100%;width:100%;aspect-ratio:16/10;object-fit:cover;scroll-snap-align:center;display:block}
-.gal-b{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border-radius:50%;border:0;background:rgba(255,255,255,.88);color:#13223d;font-size:1.6rem;line-height:1;cursor:pointer}.gal-p{left:10px}.gal-n{right:10px}
-.gal-d{position:absolute;left:0;right:0;bottom:10px;display:flex;justify-content:center;gap:7px}
-.gal-d button{width:9px;height:9px;border-radius:50%;border:0;padding:0;background:rgba(255,255,255,.55);cursor:pointer;transition:.2s}.gal-d button.on{background:#fff;width:22px;border-radius:5px}
-.apg{max-width:670px;margin:24px auto 0;padding:16px;border:1.5px dashed var(--line);border-radius:16px}
-.apg h4{margin:0 0 12px;text-align:center;font:600 .95rem "Plus Jakarta Sans",sans-serif;color:var(--fg)}
-.aps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.aps .ap{margin-top:0}
-@media(max-width:700px){.aps{grid-template-columns:minmax(0,1fr)}.apg{max-width:440px}
-.hero{height:auto;aspect-ratio:690/596;background:url('images/hero-m.jpg') center/100% 100% no-repeat}
-.hero .c{left:50%;top:55%;right:auto;bottom:auto;width:min(190px,50vw);height:min(190px,50vw);transform:translate(-50%,-50%);border-radius:50%;background:rgba(47,127,101,.78);padding:7%}
-.hero h1{font-size:1rem}.hero h1 span{margin-top:.3em;font-size:.8rem;line-height:1.3}.hero .pill{margin-top:.55em;font-size:.66rem;padding:3px 3px 3px 10px;gap:6px;white-space:nowrap}.hero .pill i{width:22px;height:22px}
-.gal-b{display:none}}
+/* Hero: Grote Markt bij avond */
+.hero{position:relative;background:var(--ink);color:var(--on-ink);overflow:hidden;isolation:isolate}
+.hero-bg{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-2;background:url('images/grote-markt.jpg') center 38%/cover no-repeat;background-image:image-set(url('images/grote-markt.webp') type('image/webp'),url('images/grote-markt.jpg') type('image/jpeg'));animation:hz 10s ease-out both}
+@media(max-width:700px){
+  .hero-bg{bottom:auto;height:680px;background-image:url('images/grote-markt-m.jpg');background-image:image-set(url('images/grote-markt-m.webp') type('image/webp'),url('images/grote-markt-m.jpg') type('image/jpeg'));background-position:56% 30%;animation:none}
+  .hero::after{background:linear-gradient(180deg,rgba(13,23,38,.55) 0%,rgba(13,23,38,.80) 45%,#0d1726 680px)}
+}
+@keyframes hz{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;background:linear-gradient(90deg,rgba(13,23,38,.93) 0%,rgba(13,23,38,.74) 40%,rgba(13,23,38,.25) 75%,rgba(13,23,38,.35) 100%),linear-gradient(0deg,rgba(13,23,38,.85) 0%,rgba(13,23,38,0) 40%)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:56px;align-items:end;padding-block:92px 72px;min-height:min(78vh,720px)}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--taxi)}
+.live{width:8px;height:8px;border-radius:50%;background:#3ddc84;animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(61,220,132,.6)}70%{box-shadow:0 0 0 9px rgba(61,220,132,0)}100%{box-shadow:0 0 0 0 rgba(61,220,132,0)}}
+.hero h1{font-size:clamp(2.5rem,5.6vw,4.5rem);line-height:1.02;font-weight:800;margin:18px 0 20px;text-shadow:0 2px 30px rgba(0,0,0,.35)}
+.hero h1 em{font-style:normal;color:var(--taxi)}
+.hero .lead{font-size:clamp(1.05rem,1.6vw,1.2rem);color:#d5dce5;max-width:34em;margin:0 0 30px}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.hero .ctas .btn{min-height:54px;padding:0 26px;font-size:1rem}
+.phone{margin-top:22px;display:flex;align-items:center;gap:10px;color:var(--on-ink-muted);font-size:.95rem;flex-wrap:wrap}
+.phone a{color:var(--on-ink);font-weight:700;text-decoration:none;font-variant-numeric:tabular-nums}
+
+.fixed{background:rgba(255,255,255,.97);color:#0d1726;border-radius:20px;padding:26px;box-shadow:0 30px 60px -20px rgba(0,0,0,.6)}
+.fixed-h{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.fixed h2{font-size:1.25rem;font-weight:800}
+.tag{font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;background:var(--taxi);color:var(--on-taxi);padding:5px 9px;border-radius:6px;white-space:nowrap}
+.fixed p{margin:0 0 14px;color:#56635d;font-size:.88rem}
+.route{display:flex;align-items:center;gap:14px;padding:13px 0;border-top:1px dashed #cfd6dd}
+.route .pl{width:40px;height:40px;border-radius:12px;background:#0d1726;color:var(--taxi);display:grid;place-items:center;flex:none}
+.route strong{display:block;font-weight:700;font-size:1rem;line-height:1.25}
+.route small{color:#6a7684;font-size:.78rem}
+.route b{margin-left:auto;font:800 1.5rem/1 var(--display);font-variant-numeric:tabular-nums}
+.fixed .btn{width:100%;margin-top:12px;background:#0d1726;color:#fff}
+
+.checker{height:14px;background:conic-gradient(var(--ink) 25%,var(--taxi) 0 50%,var(--ink) 0 75%,var(--taxi) 0) 0 0/14px 14px}
+
+.trust{background:var(--bg);border-bottom:1px solid var(--line)}
+.trust ul{list-style:none;margin-block:0;padding-block:26px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px}
+.trust li{display:flex;align-items:center;gap:12px;font-weight:600;font-size:.95rem;line-height:1.3}
+.trust li span{width:42px;height:42px;border-radius:12px;background:var(--brand-soft);color:var(--brand);display:grid;place-items:center;flex:none}
+.trust li small{display:block;color:var(--muted);font-weight:500;font-size:.8rem}
+
+.sec{padding-block:96px}
+.sec.alt{background:var(--surface)}
+.sh{max-width:640px;margin-bottom:44px}
+.sh .k{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--brand)}
+.sh h2{font-size:clamp(1.9rem,3.6vw,2.8rem);line-height:1.08;font-weight:800;margin:10px 0 14px}
+.sh p{color:var(--muted);margin:0;font-size:1.05rem}
+
+/* Galerij */
+.gallery{background:var(--ink);color:var(--on-ink);padding-block:96px;overflow:hidden}
+.gallery .sh .k{color:var(--taxi)}
+.gallery .sh p{color:var(--on-ink-muted)}
+.g-head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:28px}
+.g-head .sh{margin-bottom:0}
+.g-ctrl{display:flex;align-items:center;gap:10px}
+.g-count{font:800 1rem var(--display);font-variant-numeric:tabular-nums;color:var(--on-ink-muted);min-width:64px;text-align:center}
+.g-count b{color:var(--on-ink)}
+.g-arrow{width:52px;height:52px;border-radius:50%;border:1.5px solid rgba(255,255,255,.25);background:transparent;color:var(--on-ink);display:grid;place-items:center;cursor:pointer;transition:background .15s,border-color .15s}
+.g-arrow:hover{background:var(--taxi);border-color:var(--taxi);color:var(--on-taxi)}
+.g-stage{position:relative;border-radius:24px;overflow:hidden;aspect-ratio:16/8.5;max-width:100%;background:#0a121e;cursor:zoom-in;touch-action:pan-y;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+.g-slide{position:absolute;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .9s ease;margin:0}
+.g-slide.on{opacity:1}
+.g-slide img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.06);transition:transform 6s ease-out}
+.g-slide.on img{transform:scale(1)}
+.g-slide figcaption{position:absolute;left:0;right:0;bottom:0;padding:70px 28px 24px;background:linear-gradient(0deg,rgba(13,23,38,.85),rgba(13,23,38,0));font-weight:600;font-size:1.05rem;display:flex;align-items:center;gap:12px}
+.g-slide figcaption::before{content:"";width:28px;height:3px;background:var(--taxi);border-radius:2px;flex:none}
+.g-bar{position:absolute;left:0;top:0;height:3px;background:var(--taxi);width:0;z-index:2}
+.g-bar.run{animation:gbar 5s linear forwards}
+@keyframes gbar{to{width:100%}}
+.g-zoom{position:absolute;right:16px;top:16px;z-index:2;width:42px;height:42px;border-radius:50%;background:rgba(13,23,38,.7);color:#fff;display:grid;place-items:center;pointer-events:none}
+.g-thumbs{display:flex;gap:12px;margin-top:16px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scroll-snap-type:x mandatory}
+.g-thumbs button{flex:0 0 auto;width:132px;aspect-ratio:3/2;border-radius:12px;overflow:hidden;border:0;padding:0;cursor:pointer;opacity:.45;transition:opacity .2s,outline-color .2s;outline:2px solid transparent;outline-offset:2px;scroll-snap-align:start;background:#0a121e}
+.g-thumbs button.on{opacity:1;outline-color:var(--taxi)}
+.g-thumbs button:hover{opacity:.85}
+.g-thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+.lb{position:fixed;top:0;right:0;bottom:0;left:0;z-index:60;background:rgba(5,9,15,.94);display:grid;place-items:center;padding:calc(56px + env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) calc(56px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.lb img{max-width:min(1400px,100%);max-height:100%;border-radius:12px;object-fit:contain;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.lb p{position:absolute;left:0;right:0;bottom:calc(16px + env(safe-area-inset-bottom,0px));text-align:center;margin:0;color:#d5dce5;font-weight:600}
+.lb .g-arrow{position:absolute;top:50%;transform:translateY(-50%)}
+.lb .lb-p{left:max(16px,env(safe-area-inset-left,0px))}.lb .lb-n{right:max(16px,env(safe-area-inset-right,0px))}
+.lb .lb-x{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#fff;font-size:1.6rem;cursor:pointer;line-height:1}
+
+/* Diensten */
+.svc{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:center}
+.svc-img{border-radius:22px;overflow:hidden;aspect-ratio:4/3.3;max-width:100%;position:relative}
+.svc-img img{width:100%;height:100%;object-fit:cover;display:block}
+.svc-img .badge{position:absolute;left:18px;bottom:18px;background:var(--ink);color:var(--on-ink);border-radius:12px;padding:12px 16px;font-size:.85rem;line-height:1.3}
+.svc-img .badge b{display:block;color:var(--taxi);font:800 1.4rem/1.1 var(--display)}
+.svc-list{display:grid;gap:14px;margin-top:8px}
+.svc-item{display:flex;gap:16px;padding:18px 20px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.svc-item span{width:44px;height:44px;border-radius:12px;background:var(--ink);color:var(--taxi);display:grid;place-items:center;flex:none}
+.svc-item h3{font-family:var(--body);font-size:1.05rem;font-weight:700;letter-spacing:0;margin-bottom:2px}
+.svc-item p{margin:0;color:var(--muted);font-size:.93rem}
+
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:s}
+.step{padding:28px 26px;border-radius:var(--r);background:var(--card);border:1px solid var(--line)}
+.step::before{counter-increment:s;content:counter(s);display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--taxi);color:var(--on-taxi);font:800 1.1rem var(--display);margin-bottom:18px}
+.step h3{font-family:var(--body);font-size:1.12rem;font-weight:700;letter-spacing:0;margin-bottom:6px}
+.step p{margin:0;color:var(--muted);font-size:.95rem}
+
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.plan{border-radius:18px;padding:26px;background:var(--card);border:1px solid var(--line);font-variant-numeric:tabular-nums}
+.plan.night{background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
+.plan-h{display:flex;align-items:center;gap:12px;margin-bottom:18px}
+.plan-h span{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--brand-soft);color:var(--brand);flex:none}
+.plan.night .plan-h span{background:rgba(253,199,24,.14);color:var(--taxi)}
+.plan h3{font-family:var(--body);font-size:1.1rem;font-weight:800;letter-spacing:0}
+.plan small{display:block;color:var(--muted);font-size:.82rem}
+.plan.night small,.plan.night dt{color:var(--on-ink-muted)}
+.plan .big{font:800 2.4rem/1 var(--display);margin:4px 0 2px}
+.plan .big sub{font:600 .85rem var(--body);color:var(--muted);vertical-align:baseline;margin-left:4px}
+.plan.night .big sub{color:var(--on-ink-muted)}
+.plan dl{margin:18px 0 0}
+.plan dl div{display:flex;justify-content:space-between;padding:10px 0;border-top:1px solid var(--line);font-size:.9rem}
+.plan.night dl div{border-color:rgba(255,255,255,.12)}
+.plan dt{color:var(--muted)}
+.plan dd{margin:0;font-weight:700}
+
+.calc{margin-top:28px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--card)}
+.calc-f{padding:30px}
+.calc-f h3{font-size:1.4rem;font-weight:800;margin-bottom:4px}
+.calc-f>p{margin:0 0 20px;color:var(--muted);font-size:.9rem}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:var(--surface);padding:5px;border-radius:12px;margin-bottom:18px}
+.seg input{position:absolute;opacity:0;pointer-events:none}
+.seg label{text-align:center;padding:10px 6px;border-radius:9px;font-weight:600;font-size:.88rem;cursor:pointer;color:var(--muted);line-height:1.2}
+.seg input:checked+label{background:var(--card);color:var(--fg);box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.seg input:focus-visible+label{outline:3px solid var(--taxi)}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fld label{display:block;font-size:.82rem;font-weight:600;margin-bottom:6px}
+.fld .box{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:10px;background:var(--bg);padding-right:14px}
+.fld .box:focus-within{border-color:var(--brand)}
+.fld input{flex:1;min-width:0;border:0;background:transparent;color:var(--fg);font:600 1.05rem var(--body);padding:12px 14px;outline:none;font-variant-numeric:tabular-nums}
+.fld em{font-style:normal;color:var(--muted);font-size:.85rem}
+.calc-r{background:var(--taxi);color:var(--on-taxi);padding:30px;display:flex;flex-direction:column;justify-content:center}
+.calc-r small{font-weight:600;font-size:.85rem}
+.calc-r strong{font:800 clamp(2.8rem,6vw,3.8rem)/1 var(--display);margin:8px 0 10px;font-variant-numeric:tabular-nums}
+.calc-r p{margin:0;font-size:.82rem;opacity:.85}
+.fine{margin:14px 0 0;font-size:.8rem;color:var(--muted);max-width:70ch}
+
+.seo{max-width:760px}
+.seo h2{font-size:1.5rem;font-weight:800;margin-bottom:10px}
+.seo p{color:var(--muted);margin:0}
+
+.cta{background:var(--ink);color:var(--on-ink);border-radius:26px;padding:48px;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:40px;align-items:center}
+.cta h2{font-size:clamp(1.8rem,3.4vw,2.6rem);line-height:1.08;font-weight:800;margin-bottom:12px}
+.cta p{color:var(--on-ink-muted);margin:0 0 24px}
+.cta form{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:22px;display:grid;gap:12px}
+.cta form h3{font-family:var(--body);font-size:1rem;font-weight:700;letter-spacing:0}
+.cta input,.cta textarea{width:100%;border:1.5px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:var(--on-ink);border-radius:10px;padding:12px 14px;font:500 16px var(--body);resize:vertical}
+.cta input::placeholder,.cta textarea::placeholder{color:var(--on-ink-muted)}
+.cta input:focus,.cta textarea:focus{outline:none;border-color:var(--taxi)}
+.cta form .btn{width:100%}
+.contact-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;font-size:.92rem;color:var(--on-ink-muted)}
+.contact-meta b{display:block;color:var(--on-ink);font-weight:700}
+.contact-meta a{color:var(--on-ink);text-decoration:none}
+
+.mbar{display:none}
+@media(max-width:700px){
+  .mbar{display:grid;grid-template-columns:1fr auto;gap:10px;position:fixed;left:0;right:0;bottom:0;z-index:45;background:var(--ink);padding:10px max(14px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(14px,env(safe-area-inset-left,0px));box-shadow:0 -10px 30px -10px rgba(0,0,0,.4)}
+  .mbar .btn{min-height:50px}
+  body{padding-bottom:76px}
+  .wa-fab{display:none}
+}
+@media(max-width:960px){
+  .hero-grid{grid-template-columns:1fr;gap:40px;padding-block:64px 56px;min-height:0}
+  .fixed{max-width:520px}
+  .trust ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .svc,.cta{grid-template-columns:1fr}
+  .plans,.steps{grid-template-columns:1fr}
+  .plans{max-width:520px}
+  .calc{grid-template-columns:1fr}
+  .g-stage{aspect-ratio:4/3}
+}
+@media(max-width:560px){
+  .sec,.gallery{padding-block:64px}
+  .hero .ctas .btn{flex:1}
+  .trust ul{grid-template-columns:1fr;gap:14px}
+  .fields{grid-template-columns:1fr}
+  .cta{padding:28px 22px}
+  .calc-f,.calc-r{padding:24px}
+  .g-stage{border-radius:16px}
+  .g-thumbs button{width:96px}
+  .g-slide figcaption{padding:50px 18px 16px;font-size:.95rem}
+  .g-ctrl .g-arrow{width:44px;height:44px}
+}
+/* Oudere iPhones/Android-browsers zonder aspect-ratio */
+@supports not (aspect-ratio:1/1){
+  .g-stage{height:0;padding-top:53%}
+  .svc-img{height:0;padding-top:82%}
+  .svc-img img{position:absolute;top:0;left:0}
+  .g-thumbs button{height:88px}
+  @media(max-width:960px){.g-stage{padding-top:75%}}
+}
 </style>
 </head>
 <body>
-<!-- LOGO: Logonuzu "logo.png" adıyla (veya logo.svg) bu sayfayla aynı klasöre yükleyin. İdeal ölçü: 400x120 px, şeffaf arka plan. Dosya orada olduğu anda burada otomatik görünür ve "VlaamsGoTaxi" yazısı gizlenir. Yazıyı logonun yanında tutmak için <img> içindeki onload="..." kısmını silin. -->
-<header><div class="bar">
-<a class="logo" href="index.html"><img class="logo-img" src="logo.png" alt="VlaamsGoTaxi" onerror="this.remove()" onload="this.nextElementSibling.style.display='none'"><span>VlaamsGoTaxi</span></a>
-<nav id="nav"><a href="index.html" class="on">Home</a><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Rezervatie wijzigen</a></nav>
+<!-- LOGO: Logonuzu "logo.png" adıyla bu sayfayla aynı klasöre yükleyin (ideal 400x120 px, şeffaf arka plan, koyu zemin üzerinde okunur olmalı). Dosya varsa otomatik görünür ve yazılı logo gizlenir. -->
+<header><div class="in bar">
+<a class="logo" href="index.html"><img class="logo-img" src="logo.png" alt="VlaamsGoTaxi" onerror="this.remove()" onload="this.nextElementSibling.style.display='none'"><span class="wm"><span class="mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-5.5A2 2 0 0 1 9.4 10h5.2a2 2 0 0 1 1.9 1.5L18 17M9 10l.8-3h4.4l.8 3"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/></svg></span><span>Vlaams<b>Go</b>Taxi</span></span></a>
+<nav id="nav" aria-label="Hoofdmenu"><a href="index.html" class="on" aria-current="page">Home</a><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Reservatie wijzigen</a><a href="#contact">Contact</a></nav>
+<div class="hdr-cta">
+<a class="btn btn-ghost btn-sm" href="https://wa.me/32474640788" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.26-.46-2.39-1.47-.88-.79-1.48-1.76-1.65-2.06-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.61-.92-2.2-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48 0 1.46 1.07 2.88 1.21 3.07.15.2 2.1 3.2 5.08 4.49.71.31 1.26.49 1.7.63.71.22 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.41-.08-.13-.27-.2-.57-.35M12.05 21.78h-.01a9.87 9.87 0 0 1-5.03-1.38l-.36-.21-3.74.98 1-3.65-.24-.37a9.86 9.86 0 0 1-1.51-5.26c0-5.45 4.44-9.88 9.89-9.88 2.64 0 5.12 1.03 6.99 2.9a9.82 9.82 0 0 1 2.89 6.99c0 5.45-4.44 9.88-9.88 9.88m8.41-18.3A11.82 11.82 0 0 0 12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9 0-3.17-1.24-6.16-3.48-8.41z"/></svg><span>WhatsApp</span></a>
+<a class="btn btn-taxi btn-sm" href="bestel-rit-online.html">Bestel rit</a>
+</div>
 <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav"><span></span><span></span><span></span></button>
 </div></header>
 
-<main>
-<div id="v-home">
-<section class="hero"><div class="c"><h1>VlaamsGoTaxi<span>“Scherpe prijs, topkwaliteit.”</span></h1><a class="pill" href="bestel-rit-online.html">Bestel rit online <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i></a></div></section>
+<main id="top">
+<section class="hero">
+<div class="hero-bg" role="img" aria-label="De Grote Markt van Antwerpen met de Brabofontein bij avond"></div>
+<div class="in hero-grid">
+<div>
+<span class="eyebrow"><i class="live" aria-hidden="true"></i>Taxi Antwerpen · 24/7 beschikbaar</span>
+<h1>Uw taxi in Antwerpen, <em>dag en nacht.</em></h1>
+<p class="lead">Scherpe prijs, topkwaliteit. Bestel uw rit online en zie meteen de prijs, of stuur ons een WhatsApp. Wij brengen u stipt naar uw afspraak, het station of de luchthaven.</p>
+<div class="ctas">
+<a class="btn btn-taxi" href="bestel-rit-online.html">Bestel rit online <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+<a class="btn btn-ghost" href="https://wa.me/32474640788" target="_blank" rel="noopener">WhatsApp ons</a>
+</div>
+<div class="phone"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Liever bellen? <a href="tel:+32474640788">+32 474 64 07 88</a></div>
+</div>
+<aside class="fixed" aria-labelledby="fp-h">
+<div class="fixed-h"><h2 id="fp-h">Naar de luchthaven</h2><span class="tag">Vaste prijs</span></div>
+<p>Vanuit Antwerpen, zonder taximeter en zonder verrassingen.</p>
+<div class="route"><span class="pl"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><div><strong>Brussels Airport</strong><small>Zaventem · Tarief D</small></div><b>€110</b></div>
+<div class="route"><span class="pl"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><div><strong>Charleroi Airport</strong><small>Brussels South · Tarief E</small></div><b>€220</b></div>
+<div class="route"><span class="pl"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><div><strong>Schiphol</strong><small>Amsterdam · Tarief F</small></div><b>€340</b></div>
+<a class="btn" href="bestel-rit-online.html">Reserveer luchthavenrit</a>
+</aside>
+</div>
+</section>
+<div class="checker" aria-hidden="true"></div>
 
-<section class="sec" style="padding-bottom:30px"><div class="wrap">
-<h2 class="t">Betrouwbaar Vervoer voor Iedereen</h2>
-<div class="zv"><h3>Zorgzaam Vervoer</h3><p>Voor betrouwbaar en comfortabel vervoer in Antwerpen kunt u vooraf een taxi reserveren. Ons team kent de stad door en door en staat 24/7 voor u klaar, of het nu gaat om een zakelijke afspraak of een luchthavenvervoer. Reserveer tijdig voor een stipte en zorgeloze rit.</p></div>
-</div></section>
-<svg class="wave w1" viewBox="0 0 1600 46" preserveAspectRatio="none"><path fill="currentColor" d="M0,30 C260,6 520,44 820,24 S1400,2 1600,22 L1600,46 L0,46Z"/></svg>
+<section class="trust" aria-label="Waarom VlaamsGoTaxi">
+<ul class="in">
+<li><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div>24/7 bereikbaar<small>Ook 's nachts en in het weekend</small></div></li>
+<li><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 12V7H4v10h8"/><path d="M4 10h16M16 19l2 2 4-4"/></svg></span><div>Vaste luchthavenprijs<small>Zaventem voor €110</small></div></li>
+<li><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span><div>Lokale chauffeurs<small>Wij kennen Antwerpen door en door</small></div></li>
+<li><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="5" width="16" height="16" rx="2"/><path d="M4 10h16M9 3v4M15 3v4M9 15l2 2 4-4"/></svg></span><div>Online reserveren<small>En zelf uw reservatie wijzigen</small></div></li>
+</ul>
+</section>
 
-<section class="sec alt" style="padding-top:20px"><div class="wrap">
-<h2 class="t">Betrouwbaar vervoer voor onvergetelijke momenten</h2>
-<!-- GALERİ: Fotoğraflarınızı "images" klasörüne galeri-2.jpg ... galeri-10.jpg adıyla yükleyin (1. foto olarak images/taxi.jpg kullanılıyor). Önerilen ölçü 1600x1000 px, her biri 300 KB altı. Olmayan dosyalar otomatik atlanır, kod değiştirmenize gerek yok. Daha fazla foto için sayfa sonundaki L listesine dosya adı ekleyin. -->
-<div class="gal" id="gal"><div class="gal-t" id="galT"></div><button class="gal-b gal-p" id="galP" aria-label="Vorige">&#8249;</button><button class="gal-b gal-n" id="galN" aria-label="Volgende">&#8250;</button><div class="gal-d" id="galD"></div></div>
-</div></section>
-<svg class="wave w2" viewBox="0 0 1600 46" preserveAspectRatio="none"><path fill="currentColor" d="M0,24 C300,48 600,4 900,26 S1450,40 1600,14 L1600,46 L0,46Z"/></svg>
+<section class="sec">
+<div class="in svc">
+<div class="svc-img">
+<img src="images/taxi.jpg" alt="Verlicht taxibord op het dak van een zwarte wagen" width="925" height="521" loading="lazy" decoding="async">
+<div class="badge"><b>24/7</b>klaar voor uw rit</div>
+</div>
+<div>
+<div class="sh" style="margin-bottom:24px">
+<span class="k">Zorgzaam vervoer</span>
+<h2>Betrouwbaar vervoer voor iedereen</h2>
+<p>Ons team kent de stad door en door en staat 24/7 voor u klaar. Reserveer tijdig voor een stipte en zorgeloze rit.</p>
+</div>
+<div class="svc-list">
+<div class="svc-item"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><div><h3>Luchthavenvervoer</h3><p>Naar Zaventem, Charleroi of Schiphol tegen een vaste prijs.</p></div></div>
+<div class="svc-item"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg></span><div><h3>Zakelijke ritten</h3><p>Op tijd op uw afspraak, vergadering of in het station.</p></div></div>
+<div class="svc-item"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg></span><div><h3>Evenementen en festivals</h3><p>Veilig heen en terug, ook voor onvergetelijke momenten.</p></div></div>
+</div>
+</div>
+</div>
+</section>
 
-<section class="sec" style="padding-top:20px"><div class="wrap">
-<h2 class="t">Duidelijke prijzen zonder verrassingen.</h2>
+<!-- GALERİ: Fotoğraf eklemek için "images" klasörüne galeri-3.jpg, galeri-4.jpg ... galeri-10.jpg yükleyin (önerilen 1600x1000 px, her biri 300 KB altı). Olmayan dosyalar otomatik atlanır. Alt yazıyı değiştirmek için sayfa sonundaki GAL listesini düzenleyin. -->
+<section class="gallery" id="galerij" aria-labelledby="g-h">
+<div class="in">
+<div class="g-head">
+<div class="sh"><span class="k">Galerij</span><h2 id="g-h">Onderweg in en rond Antwerpen</h2><p>Een kijkje in onze wagens en de stad waar we elke dag rijden.</p></div>
+<div class="g-ctrl"><button class="g-arrow" id="gP" type="button" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></button><span class="g-count" id="gC"><b>01</b> / 03</span><button class="g-arrow" id="gN" type="button" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></div>
+</div>
+<div class="g-stage" id="gS" role="region" aria-roledescription="carousel" aria-label="Fotogalerij">
+<div class="g-bar" id="gB"></div>
+<span class="g-zoom" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg></span>
+<noscript><figure class="g-slide on"><img src="images/grote-markt.jpg" alt="De Grote Markt van Antwerpen bij avond" loading="lazy"><figcaption>Grote Markt, Antwerpen</figcaption></figure></noscript>
+</div>
+<div class="g-thumbs" id="gT" aria-label="Kies een foto"></div>
+</div>
+</section>
+
+<section class="sec alt">
+<div class="in">
+<div class="sh"><span class="k">Zo werkt het</span><h2>In drie stappen geregeld</h2></div>
+<div class="steps">
+<div class="step"><h3>Plan uw rit</h3><p>Vul ophaaladres, bestemming en tijdstip in. U ziet meteen de prijs.</p></div>
+<div class="step"><h3>Reserveer</h3><p>Verstuur uw reservatie online of via WhatsApp. U krijgt een reservatienummer.</p></div>
+<div class="step"><h3>Wij halen u op</h3><p>Uw chauffeur staat stipt klaar. Wijzigen of annuleren kan tot 2 uur voor vertrek.</p></div>
+</div>
+</div>
+</section>
+
+<section class="sec" id="tarieven">
+<div class="in">
+<div class="sh"><span class="k">Tarieven</span><h2>Duidelijke prijzen zonder verrassingen</h2><p>Voor ritten met de taximeter gelden onderstaande tarieven. Vooraf online bestelde ritten krijgen een vaste prijsafspraak.</p></div>
 <div class="plans">
-<div class="plan"><svg viewBox="0 0 24 24" fill="none" stroke="#13223d" stroke-width="1.6"><circle cx="12" cy="12" r="4.2" fill="#fdc718"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg><h4>Tarief A</h4><small>Overdag, 06:00 – 22:00</small><div>Startprijs <b>€7,50</b></div><div>Wachtprijs per uur <b>€60,00</b></div><div>Prijs per kilometer <b>€3,00</b></div></div>
-<div class="plan b"><svg viewBox="0 0 24 24" fill="#fdc718"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg><h4>Tarief B</h4><small>Nacht, 22:00 – 06:00</small><div>Startprijs <b>€8,50</b></div><div>Wachtprijs per uur <b>€60,00</b></div><div>Prijs per kilometer <b>€3,70</b></div></div>
-<div class="plan c"><svg viewBox="0 0 24 24" fill="#13223d"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/><circle cx="12" cy="11.5" r="1.6" fill="#fdc718"/></svg><h4>Tarief C</h4><small>Evenementen en festivals</small><div>Startprijs <b>€12,00</b></div><div>Wachtprijs per uur <b>€60,00</b></div><div>Prijs per kilometer <b>€4,00</b></div></div>
+<div class="plan"><div class="plan-h"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg></span><div><h3>Tarief A · Overdag</h3><small>06:00 – 22:00</small></div></div><div class="big">€3,00<sub>per km</sub></div><dl><div><dt>Startprijs</dt><dd>€7,50</dd></div><div><dt>Wachtprijs per uur</dt><dd>€60,00</dd></div></dl></div>
+<div class="plan night"><div class="plan-h"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg></span><div><h3>Tarief B · Nacht</h3><small>22:00 – 06:00</small></div></div><div class="big">€3,70<sub>per km</sub></div><dl><div><dt>Startprijs</dt><dd>€8,50</dd></div><div><dt>Wachtprijs per uur</dt><dd>€60,00</dd></div></dl></div>
+<div class="plan"><div class="plan-h"><span><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3 5.8 20.9l1.6-7L2 9.2l7.1-.6z"/></svg></span><div><h3>Tarief C · Evenementen</h3><small>Evenementen en festivals</small></div></div><div class="big">€4,00<sub>per km</sub></div><dl><div><dt>Startprijs</dt><dd>€12,00</dd></div><div><dt>Wachtprijs per uur</dt><dd>€60,00</dd></div></dl></div>
 </div>
-<div class="apg"><h4>Luchthavens · vaste prijs</h4><div class="aps">
-<div class="ap"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><strong>Zaventem<em>Vaste prijs · Tarief D</em></strong><b>€110</b></div>
-<div class="ap"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><strong>Charleroi<em>Vaste prijs · Tarief E</em></strong><b>€220</b></div>
-<div class="ap"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5z"/></svg></span><strong>Schiphol<em>Vaste prijs · Tarief F</em></strong><b>€340</b></div>
-</div></div>
-</div></section>
-<svg class="wave w1" viewBox="0 0 1600 46" preserveAspectRatio="none"><path fill="currentColor" d="M0,28 C300,2 560,42 860,22 S1420,6 1600,26 L1600,46 L0,46Z"/></svg>
-
-<section class="sec alt" style="padding-top:20px;padding-bottom:30px"><div class="wrap"><div class="zv"><h3>Taxi Antwerpen en luchthavenvervoer</h3><p>Op zoek naar een taxi in Antwerpen? VlaamsGoTaxi brengt u 24/7 veilig naar uw bestemming, ook naar de luchthavens van Zaventem, Charleroi en Schiphol tegen een vaste prijs. Bestel uw rit eenvoudig online of reserveer vooraf, met duidelijke tarieven zonder verrassingen.</p></div></div></section>
-<svg class="wave w2" viewBox="0 0 1600 46" preserveAspectRatio="none"><path fill="currentColor" d="M0,24 C300,48 600,4 900,26 S1450,40 1600,14 L1600,46 L0,46Z"/></svg>
-<svg class="wave w1" viewBox="0 0 1600 46" preserveAspectRatio="none"><path fill="currentColor" d="M0,30 C260,6 520,44 820,24 S1400,2 1600,22 L1600,46 L0,46Z"/></svg>
-<section class="sec alt" style="padding-top:20px"><div class="wrap">
-<h2 class="t">Bereken uw rit</h2>
 <div class="calc">
-<h3>Onze tarieven</h3>
-<p class="sub">Een schatting op basis van onze tarieven. De taximeter bepaalt de uiteindelijke prijs.</p>
-<div class="cg">
-<div class="cl">
-<label for="k-t">Tarief</label>
-<select id="k-t"><option value="a">Tarief A: overdag (06:00 – 22:00)</option><option value="b">Tarief B: nacht (22:00 – 06:00)</option><option value="c">Tarief C: evenementen en festivals</option></select>
-<label for="k-k">Afstand (km)</label><input id="k-k" type="number" min="0" step="0.1" value="10">
-<label for="k-w">Wachttijd (minuten)</label><input id="k-w" type="number" min="0" step="1" value="0">
+<div class="calc-f">
+<h3>Bereken uw rit</h3>
+<p>Een schatting op basis van onze tarieven. De taximeter bepaalt de uiteindelijke prijs.</p>
+<div class="seg" role="radiogroup" aria-label="Tarief">
+<input type="radio" name="k-t" id="k-a" value="a" checked><label for="k-a">Overdag</label>
+<input type="radio" name="k-t" id="k-b" value="b"><label for="k-b">Nacht</label>
+<input type="radio" name="k-t" id="k-c" value="c"><label for="k-c">Evenement</label>
 </div>
-<div class="res"><small>Geschatte prijs</small><strong id="k-p">€37,50</strong><small>Startprijs + kilometers + wachttijd</small></div>
+<div class="fields">
+<div class="fld"><label for="k-k">Afstand</label><div class="box"><input id="k-k" type="number" inputmode="decimal" min="0" step="0.1" value="10"><em>km</em></div></div>
+<div class="fld"><label for="k-w">Wachttijd</label><div class="box"><input id="k-w" type="number" inputmode="numeric" min="0" step="1" value="0"><em>min</em></div></div>
+</div>
+</div>
+<div class="calc-r" aria-live="polite"><small>Geschatte prijs</small><strong id="k-p">€37,50</strong><p id="k-x">Startprijs €7,50 + 10 km × €3,00</p></div>
 </div>
 <p class="fine">Indicatieve prijs = prijs voor een rit van 10 km als die 15 minuten duurt, op basis van bovenstaande tariefelementen. Deze tarieven gelden niet bij vooraf digitaal bestelde ritten met vaste prijsafspraak.</p>
 </div>
-</div></section>
-<svg class="wave w2" viewBox="0 0 1600 46" preserveAspectRatio="none"><path fill="currentColor" d="M0,22 C280,46 620,6 920,26 S1440,38 1600,12 L1600,46 L0,46Z"/></svg>
+</section>
 
-<section class="sec" style="padding-top:20px;padding-bottom:44px"><form class="sub-row" id="f-sub">
-<h3>Subscribe</h3><input type="email" id="s-e" placeholder="Email" aria-label="Email" required>
-<button class="pill" type="submit">Sign up <i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i></button>
-</form></section>
-
-<section class="sec alt"><div class="wrap">
-<h2 class="t">Contact</h2>
-<div class="cont">
-<div><h4>Stuur ons een bericht.</h4>
-<form id="f-contact">
-<input id="c-n" placeholder="Naam" aria-label="Naam">
-<input id="c-e" type="email" placeholder="E-mail*" aria-label="E-mail" required>
-<textarea id="c-m" rows="4" placeholder="Bericht" aria-label="Bericht"></textarea>
-<button class="pill" type="submit"><span>Verzenden</span><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 12h15M13 6l6 6-6 6"/></svg></i></button>
-<p class="recap">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</p>
-</form></div>
+<section class="sec alt" id="contact">
+<div class="in">
+<div class="seo" style="margin-bottom:48px"><h2>Taxi Antwerpen en luchthavenvervoer</h2><p>Op zoek naar een taxi in Antwerpen? VlaamsGoTaxi brengt u 24/7 veilig naar uw bestemming, ook naar de luchthavens van Zaventem, Charleroi en Schiphol tegen een vaste prijs. Bestel uw rit eenvoudig online of reserveer vooraf, met duidelijke tarieven zonder verrassingen.</p></div>
+<div class="cta">
 <div>
-<p>Wij staan op elk moment van de dag klaar om uw veilige en comfortabele rit te verzorgen. U kunt eenvoudig een taxi bestellen of reserveren, zodat u uw reis vooraf kunt plannen en de rest aan ons kunt overlaten. Maak gebruik van onze taxi services en boek uw rit vandaag nog!</p>
-<h5>VlaamsGoTaxi</h5><p>Antwerpen, België</p><p><a class="p" href="tel:+32474640788">+32.474640788</a></p>
+<h2>Klaar om te vertrekken?</h2>
+<p>Wij staan op elk moment van de dag klaar voor uw veilige en comfortabele rit. Boek vandaag nog, of stel ons eerst uw vraag.</p>
+<div class="ctas"><a class="btn btn-taxi" href="bestel-rit-online.html">Bestel rit online</a><a class="btn btn-wa" href="https://wa.me/32474640788" target="_blank" rel="noopener">WhatsApp</a></div>
+<div class="contact-meta"><div><b>Telefoon</b><a href="tel:+32474640788">+32 474 64 07 88</a></div><div><b>Regio</b>Antwerpen, België</div><div><b>Bereikbaar</b>24 uur per dag, 7 dagen per week</div></div>
+</div>
+<form id="f-contact">
+<h3>Stuur ons een bericht</h3>
+<input id="c-n" placeholder="Naam" aria-label="Naam" autocomplete="name">
+<input id="c-e" type="email" placeholder="E-mail" aria-label="E-mail" autocomplete="email" required>
+<textarea id="c-m" rows="3" placeholder="Uw vraag of gewenste rit" aria-label="Bericht"></textarea>
+<button class="btn btn-taxi" type="submit">Verzenden via WhatsApp</button>
+</form>
 </div>
 </div>
-</div></section>
-</div>
-
+</section>
 </main>
 
-<footer>
-<p><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Rezervatie wijzigen</a></p>
-<p>Copyright © 2026 VlaamsGoTaxi – Alle rechten voorbehouden.</p>
-</footer>
-
+<footer><div class="in">
+<span>© 2026 VlaamsGoTaxi · Antwerpen, België · <a href="tel:+32474640788" style="color:inherit;text-decoration:none">+32 474 64 07 88</a></span>
+<nav class="fnav" aria-label="Footer"><a href="index.html">Home</a><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Reservatie wijzigen</a></nav>
+</div></footer>
+<div class="mbar">
+<a class="btn btn-taxi" href="bestel-rit-online.html">Bestel rit online</a>
+<a class="btn btn-wa" href="https://wa.me/32474640788" target="_blank" rel="noopener" aria-label="WhatsApp"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.05 0C5.5 0 .16 5.34.16 11.89c0 2.1.55 4.14 1.59 5.95L.06 24l6.3-1.65a11.88 11.88 0 0 0 5.69 1.45c6.55 0 11.89-5.34 11.89-11.9C23.94 5.34 18.6 0 12.05 0z"/></svg>WhatsApp</a>
+</div>
 <script>
 (function(){
-var WA="https://wa.me/320474640788?text=";
+var WA="https://wa.me/32474640788?text=";
 function $(id){return document.getElementById(id)}
-function send(l){window.open(WA+encodeURIComponent(l.join("\n")),"_blank")}
-var R={a:[7.5,3],b:[8.5,3.7],c:[12,4]};
+/* Ritcalculator */
+var R={a:[7.5,3,"Startprijs €7,50"],b:[8.5,3.7,"Startprijs €8,50"],c:[12,4,"Startprijs €12,00"]};
+function eur(n){return "€"+n.toFixed(2).replace(".",",")}
 function calc(){
-  var r=R[$("k-t").value],km=Math.max(0,parseFloat($("k-k").value)||0),w=Math.max(0,parseFloat($("k-w").value)||0);
-  var p=r[0]+km*r[1]+w;
-  $("k-p").textContent="€"+p.toFixed(2).replace(".",",");
+  var r=R[document.querySelector('input[name="k-t"]:checked').value];
+  var km=Math.max(0,parseFloat($("k-k").value)||0),w=Math.max(0,parseFloat($("k-w").value)||0);
+  $("k-p").textContent=eur(r[0]+km*r[1]+w);
+  var x=r[2]+" + "+String(km).replace(".",",")+" km × "+eur(r[1]);if(w>0)x+=" + "+w+" min wachten";
+  $("k-x").textContent=x;
 }
-["k-t","k-k","k-w"].forEach(function(i){$(i).addEventListener("input",calc)});calc();
+document.querySelectorAll('input[name="k-t"],#k-k,#k-w').forEach(function(el){el.addEventListener("input",calc);el.addEventListener("change",calc)});calc();
+/* Contactformulier via WhatsApp */
 $("f-contact").addEventListener("submit",function(e){e.preventDefault();
-  send(["Bericht via website","Naam: "+$("c-n").value,"E-mail: "+$("c-e").value,$("c-m").value])});
-$("f-sub").addEventListener("submit",function(e){e.preventDefault();
-  send(["Aanmelding nieuwsbrief","E-mail: "+$("s-e").value])});
+  window.open(WA+encodeURIComponent(["Bericht via website","Naam: "+$("c-n").value,"E-mail: "+$("c-e").value,$("c-m").value].join("\n")),"_blank")});
+/* Menu (mobiel) */
+var b=$("burger"),n=$("nav");b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o)});
+n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.remove("open");b.setAttribute("aria-expanded","false")}});
 })();
 </script>
-<script>(function(){var b=document.getElementById("burger"),n=document.getElementById("nav");b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o)});n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.remove("open");b.setAttribute("aria-expanded","false")}})})();</script>
-<a class="wa-fab" href="https://wa.me/320474640788?text=Hallo%20VlaamsGoTaxi%2C%20ik%20wil%20graag%20een%20taxi%20reserveren.%0A%0ANaam%3A%0ATelefoon%3A%0AOphaaladres%20%28straat%2C%20nr%2C%20gemeente%29%3A%0ABestemming%3A%0ADatum%3A%0AUur%3A%0AAantal%20personen%3A%0AOpmerking%20%28bv.%20rolstoel%2C%20kinderzitje%29%3A%0A%0AAlvast%20bedankt%21" target="_blank" rel="noopener" aria-label="WhatsApp"><span class="wa-tip">Chat met ons</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
-<script>(function(){var L=["images/taxi.jpg","images/galeri-2.jpg","images/galeri-3.jpg","images/galeri-4.jpg","images/galeri-5.jpg","images/galeri-6.jpg","images/galeri-7.jpg","images/galeri-8.jpg","images/galeri-9.jpg","images/galeri-10.jpg"],
-T=document.getElementById("galT"),D=document.getElementById("galD"),G=document.getElementById("gal"),P=document.getElementById("galP"),N=document.getElementById("galN"),i=0,tm;
-function n(){return T.children.length}
-function mark(){Array.prototype.forEach.call(D.children,function(b,k){b.className=k===i?"on":""})}
-function go(k){i=(k+n())%n();T.scrollTo({left:i*T.clientWidth,behavior:"smooth"})}
-function sync(){D.innerHTML="";for(var k=0;k<n();k++)(function(k){var b=document.createElement("button");b.setAttribute("aria-label","Foto "+(k+1));b.onclick=function(){go(k)};D.appendChild(b)})(k);G.hidden=!n();P.hidden=N.hidden=n()<2;mark()}
-L.forEach(function(s){var m=new Image();m.alt="VlaamsGoTaxi taxi Antwerpen";m.loading="lazy";m.onerror=function(){m.remove();sync()};m.src=s;T.appendChild(m)});
-T.addEventListener("scroll",function(){var k=Math.round(T.scrollLeft/T.clientWidth);if(k!==i){i=k;mark()}});
-P.onclick=function(){go(i-1)};N.onclick=function(){go(i+1)};
-function play(){clearInterval(tm);tm=setInterval(function(){if(n()>1)go(i+1)},5000)}
-["mouseenter","touchstart"].forEach(function(e){G.addEventListener(e,function(){clearInterval(tm)},{passive:true})});["mouseleave","touchend"].forEach(function(e){G.addEventListener(e,play,{passive:true})});
-sync();play()})();</script>
+<script>
+/* GALERİ: yeni foto = images klasörüne yükleyin + aşağıya bir satır ekleyin, örn.
+   ["images/galeri-3.jpg","Alt yazı"],
+   Sadece listede olan fotoğraflar yüklenir (hız için). Önerilen: 1600x1000 px, 250 KB altı. */
+(function(){
+var GAL=[
+  ["images/grote-markt.webp","Grote Markt, Antwerpen","images/grote-markt.jpg"],
+  ["images/galeri-2.jpg","Comfortabel en ontspannen op weg"],
+  ["images/taxi.jpg","Dag en nacht klaar voor uw rit"]
+];
+var S=document.getElementById("gS"),T=document.getElementById("gT"),C=document.getElementById("gC"),B=document.getElementById("gB"),
+    reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches,items=[],i=0,tm=null,hold=false,lb=null;
+S.querySelectorAll(".g-slide").forEach(function(f){f.remove()});
+function pad(k){return (k<10?"0":"")+k}
+function count(){C.innerHTML="<b>"+pad(i+1)+"</b> / "+pad(items.length)}
+function show(k){
+  if(!items.length)return;i=(k+items.length)%items.length;
+  items.forEach(function(it,j){it.f.classList.toggle("on",j===i);it.t.classList.toggle("on",j===i);it.t.setAttribute("aria-current",j===i?"true":"false")});
+  var t=items[i].t;T.scrollTo({left:t.offsetLeft-T.clientWidth/2+t.clientWidth/2,behavior:reduce?"auto":"smooth"});
+  if(seen){load(i);load(i+1)}
+  count();if(lb)lbShow();restart();
+}
+function restart(){
+  clearTimeout(tm);B.classList.remove("run");void B.offsetWidth;
+  if(!seen||reduce||hold||lb||items.length<2)return;
+  B.classList.add("run");tm=setTimeout(function(){show(i+1)},5000);
+}
+var seen=false;
+function load(k){var it=items[(k+items.length)%items.length];if(it&&!it.im.getAttribute("src"))it.im.src=it.src}
+GAL.forEach(function(g){
+  var f=document.createElement("figure");f.className="g-slide";
+  var im=new Image();im.alt=g[1];im.decoding="async";
+  var cap=document.createElement("figcaption");cap.textContent=g[1];f.appendChild(im);f.appendChild(cap);
+  var t=document.createElement("button");t.type="button";t.setAttribute("aria-label",g[1]);
+  var ti=new Image();ti.alt="";ti.loading="lazy";ti.decoding="async";ti.src=g[0];t.appendChild(ti);
+  var it={f:f,t:t,im:im,src:g[0],cap:g[1]};
+  function drop(){f.remove();t.remove();var k=items.indexOf(it);if(k>-1){items.splice(k,1);if(i>=items.length)i=0;if(items.length)show(i)}sync()}
+  im.onerror=function(){if(g[2]&&it.src!==g[2]){it.src=g[2];im.src=g[2];ti.src=g[2]}else drop()};
+  ti.onerror=function(){if(g[2]&&ti.src.indexOf(g[2])<0)ti.src=g[2]};
+  t.onclick=function(){show(items.indexOf(it))};
+  S.appendChild(f);T.appendChild(t);items.push(it);
+});
+function sync(){var many=items.length>1;document.getElementById("gP").hidden=document.getElementById("gN").hidden=!many;T.hidden=!many;count()}
+document.getElementById("gP").onclick=function(){show(i-1)};
+document.getElementById("gN").onclick=function(){show(i+1)};
+S.addEventListener("mouseenter",function(){hold=true;restart()});
+S.addEventListener("mouseleave",function(){hold=false;restart()});
+/* vegen op telefoon */
+var x0=null;
+S.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;hold=true;restart()},{passive:true});
+S.addEventListener("touchend",function(e){hold=false;if(x0!==null){var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){show(i+(dx<0?1:-1));x0=null;return}}x0=null;restart()},{passive:true});
+/* grote weergave */
+function lbShow(){lb.querySelector("img").src=items[i].src;lb.querySelector("img").alt=items[i].cap;lb.querySelector("p").textContent=items[i].cap+"  ·  "+(i+1)+" / "+items.length}
+function lbClose(){if(!lb)return;lb.remove();lb=null;document.removeEventListener("keydown",key);S.focus&&S.focus();restart()}
+function key(e){if(e.key==="Escape")lbClose();else if(e.key==="ArrowLeft")show(i-1);else if(e.key==="ArrowRight")show(i+1)}
+S.addEventListener("click",function(){
+  if(!items.length)return;
+  lb=document.createElement("div");lb.className="lb";lb.setAttribute("role","dialog");lb.setAttribute("aria-modal","true");lb.setAttribute("aria-label","Foto");
+  lb.innerHTML='<img alt=""><p></p><button class="lb-x" type="button" aria-label="Sluiten">&times;</button>'+
+    (items.length>1?'<button class="g-arrow lb-p" type="button" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></button><button class="g-arrow lb-n" type="button" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button>':"");
+  lb.addEventListener("click",function(e){if(e.target===lb)lbClose()});
+  lb.querySelector(".lb-x").onclick=lbClose;
+  if(items.length>1){lb.querySelector(".lb-p").onclick=function(){show(i-1)};lb.querySelector(".lb-n").onclick=function(){show(i+1)}}
+  document.body.appendChild(lb);lbShow();document.addEventListener("keydown",key);lb.querySelector(".lb-x").focus();restart();
+});
+sync();show(0);
+/* foto's pas laden en afspelen als de galerij in beeld komt (sneller openen, minder data) */
+function vis(on){seen=seen||on;if(on){load(i);load(i+1)}hold=!on;restart()}
+if("IntersectionObserver" in window){new IntersectionObserver(function(e){vis(e[0].isIntersecting)},{rootMargin:"300px 0px"}).observe(S)}else{vis(true)}
+document.addEventListener("visibilitychange",function(){if(document.hidden){clearTimeout(tm);B.classList.remove("run")}else restart()});
+})();
+</script>
+<a class="wa-fab" href="https://wa.me/32474640788?text=Hallo%20VlaamsGoTaxi%2C%20ik%20wil%20graag%20een%20taxi%20reserveren.%0A%0ANaam%3A%0ATelefoon%3A%0AOphaaladres%20%28straat%2C%20nr%2C%20gemeente%29%3A%0ABestemming%3A%0ADatum%3A%0AUur%3A%0AAantal%20personen%3A%0AOpmerking%20%28bv.%20rolstoel%2C%20kinderzitje%29%3A%0A%0AAlvast%20bedankt%21" target="_blank" rel="noopener" aria-label="WhatsApp"><span class="wa-tip">Chat met ons</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 </body>
 </html>
