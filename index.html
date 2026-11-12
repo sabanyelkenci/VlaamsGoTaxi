@@ -362,7 +362,7 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.
 <div class="in">
 <div class="g-head">
 <div class="sh"><span class="k">Galerij</span><h2 id="g-h">Onderweg in en rond Antwerpen</h2><p>Een kijkje in onze wagens en de stad waar we elke dag rijden.</p></div>
-<div class="g-ctrl"><button class="g-arrow" id="gP" type="button" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></button><span class="g-count" id="gC"><b>01</b> / 02</span><button class="g-arrow" id="gN" type="button" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></div>
+<div class="g-ctrl"><button class="g-arrow" id="gP" type="button" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M20 12H5M11 6l-6 6 6 6"/></svg></button><span class="g-count" id="gC"><b>01</b> / 03</span><button class="g-arrow" id="gN" type="button" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></button></div>
 </div>
 <div class="g-stage" id="gS" role="region" aria-roledescription="carousel" aria-label="Fotogalerij">
 <noscript><figure class="g-slide on"><img src="images/grote-markt.jpg" alt="De Grote Markt van Antwerpen bij avond" loading="lazy"><figcaption>Grote Markt, Antwerpen</figcaption></figure></noscript>
@@ -486,7 +486,8 @@ n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.re
 (function(){
 var GAL=[
   ["images/grote-markt.webp","Grote Markt, Antwerpen","images/grote-markt.jpg"],
-  ["images/galeri-2.jpg?v=20261112","Comfortabel en ontspannen op weg"]
+  ["images/galeri-2.jpg?v=20261112","Comfortabel en ontspannen op weg"],
+  ["images/galeri-3.webp","Havenhuis, Antwerpen","images/galeri-3.jpg"]
 ];
 var S=document.getElementById("gS"),C=document.getElementById("gC"),P=document.getElementById("gP"),N=document.getElementById("gN"),
     reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches,items=[],i=0,tm=null,hold=false,seen=false,lb=null;
