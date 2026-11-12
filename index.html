@@ -86,7 +86,7 @@ footer .fnav{display:flex;gap:20px;flex-wrap:wrap}
 footer .fnav a{color:var(--muted);text-decoration:none;font-weight:500}
 footer .fnav a:hover{color:var(--fg)}
 
-.wa-fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;animation:wa-in .6s cubic-bezier(.2,1.4,.4,1) .8s backwards}
+.wa-fab{display:none!important;position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:50;width:58px;height:58px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;box-shadow:0 8px 22px rgba(0,0,0,.3);text-decoration:none;transition:transform .2s;animation:wa-in .6s cubic-bezier(.2,1.4,.4,1) .8s backwards}
 .wa-fab:hover{transform:scale(1.08)}
 .wa-fab svg{width:32px;height:32px}
 .wa-fab::before{content:"";position:absolute;top:0;right:0;bottom:0;left:0;border-radius:50%;border:2px solid #25d366;animation:wa-ring 2.4s ease-out infinite;pointer-events:none}
@@ -112,6 +112,7 @@ footer .fnav a:hover{color:var(--fg)}
   .cd-items{display:flex;flex-direction:column;align-items:flex-end;gap:12px;visibility:hidden;opacity:0;transform:translateY(12px);transition:opacity .2s,transform .2s,visibility 0s .2s}
   .cdial.open .cd-items{visibility:visible;opacity:1;transform:none;transition:opacity .2s,transform .2s,visibility 0s}
   .cd-bestel{display:inline-flex;align-items:center;gap:8px;min-height:46px;padding:0 18px;border-radius:999px;background:#fdc718;color:#0d1726;font:700 .95rem/1 var(--body);text-decoration:none;white-space:nowrap;box-shadow:0 8px 20px -8px rgba(13,23,38,.5)}
+  .cd-tel{width:52px;height:52px;margin-right:2px;border-radius:50%;background:#fff;color:#0d1726;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 20px -6px rgba(0,0,0,.35)}
   .cd-wa{width:52px;height:52px;margin-right:2px;border-radius:50%;background:#25d366;color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:0 8px 20px -6px rgba(0,0,0,.35)}
   .cd-wa svg{width:30px;height:30px}
 }
@@ -257,6 +258,9 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.
 .cta input::placeholder,.cta textarea::placeholder{color:var(--on-ink-muted)}
 .cta input:focus,.cta textarea:focus{outline:none;border-color:var(--taxi)}
 .cta form .btn{width:100%}
+.cta form .btn:disabled{opacity:.7;cursor:default;transform:none}
+.c-msg{margin:0;min-height:1.2em;font-size:.9rem;color:var(--on-ink-muted)}
+.c-msg.ok{color:#7ee2a8}.c-msg.err{color:#ffb4a8}
 .contact-meta{display:flex;flex-wrap:wrap;gap:22px;margin-top:26px;font-size:.92rem;color:var(--on-ink-muted)}
 .contact-meta b{display:block;color:var(--on-ink);font-weight:700}
 .contact-meta a{color:var(--on-ink);text-decoration:none}
@@ -415,12 +419,14 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.
 <div class="ctas"><a class="btn btn-taxi" href="bestel-rit-online.html">Bestel rit online</a><a class="btn btn-wa" href="https://wa.me/32474640788" target="_blank" rel="noopener">WhatsApp</a></div>
 <div class="contact-meta"><div><b>Telefoon</b><a href="tel:+32474640788">+32 474 64 07 88</a></div><div><b>Regio</b>Antwerpen, België</div><div><b>Bereikbaar</b>24 uur per dag, 7 dagen per week</div></div>
 </div>
-<form id="f-contact">
+<form id="f-contact" novalidate>
 <h3>Stuur ons een bericht</h3>
-<input id="c-n" placeholder="Naam" aria-label="Naam" autocomplete="name">
-<input id="c-e" type="email" placeholder="E-mail" aria-label="E-mail" autocomplete="email" required>
-<textarea id="c-m" rows="3" placeholder="Uw vraag of gewenste rit" aria-label="Bericht"></textarea>
-<button class="btn btn-taxi" type="submit">Verzenden via WhatsApp</button>
+<input id="c-n" placeholder="Naam" aria-label="Naam" autocomplete="name" maxlength="80">
+<input id="c-e" type="email" placeholder="E-mail" aria-label="E-mail" autocomplete="email" required maxlength="120">
+<textarea id="c-m" rows="3" placeholder="Uw bericht" aria-label="Bericht" required maxlength="2000"></textarea>
+<input id="c-hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+<button class="btn btn-taxi" id="c-send" type="submit">Verzenden</button>
+<p class="c-msg" id="c-msg" role="status" aria-live="polite"></p>
 </form>
 </div>
 </div>
@@ -431,9 +437,9 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.
 <span>© 2026 VlaamsGoTaxi · Antwerpen, België · <a href="tel:+32474640788" style="color:inherit;text-decoration:none">+32 474 64 07 88</a></span>
 <nav class="fnav" aria-label="Footer"><a href="index.html">Home</a><a href="bestel-rit-online.html">Bestel rit online</a><a href="rezervatie-wijzigen.html">Reservatie wijzigen</a></nav>
 </div></footer>
+<script src="config.js"></script>
 <script>
 (function(){
-var WA="https://wa.me/32474640788?text=";
 function $(id){return document.getElementById(id)}
 /* Ritcalculator */
 var R={a:[7.5,3,"Startprijs €7,50"],b:[8.5,3.7,"Startprijs €8,50"],c:[12,4,"Startprijs €12,00"]};
@@ -446,9 +452,28 @@ function calc(){
   $("k-x").textContent=x;
 }
 document.querySelectorAll('input[name="k-t"],#k-k,#k-w').forEach(function(el){el.addEventListener("input",calc);el.addEventListener("change",calc)});calc();
-/* Contactformulier via WhatsApp */
-$("f-contact").addEventListener("submit",function(e){e.preventDefault();
-  window.open(WA+encodeURIComponent(["Bericht via website","Naam: "+$("c-n").value,"E-mail: "+$("c-e").value,$("c-m").value].join("\n")),"_blank")});
+/* Contactformulier: bericht naar vlaamsgotaxi@gmail.com
+   1) via de Apps Script-webapp (actie "contact"), het bericht komt rechtstreeks in de mailbox;
+   2) lukt dat niet (oude Apps Script-versie, geen verbinding), dan opent het e-mailprogramma van de bezoeker met het bericht klaar. */
+var MAILTO="vlaamsgotaxi@gmail.com",SURL=window.VGT_SCRIPT_URL||"";
+function cmsg(t,c){var m=$("c-msg");m.textContent=t;m.className="c-msg"+(c?" "+c:"")}
+function mailto(n,e,m){
+  location.href="mailto:"+MAILTO+"?subject="+encodeURIComponent("Bericht via website"+(n?" – "+n:""))+
+    "&body="+encodeURIComponent(m+"\n\nNaam: "+n+"\nE-mail: "+e);
+  cmsg("Uw e-mailprogramma wordt geopend. Verstuur het bericht daar, of mail ons rechtstreeks op "+MAILTO+".")}
+$("f-contact").addEventListener("submit",function(ev){ev.preventDefault();
+  var n=$("c-n").value.trim(),e=$("c-e").value.trim(),m=$("c-m").value.trim(),btn=$("c-send");
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){cmsg("Vul een geldig e-mailadres in.","err");$("c-e").focus();return}
+  if(m.length<3){cmsg("Schrijf eerst uw bericht.","err");$("c-m").focus();return}
+  if(!SURL||!window.fetch){mailto(n,e,m);return}
+  btn.disabled=true;btn.textContent="Bezig met verzenden…";cmsg("");
+  var AC=window.AbortController?new AbortController():null,t=setTimeout(function(){if(AC)AC.abort()},12000);
+  fetch(SURL,{method:"POST",signal:AC?AC.signal:undefined,headers:{"Content-Type":"text/plain;charset=utf-8"},
+    body:JSON.stringify({action:"contact",d:{naam:n,email:e,bericht:m,website:$("c-hp").value}})})
+  .then(function(r){return r.json()}).then(function(j){clearTimeout(t);if(!j||!j.ok)throw j;
+    $("f-contact").reset();cmsg("Bedankt! Uw bericht is verzonden. Wij antwoorden zo snel mogelijk.","ok")})
+  .catch(function(){clearTimeout(t);mailto(n,e,m)})
+  .then(function(){btn.disabled=false;btn.textContent="Verzenden"})});
 /* Menu (mobiel) */
 var b=$("burger"),n=$("nav");b.addEventListener("click",function(){var o=n.classList.toggle("open");b.setAttribute("aria-expanded",o)});
 n.addEventListener("click",function(e){if(e.target.tagName==="A"){n.classList.remove("open");b.setAttribute("aria-expanded","false")}});
@@ -508,10 +533,10 @@ if("IntersectionObserver" in window){new IntersectionObserver(function(e){vis(e[
 document.addEventListener("visibilitychange",function(){if(document.hidden)clearTimeout(tm);else restart()});
 })();
 </script>
-<a class="wa-fab" href="https://wa.me/32474640788?text=Hallo%20VlaamsGoTaxi%2C%20ik%20wil%20graag%20een%20taxi%20reserveren.%0A%0ANaam%3A%0ATelefoon%3A%0AOphaaladres%20%28straat%2C%20nr%2C%20gemeente%29%3A%0ABestemming%3A%0ADatum%3A%0AUur%3A%0AAantal%20personen%3A%0AOpmerking%20%28bv.%20rolstoel%2C%20kinderzitje%29%3A%0A%0AAlvast%20bedankt%21" target="_blank" rel="noopener" aria-label="WhatsApp"><span class="wa-tip">Chat met ons</span><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 <div class="cdial" id="cdial">
 <div class="cd-items" id="cdItems" role="menu" aria-label="Contact">
 <a class="cd-bestel" role="menuitem" href="bestel-rit-online.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17h14M6 17l1.5-5.5A2 2 0 0 1 9.4 10h5.2a2 2 0 0 1 1.9 1.5L18 17M9 10l.8-3h4.4l.8 3"/><circle cx="8" cy="17" r="1.6"/><circle cx="16" cy="17" r="1.6"/></svg>Bestel rit online</a>
+<a class="cd-tel" role="menuitem" href="tel:+32474640788" aria-label="Bel +32 474 64 07 88"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></a>
 <a class="cd-wa" role="menuitem" href="https://wa.me/32474640788?text=Hallo%20VlaamsGoTaxi%2C%20ik%20wil%20graag%20een%20taxi%20reserveren.%0A%0ANaam%3A%0ATelefoon%3A%0AOphaaladres%20%28straat%2C%20nr%2C%20gemeente%29%3A%0ABestemming%3A%0ADatum%3A%0AUur%3A%0AAantal%20personen%3A%0AOpmerking%20%28bv.%20rolstoel%2C%20kinderzitje%29%3A%0A%0AAlvast%20bedankt%21" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
 </div>
 <button class="cd-btn" id="cdBtn" type="button" aria-expanded="false" aria-controls="cdItems" aria-label="Contact"><svg class="cd-i1" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8.5 8.5 0 0 1-12.4 7.6L3 21l1.4-5.4A8.5 8.5 0 1 1 21 12z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01" stroke-width="3"/></svg><svg class="cd-i2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
