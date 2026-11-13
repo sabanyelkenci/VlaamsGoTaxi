@@ -122,10 +122,6 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.
 /* Hero: Grote Markt bij avond */
 .hero{position:relative;background:var(--ink);color:var(--on-ink);overflow:hidden;isolation:isolate}
 .hero-bg{position:absolute;top:0;right:0;bottom:0;left:0;z-index:-2;background:url('images/grote-markt.jpg') center 38%/cover no-repeat;background-image:image-set(url('images/grote-markt.webp') type('image/webp'),url('images/grote-markt.jpg') type('image/jpeg'));animation:hz 10s ease-out both}
-@media(max-width:700px){
-  .hero-bg{bottom:auto;height:680px;background-image:url('images/grote-markt-m.jpg');background-image:image-set(url('images/grote-markt-m.webp') type('image/webp'),url('images/grote-markt-m.jpg') type('image/jpeg'));background-position:56% 30%;animation:none}
-  .hero::after{background:linear-gradient(180deg,rgba(13,23,38,.55) 0%,rgba(13,23,38,.80) 45%,#0d1726 680px)}
-}
 @keyframes hz{from{transform:scale(1.08)}to{transform:scale(1)}}
 .hero::after{content:"";position:absolute;top:0;right:0;bottom:0;left:0;z-index:-1;background:linear-gradient(90deg,rgba(13,23,38,.93) 0%,rgba(13,23,38,.74) 40%,rgba(13,23,38,.25) 75%,rgba(13,23,38,.35) 100%),linear-gradient(0deg,rgba(13,23,38,.85) 0%,rgba(13,23,38,0) 40%)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.85fr);gap:56px;align-items:end;padding-block:92px 72px;min-height:min(78vh,720px)}
@@ -290,6 +286,26 @@ h1,h2,h3{font-family:var(--display);text-wrap:balance;margin:0;letter-spacing:-.
 @supports not (aspect-ratio:1/1){
   .g-stage{height:0;padding-top:53%}
         @media(max-width:960px){.g-stage{padding-top:75%}}
+}
+
+/* ===== Telefoon: foto als heldere band bovenaan, tekst eronder op donkere achtergrond (desktop ongewijzigd) ===== */
+@media(max-width:700px){
+  .hero-bg{bottom:auto;height:250px;background-image:url('images/grote-markt-m.jpg');background-image:image-set(url('images/grote-markt-m.webp') type('image/webp'),url('images/grote-markt-m.jpg') type('image/jpeg'));background-position:50% 46%;animation:none}
+  .hero::after{background:linear-gradient(180deg,rgba(13,23,38,0) 0%,rgba(13,23,38,0) 170px,#0d1726 250px)}
+  .hero-grid{padding-block:222px 48px;gap:32px}
+  .eyebrow{font-size:.72rem}
+  .hero h1{font-size:2.15rem;margin:10px 0 12px;text-shadow:none}
+  .hero .lead{font-size:1rem;line-height:1.55;margin-bottom:20px}
+  .hero .ctas{gap:10px}
+  .hero .ctas .btn{min-height:50px}
+  .phone{margin-top:16px}
+}
+@media(max-width:700px) and (max-height:620px){
+  .hero-bg{height:190px}
+  .hero::after{background:linear-gradient(180deg,rgba(13,23,38,0) 0%,rgba(13,23,38,0) 120px,#0d1726 190px)}
+  .hero-grid{padding-block:158px 44px}
+  .hero h1{font-size:1.95rem;margin:8px 0 10px}
+  .hero .lead{font-size:.95rem;margin-bottom:16px}
 }
 </style>
 </head>
