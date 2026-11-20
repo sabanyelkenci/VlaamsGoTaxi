@@ -529,7 +529,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 .tx-res .rf.code .info{flex:0 0 auto;margin:0 6px 0 0;font-weight:700;white-space:nowrap}
 .tx-res .rf.code .info.err{flex:0 0 100%;margin:-6px 0 8px 0;white-space:normal;font-weight:600}
 .tx-res .rf.ok .rico.dot,.tx-res .rf.ok .rico.sq{border-color:#0b6b2e}
-.tx-res .card.s1a .price{display:none}
+.tx-res .card.s1a .price{margin-top:16px}
 .tx-res .mapprice{display:grid;gap:2px;max-width:min(330px,calc(100% - 28px));padding:10px 14px}
 .tx-res .mapprice .pr{display:flex;align-items:baseline;gap:8px}
 .tx-res .mapprice b{font-size:1.55rem;line-height:1;margin:0}
@@ -604,6 +604,8 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 .tx-res #whI:empty{display:none}
 .tx-res #whI a{color:inherit;font-weight:700}
 .tx-res #dt.bad,.tx-res #tm.bad{border-color:#c0392b;background:#fff7f5}
+/* v11: prijs boven de kaart in plaats van erop */
+.tx-res .mapprice{display:none!important}
 </style>
 
 <div class="tx-res">
@@ -928,11 +930,12 @@ function checkFar(){
   if(sl<18||sl>FAR){farKm[key]=sl;return} /* duidelijk dichtbij of al ver: geen extra route-aanvraag nodig */
   getRoute(ANT,a).then(function(r){farKm[key]=Math.max(r.km,sl);if(st.a===a)setFar(farKm[key]>FAR,farKm[key])}).catch(function(){})
 }
+function clearStale(){var m=$("msg");if(!m||!m.textContent||typeof curS==="undefined"||typeof SUB==="undefined"||!SUB)return;var t=m.textContent,c=chkSub(curS,SUB[curS]||1);if(curS===1&&km===null&&/prijs wordt nog berekend/.test(t)&&!c)return;if(c!==t)m.textContent=""}
 function update(){
-  checkFar();var id=++tk;km=null;refreshTabs();
+  checkFar();var id=++tk;km=null;refreshTabs();clearStale();
   if(!st.a||!st.b){clearRoute();show();return}
   show();
-  getRoute(st.a,st.b).then(function(r){if(id!==tk)return;km=r.km;show();drawRoute(r.path,st.a,st.b)})
+  getRoute(st.a,st.b).then(function(r){if(id!==tk)return;km=r.km;show();clearStale();drawRoute(r.path,st.a,st.b)})
   .catch(function(){if(id!==tk)return;km=false;show()});
 }
 $("tm").addEventListener("input",show);$("tm").addEventListener("change",show);
@@ -1037,6 +1040,8 @@ setHH();window.addEventListener("resize",setHH);window.addEventListener("load",s
 var NSUB={1:2,2:2},SUB={1:1,2:1};
 function chkSub(n,s){
   if(n===1&&s===1){
+    if(!st.a&&cs.a&&$("aN").value.trim())return"Even geduld, het ophaaladres wordt gecontroleerd.";
+    if(!st.b&&st.a&&cs.b&&$("bN").value.trim())return"Even geduld, de bestemming wordt gecontroleerd.";
     if(!st.a)return"Ophaaladres: kies een straat of plaats uit de lijst en vul bij een straat het huisnummer in.";
     if(!st.b)return"Bestemming: kies een straat of plaats uit de lijst en vul bij een straat het huisnummer in.";
     return""}
