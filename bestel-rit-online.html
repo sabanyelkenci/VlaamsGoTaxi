@@ -665,6 +665,28 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 .tx-res .drow{min-height:40px}
 .tx-res .dsub{margin-top:8px}
 }
+/* v19/v20: klein wis-kruisje in het adresveld (zoals iOS), agendaknoppen met iconen */
+.tx-res .rf .iw{position:relative;display:block}
+.tx-res .rf .f.s .clr{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:20px;height:20px;border:0;border-radius:50%;background:#bdb7a6;color:#fff;display:grid;place-items:center;padding:0;cursor:pointer;z-index:2}
+.tx-res .rf .f.s .clr::before{content:"";position:absolute;inset:-12px}
+.tx-res .rf .f.s .clr[hidden]{display:none}
+.tx-res .rf .f.s .clr:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.tx-res .rf .f.s .clr:not([hidden])+input{padding-right:32px}
+.tx-res .locb:hover{background:transparent}
+@media(hover:hover){.tx-res .locb:hover{background:var(--sun)}}
+.tx-res .dagenda{margin-top:20px;text-align:center}
+.tx-res .dagh{margin:0 0 12px;font-weight:800;font-size:.95rem;color:var(--ink)}
+.tx-res .dag2{display:flex;justify-content:center;gap:34px}
+.tx-res .dagb{display:flex;flex-direction:column;align-items:center;gap:7px;padding:6px 8px;border-radius:14px;color:var(--ink);text-decoration:none;font-weight:700;font-size:.84rem;transition:transform .15s}
+.tx-res .dagb svg{width:52px;height:52px;filter:drop-shadow(0 3px 6px rgba(13,23,38,.16));transition:filter .15s}
+.tx-res .dagb:hover{transform:translateY(-2px)}
+.tx-res .dagb:hover svg{filter:drop-shadow(0 6px 10px rgba(13,23,38,.22))}
+.tx-res .dagb:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+.tx-res .dagb .cn{font:800 13px/1 system-ui,-apple-system,"Segoe UI",sans-serif}
+.tx-res .dhome2{display:flex;width:fit-content;align-items:center;justify-content:center;gap:7px;margin:16px auto 0;min-height:44px;color:var(--mut);font-weight:700;font-size:.9rem;text-decoration:none;transition:color .12s}
+.tx-res .dhome2:hover{color:var(--ink)}
+.tx-res .dhome2 svg{transition:transform .15s}.tx-res .dhome2:hover svg{transform:translateX(-3px)}
+
 </style>
 
 <div class="tx-res">
@@ -687,7 +709,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
      <div class="route">
       <div class="rf">
        <span class="rico dot" aria-hidden="true"></span>
-       <div class="f s"><label class="sr" for="aS">Ophaaladres</label><input id="aS" type="text" autocomplete="off" placeholder="Ophaaladres (straat of plaats)"><ul id="aL" hidden></ul></div>
+       <div class="f s"><label class="sr" for="aS">Ophaaladres</label><span class="iw"><button type="button" class="clr" data-clr="a" aria-label="Ophaaladres wissen" title="Wissen" hidden><svg viewBox="0 0 24 24" width="10" height="10" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></button><input id="aS" type="text" autocomplete="off" placeholder="Ophaaladres (straat of plaats)"></span><ul id="aL" hidden></ul></div>
        <div class="f n"><label class="sr" for="aN">Huisnummer ophaaladres</label><input id="aN" type="text" placeholder="Nr."></div>
        <button type="button" class="locb" id="loc" aria-label="Gebruik mijn huidige locatie" title="Gebruik mijn huidige locatie"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M20.5 3.5L3.8 10.6l7 2.6 2.6 7z" fill="currentColor"/></svg></button>
        <div class="info" id="aI" aria-live="polite"></div>
@@ -695,7 +717,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
       <div class="far far1" id="far1" hidden><b>Betaling vooraf</b> vereist voor dit ophaaladres (meer dan 30 km van Antwerpen centrum). U kiest dit bij stap 3.</div>
       <div class="rf">
        <span class="rico sq" aria-hidden="true"></span>
-       <div class="f s"><label class="sr" for="bS">Bestemming</label><input id="bS" type="text" autocomplete="off" placeholder="Bestemming (straat, plaats of luchthaven)"><ul id="bL" hidden></ul></div>
+       <div class="f s"><label class="sr" for="bS">Bestemming</label><span class="iw"><button type="button" class="clr" data-clr="b" aria-label="Bestemming wissen" title="Wissen" hidden><svg viewBox="0 0 24 24" width="10" height="10" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/></svg></button><input id="bS" type="text" autocomplete="off" placeholder="Bestemming (straat, plaats of luchthaven)"></span><ul id="bL" hidden></ul></div>
        <div class="f n"><label class="sr" for="bN">Huisnummer bestemming</label><input id="bN" type="text" placeholder="Nr."></div>
        <span class="locb ph" aria-hidden="true"></span>
        <div class="info" id="bI" aria-live="polite"></div>
@@ -799,11 +821,14 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
    </div>
    <p class="dsub" id="dStep2"></p>
    <p class="dpay" id="donePay" hidden><b>Betaling vooraf:</b> wij sturen u een betaallink. Uw rit is bevestigd na ontvangst van de betaling.</p>
-   <div class="dbtns">
-    <a class="btn nx dcal" id="dGcal" href="#" target="_blank" rel="noopener" title="Voeg toe aan Google Agenda"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Google Agenda</span></a>
-    <a class="btn dcal2" id="dCal" href="#" title="Zet in de agenda van uw telefoon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Agenda telefoon</span></a>
-    <a class="btn dhome" href="/" title="Naar de homepage"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Homepage</span></a>
+   <div class="dagenda">
+    <p class="dagh">Zet uw rit in uw agenda</p>
+    <div class="dag2">
+     <a class="dagb" id="dGcal" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="4" y="7" width="40" height="37" rx="8" fill="#fff"/><path d="M4 15a8 8 0 0 1 8-8h24a8 8 0 0 1 8 8v3H4z" fill="#4285F4"/><rect x="13" y="3" width="4" height="9" rx="2" fill="#1a5fd0"/><rect x="31" y="3" width="4" height="9" rx="2" fill="#1a5fd0"/><text class="cn dcD" x="24" y="38.5" text-anchor="middle" fill="#4285F4" font-size="20">22</text></svg>Google Agenda</a>
+     <a class="dagb" id="dCal" href="#"><svg viewBox="0 0 48 48" aria-hidden="true"><rect x="5.5" y="8.5" width="37" height="34" rx="7" fill="#fff" stroke="#0d1726" stroke-width="3"/><path d="M5.5 18.5h37" stroke="#0d1726" stroke-width="3"/><rect x="13.5" y="3.5" width="4" height="9" rx="2" fill="#0d1726"/><rect x="30.5" y="3.5" width="4" height="9" rx="2" fill="#0d1726"/><text class="cn dcD" x="24" y="38.5" text-anchor="middle" fill="#0d1726" font-size="20">22</text></svg>Telefoonagenda</a>
+    </div>
    </div>
+   <a class="dhome2" href="/"><svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true"><path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>Terug naar de homepage</a>
    <p class="dnote">Wijzigen of annuleren kan gratis tot 2 uur voor vertrek via <a id="dChg" href="/rezervatie-wijzigen">Reservatie wijzigen</a>.</p>
    <span id="doneTel" hidden></span>
   </div>
@@ -864,6 +889,8 @@ function sha(t){return crypto.subtle.digest("SHA-256",new TextEncoder().encode(t
 var st={a:null,b:null},cs={a:null,b:null},tm={},km=null,tk=0,info="",map=null,mk=[],pl=[],T={A:[7.5,3],B:[8.5,3.7]};
 function fmt(n){return"€"+n.toFixed(2).replace(".",",")}
 function lbl(x){return x.s+", "+x.r}
+/* wis-knopje (x) naast het adres */
+function clrSync(){["a","b"].forEach(function(k){var b=document.querySelector('.clr[data-clr="'+k+'"]');if(b)b.hidden=!($(k+"S").value||$(k+"N").value)})}
 function okBox(k,on){var r=$(k+"S").closest(".rf");if(r)r.classList.toggle("ok",!!on)}
 /* rode rand rond een veld met foutmelding */
 (function(){var mo=new MutationObserver(function(){["aI","bI","ccI"].forEach(function(id){var e=$(id),r=e&&e.closest(".rf");if(r)r.classList.toggle("err",/\berr\b/.test(e.className)&&!!e.textContent)})});
@@ -1037,6 +1064,7 @@ function calLinks(nr){
   var dur=Math.max(30,Math.round(15+(km||10)*1.3)),en=new Date(st0.getTime()+dur*60000);
   var f=function(z){return z.getFullYear()+p2(z.getMonth()+1)+p2(z.getDate())+"T"+p2(z.getHours())+p2(z.getMinutes())+"00"};
   var from=st.a?lbl(st.a):"",to=st.b?lbl(st.b):"";
+  document.querySelectorAll(".dcD").forEach(function(e){e.textContent=st0.getDate()});
   var title="Taxi VlaamsGoTaxi ("+nr+")";
   var desc="Reservatienummer: "+nr+"\nVan: "+from+"\nNaar: "+to+"\nGeschatte prijs: "+$("pV").textContent+"\nVragen: "+TEL+"\nWijzigen of annuleren (tot 2 uur voor vertrek): https://vlaamsgotaxi.be/rezervatie-wijzigen";
   var esc2=function(v){return String(v).replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n")};
@@ -1061,6 +1089,11 @@ if(SCRIPT_URL){
     applyCode(ccode);
   }).catch(function(e){if(DBG)dbg("sunucu niet bereikbaar: "+e)});
 }
+document.querySelectorAll(".clr").forEach(function(b){b.addEventListener("click",function(){
+  var k=b.dataset.clr,S=$(k+"S"),N=$(k+"N"),I=$(k+"I"),L=$(k+"L");
+  N.value="";S.value="";N.dispatchEvent(new Event("input",{bubbles:true}));S.dispatchEvent(new Event("input",{bubbles:true}));
+  if(I){I.className="info";I.textContent=""}if(L)L.hidden=true;clrSync();S.focus()})});
+setInterval(clrSync,800);
 applyCode(ccode);$("cc").addEventListener("input",function(){var v=this.value;applyCode(v,true);clearTimeout(ccT);ccT=setTimeout(function(){applyCode($("cc").value)},1500)});$("cc").addEventListener("blur",function(){clearTimeout(ccT);applyCode(this.value)});
 
 var d=new Date();$("dt").min=d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2);
@@ -1243,7 +1276,7 @@ $("next").onclick=function(){
 $("prev").onclick=function(){
   if(NSUB[curS]&&SUB[curS]>1){$("msg").textContent="";setSub(curS,SUB[curS]-1);toCard();return}
   var n=curS-1;goTab(n,true,NSUB[n]||0)};
-$("card").addEventListener("input",function(){refreshTabs();if($("msg").textContent&&!$("sendMail").disabled&&chkSub(curS,SUB[curS]||1)==="")$("msg").textContent=""});$("card").addEventListener("change",refreshTabs);
+$("card").addEventListener("input",function(){refreshTabs();clrSync();if($("msg").textContent&&!$("sendMail").disabled&&chkSub(curS,SUB[curS]||1)==="")$("msg").textContent=""});$("card").addEventListener("change",refreshTabs);
 refreshTabs();
 /*SEND_START*/
 var FKEY="VUL_HIER_UW_WEB3FORMS_SLEUTEL_IN"; /* reserve: enkel gebruikt als de Google Sheet niet bereikbaar is (gratis sleutel op web3forms.com) */
