@@ -646,6 +646,9 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 .tx-res .dhome{display:flex;align-items:center;justify-content:center;margin-top:14px;min-height:46px;border-radius:12px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem}
 .tx-res .dnote{margin:12px 0 0;font-size:.78rem;color:var(--mut);text-align:center}
 .tx-res .dnote a{color:var(--ink);font-weight:700}
+/* v15: prijs altijd onder de knoppen, net boven de kaart */
+.tx-res .card .price{margin-top:14px!important}
+.tx-res .card .pmini{margin:12px 0 0}
 </style>
 
 <div class="tx-res">
@@ -731,15 +734,6 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
     </div>
    </section>
 
-   <div class="price" aria-live="polite">
-    <small>Geschatte prijs</small>
-    <div class="big" id="pV">€ –</div>
-    <small class="pk" id="pK"></small>
-    <small id="pD">Vul beide adressen in om de prijs te zien.</small>
-   </div>
-
-   <input id="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
-   <p class="pmini" id="pMini" hidden></p>
    <p class="msg" id="msg" role="alert"></p>
    <div class="nav">
     <button type="button" class="btn alt" id="prev" hidden>← Vorige</button>
@@ -749,6 +743,15 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
     </button>
    </div>
    <span id="navHome" hidden></span>
+   <div class="price" aria-live="polite">
+    <small>Geschatte prijs</small>
+    <div class="big" id="pV">€ –</div>
+    <small class="pk" id="pK"></small>
+    <small id="pD">Vul beide adressen in om de prijs te zien.</small>
+   </div>
+
+   <input id="hp" type="text" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0">
+   <p class="pmini" id="pMini" hidden></p>
    <div class="mapslot" id="mapSlot"></div>
   </div>
 
@@ -1156,7 +1159,9 @@ function cardState(){
   var nav=c.querySelector(".nav"),m=$("msg"),slot=$("mapSlot"),home=$("navHome");
   var s1=$("p1").querySelector('.sub[data-sub="1"]');
   if(a){if(nav.parentNode!==s1){s1.appendChild(m);s1.appendChild(nav)}}
-  else if(nav.previousElementSibling!==m||m.parentNode!==home.parentNode){home.parentNode.insertBefore(m,home);home.parentNode.insertBefore(nav,home)}}
+  else if(nav.previousElementSibling!==m||m.parentNode!==home.parentNode){home.parentNode.insertBefore(m,home);home.parentNode.insertBefore(nav,home)}
+  /* prijs altijd direct onder de knoppen */
+  var pr=c.querySelector(".price"),pm=$("pMini");if(pr&&nav.nextElementSibling!==pr){nav.parentNode.insertBefore(pm,nav.nextSibling);nav.parentNode.insertBefore(pr,pm)}}
 cardState();
 function setSub(n,s){
   SUB[n]=s;setTimeout(cardState,0);
