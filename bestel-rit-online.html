@@ -641,8 +641,7 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 .tx-res .dsub{margin:12px 0 0;font-size:.85rem;color:var(--mut);text-align:center}
 .tx-res .dpay{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:#fff6dc;font-size:.88rem}
 .tx-res .dcal{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;min-height:50px;border-radius:12px;text-decoration:none;font-weight:800;font-size:1rem}
-.tx-res .dgcal{display:block;text-align:center;margin-top:8px;font-size:.85rem;color:var(--ink);font-weight:600}
-.tx-res .dgcal[hidden]{display:none}
+.tx-res .dcal2{display:flex;align-items:center;justify-content:center;margin-top:10px;min-height:44px;border-radius:12px;border:1.5px solid #d6cfb6;background:#fff;color:var(--ink);text-decoration:none;font-weight:600;font-size:.9rem}
 .tx-res .dhome{display:flex;align-items:center;justify-content:center;margin-top:14px;min-height:46px;border-radius:12px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem}
 .tx-res .dnote{margin:12px 0 0;font-size:.78rem;color:var(--mut);text-align:center}
 .tx-res .dnote a{color:var(--ink);font-weight:700}
@@ -783,10 +782,10 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
    </div>
    <p class="dsub" id="dStep2"></p>
    <p class="dpay" id="donePay" hidden><b>Betaling vooraf:</b> wij sturen u een betaallink. Uw rit is bevestigd na ontvangst van de betaling.</p>
-   <a class="btn nx dcal" id="dCal" href="#" download="vlaamsgotaxi-rit.ics">
+   <a class="btn nx dcal" id="dGcal" href="#" target="_blank" rel="noopener">
     <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    <span>Zet in agenda</span></a>
-   <a class="dgcal" id="dGcal" href="#" target="_blank" rel="noopener">Of voeg toe aan Google Agenda</a>
+    <span>Voeg toe aan Google Agenda</span></a>
+   <a class="btn dcal2" id="dCal" href="#">Zet in de agenda van uw telefoon</a>
    <a class="btn dhome" href="/">Naar de homepage</a>
    <p class="dnote">Wijzigen of annuleren kan gratis tot 2 uur voor vertrek via <a id="dChg" href="/rezervatie-wijzigen">Reservatie wijzigen</a>.</p>
    <span id="doneTel" hidden></span>
@@ -1029,10 +1028,12 @@ function calLinks(nr){
     "SUMMARY:"+esc2(title),"LOCATION:"+esc2(from),"DESCRIPTION:"+esc2(desc),
     "BEGIN:VALARM","TRIGGER:-PT1H","ACTION:DISPLAY","DESCRIPTION:"+esc2("Uw taxi komt over 1 uur"),"END:VALARM",
     "END:VEVENT","END:VCALENDAR"].join("\r\n");
-  $("dCal").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
-  $("dCal").setAttribute("download","vlaamsgotaxi-"+nr+".ics");
+  /* telefoonagenda (iPhone/Samsung/Outlook): echt .ics-bestand via Apps Script (text/calendar), anders data-link */
+  if(SCRIPT_URL){
+    $("dCal").href=SCRIPT_URL+"?a=ics&nr="+encodeURIComponent(nr)+"&s="+f(st0)+"&e="+f(en)+"&van="+encodeURIComponent(from)+"&naar="+encodeURIComponent(to)+"&p="+encodeURIComponent($("pV").textContent);
+    $("dCal").removeAttribute("download")}
+  else{$("dCal").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);$("dCal").setAttribute("download","vlaamsgotaxi-"+nr+".ics")}
   $("dGcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title)+"&dates="+f(st0)+"/"+f(en)+"&ctz=Europe/Brussels&location="+encodeURIComponent(from)+"&details="+encodeURIComponent(desc.replace(/\\n/g,"\n"));
-  if(/Android/i.test(navigator.userAgent)){var a=$("dCal");a.href=$("dGcal").href;a.removeAttribute("download");a.target="_blank";a.rel="noopener";$("dGcal").hidden=true}
 }
 var SCRIPT_URL=window.VGT_SCRIPT_URL||"";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
 if(SCRIPT_URL){
