@@ -106,6 +106,7 @@ footer .fnav a:hover{color:var(--fg)}
   .cdial::before{content:"";position:fixed;top:0;right:0;bottom:0;left:0;z-index:-1;background:rgba(13,23,38,.55);opacity:0;pointer-events:none;transition:opacity .2s}
   .cdial.open::before{opacity:1}
   .cdial{pointer-events:none}
+  body.vgdone .cdial{display:none!important}
   .cdial .cd-btn,.cdial.open .cd-items{pointer-events:auto}
   .cd-btn{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.9);background:#0d1726;color:#fdc718;display:grid;place-items:center;cursor:pointer;box-shadow:0 10px 26px -6px rgba(13,23,38,.55);transition:transform .2s;-webkit-tap-highlight-color:transparent}
   .cd-btn:active{transform:scale(.94)}
@@ -648,6 +649,22 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 /* v15: prijs altijd onder de knoppen, net boven de kaart */
 .tx-res .card .price{margin-top:14px!important}
 .tx-res .card .pmini{margin:12px 0 0}
+/* v17: bedankscherm compacter – drie knoppen naast elkaar, kleinere animatie op de computer */
+.tx-res .card.isdone{overflow-y:auto}
+.tx-res .dbtns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.tx-res .dbtns .btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;min-height:62px;margin:0;padding:6px 4px;border-radius:12px;text-decoration:none;font-weight:700;font-size:.82rem;line-height:1.15;text-align:center}
+.tx-res .dbtns .dcal{background:var(--sun);border:1.5px solid var(--sun);color:var(--ink)}
+.tx-res .dbtns .dcal2,.tx-res .dbtns .dhome{background:#fff!important;border:1.5px solid #c9c1a4!important;color:var(--ink)!important;box-shadow:none!important}
+.tx-res .dbtns .btn:focus-visible{outline:3px solid var(--sun);outline-offset:2px}
+@media(min-width:941px){
+.tx-res .dride2{padding:8px 10px}
+.tx-res .dsvg{max-height:118px}
+.tx-res .dhero{padding:10px 0 0}
+.tx-res .dhero h3{font-size:1.4rem}
+.tx-res .dcard{margin-top:12px}
+.tx-res .drow{min-height:40px}
+.tx-res .dsub{margin-top:8px}
+}
 </style>
 
 <div class="tx-res">
@@ -782,11 +799,11 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
    </div>
    <p class="dsub" id="dStep2"></p>
    <p class="dpay" id="donePay" hidden><b>Betaling vooraf:</b> wij sturen u een betaallink. Uw rit is bevestigd na ontvangst van de betaling.</p>
-   <a class="btn nx dcal" id="dGcal" href="#" target="_blank" rel="noopener">
-    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-    <span>Voeg toe aan Google Agenda</span></a>
-   <a class="btn dcal2" id="dCal" href="#">Zet in de agenda van uw telefoon</a>
-   <a class="btn dhome" href="/">Naar de homepage</a>
+   <div class="dbtns">
+    <a class="btn nx dcal" id="dGcal" href="#" target="_blank" rel="noopener" title="Voeg toe aan Google Agenda"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Google Agenda</span></a>
+    <a class="btn dcal2" id="dCal" href="#" title="Zet in de agenda van uw telefoon"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span>Agenda telefoon</span></a>
+    <a class="btn dhome" href="/" title="Naar de homepage"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M4 11l8-7 8 7v9h-5v-6h-6v6H4z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>Homepage</span></a>
+   </div>
    <p class="dnote">Wijzigen of annuleren kan gratis tot 2 uur voor vertrek via <a id="dChg" href="/rezervatie-wijzigen">Reservatie wijzigen</a>.</p>
    <span id="doneTel" hidden></span>
   </div>
@@ -1242,7 +1259,7 @@ $("sendMail").onclick=function(){
   if(!ok())return;
   var b=this,m=$("msg"),L=b.querySelector(".lbl");m.style.color="";m.textContent="";
   b.disabled=true;L.textContent="Bezig met versturen…";
-  var done=function(nr,mailed,sms){$("doneNr").textContent=nr;$("donePay").hidden=!far;$("wiz").hidden=true;$("done").hidden=false;$("card").classList.add("isdone");
+  var done=function(nr,mailed,sms){$("doneNr").textContent=nr;$("donePay").hidden=!far;$("wiz").hidden=true;$("done").hidden=false;$("card").classList.add("isdone");document.body.classList.add("vgdone");
     var vn=($("nm").value.trim().split(/\s+/)[0]||"");
     $("dTitle").textContent="Bedankt"+(vn?", "+vn:"")+"!";
     $("okMsg").textContent="Uw reservatie is goed ontvangen.";
