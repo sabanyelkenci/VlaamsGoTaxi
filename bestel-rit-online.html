@@ -606,6 +606,46 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
 .tx-res #dt.bad,.tx-res #tm.bad{border-color:#c0392b;background:#fff7f5}
 /* v11: prijs boven de kaart in plaats van erop */
 .tx-res .mapprice{display:none!important}
+/* v12: geen stap-labels en 1/2-tellers; kodeveld blijft bruikbaar bij foutmelding; nieuw bedankscherm */
+.tx-res .steps{display:none!important}
+.tx-res .subn{display:none!important}
+.tx-res .rf.code .f.s{flex:1 1 140px}
+.tx-res .rf .f.s{min-width:120px}
+.tx-res .card.isdone .price,.tx-res .card.isdone .pmini,.tx-res .card.isdone .lead,.tx-res .card.isdone h2{display:none}
+.tx-res .done{border:0;padding:0;text-align:left;background:none;margin-top:4px}
+.tx-res .dride2{border-radius:16px;background:#f5f4ef;padding:10px 12px 12px}
+.tx-res .dsvg{display:block;width:100%;height:auto;max-height:190px}
+.tx-res .dgrid line{stroke:#e5e1d3;stroke-width:1}
+.tx-res .drt{stroke-dasharray:420;stroke-dashoffset:420;animation:ddraw 1.4s .5s cubic-bezier(.6,0,.3,1) forwards}
+.tx-res .dpinA{animation:ddrop .5s cubic-bezier(.3,1.6,.5,1) both}
+.tx-res .dpinB{animation:ddrop .5s 1.8s cubic-bezier(.3,1.6,.5,1) both}
+.tx-res .dok{transform-box:fill-box;transform-origin:center;transform:scale(0);animation:dpop .4s 4.5s cubic-bezier(.3,1.6,.5,1) forwards}
+@keyframes ddraw{to{stroke-dashoffset:0}}
+@keyframes ddrop{0%{transform:translateY(-40px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes dpop{to{transform:scale(1)}}
+.tx-res .dends{display:flex;justify-content:space-between;gap:12px;font-size:.8rem;font-weight:700;color:var(--ink);margin-top:2px}
+.tx-res .dends span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:48%}
+.tx-res .dends span:last-child{text-align:right}
+@media(prefers-reduced-motion:reduce){.tx-res .drt,.tx-res .dpinA,.tx-res .dpinB,.tx-res .dok{animation-duration:.01ms;animation-delay:0s}}
+.tx-res .dhero{text-align:center;padding:16px 0 2px}
+.tx-res .dhero h3{margin:0;font-size:1.6rem;line-height:1.15;font-weight:800;color:var(--ink);text-transform:none;letter-spacing:-.01em}
+.tx-res .dhero p{margin:6px 0 0;font-size:.95rem;color:var(--mut)}
+.tx-res .dcard{margin-top:16px;border:1.5px solid var(--line);border-radius:14px;padding:4px 14px}
+.tx-res .drow{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:46px;border-bottom:1px solid var(--line);font-size:.92rem}
+.tx-res .drow:last-child{border-bottom:0}
+.tx-res .dlbl{color:var(--mut)}
+.tx-res .drow b{text-align:right}
+.tx-res .dnrw{display:flex;align-items:center;gap:8px}
+.tx-res .drow .nr{font-size:1.05rem;letter-spacing:.04em;margin:0;color:var(--ink)}
+.tx-res .dcopy{min-height:32px;padding:0 10px;border-radius:8px;border:1.5px solid var(--line);background:#fff;color:var(--ink);font:inherit;font-weight:700;font-size:.78rem;cursor:pointer}
+.tx-res .dsub{margin:12px 0 0;font-size:.85rem;color:var(--mut);text-align:center}
+.tx-res .dpay{margin:10px 0 0;padding:10px 12px;border-radius:10px;background:#fff6dc;font-size:.88rem}
+.tx-res .dcal{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;min-height:50px;border-radius:12px;text-decoration:none;font-weight:800;font-size:1rem}
+.tx-res .dgcal{display:block;text-align:center;margin-top:8px;font-size:.85rem;color:var(--ink);font-weight:600}
+.tx-res .dgcal[hidden]{display:none}
+.tx-res .dhome{display:flex;align-items:center;justify-content:center;margin-top:14px;min-height:46px;border-radius:12px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);text-decoration:none;font-weight:700;font-size:.95rem}
+.tx-res .dnote{margin:12px 0 0;font-size:.78rem;color:var(--mut);text-align:center}
+.tx-res .dnote a{color:var(--ink);font-weight:700}
 </style>
 
 <div class="tx-res">
@@ -713,11 +753,40 @@ font-family:'Figtree',system-ui,sans-serif;font-size:18px;color:var(--ink);line-
   </div>
 
   <div class="done" id="done" hidden>
-   <p class="okmsg" id="okMsg"></p>
-   <small>Uw reservatienummer</small>
-   <div class="nr" id="doneNr"></div>
-   <p>Noteer dit nummer. Wijzigen of annuleren kan tot 2 uur voor vertrek. Bel ons op <b id="doneTel"></b> of kies "Reservatie wijzigen" in het menu, en geef dit nummer door.</p>
-   <p id="donePay" hidden style="margin-top:8px"><b>Betaling vooraf:</b> wij sturen u een betaallink. Uw rit is bevestigd na ontvangst van de betaling.</p>
+   <div class="dride2" aria-hidden="true">
+    <svg viewBox="0 0 320 175" class="dsvg" id="dSvg">
+     <g class="dgrid"><line x1="0" y1="40" x2="320" y2="40"/><line x1="0" y1="90" x2="320" y2="90"/><line x1="0" y1="140" x2="320" y2="140"/><line x1="70" y1="0" x2="70" y2="175"/><line x1="160" y1="0" x2="160" y2="175"/><line x1="250" y1="0" x2="250" y2="175"/></g>
+     <path d="M-10 165 C 80 145, 140 178, 330 155" stroke="#cfe0ee" stroke-width="14" fill="none"/>
+     <path id="dPath" class="drt" d="M48 132 C 110 132, 120 60, 190 66 S 270 116, 292 56" fill="none" stroke="#14213d" stroke-width="5" stroke-linecap="round"/>
+     <g class="dpinA"><path d="M48 134 c-11-13-15-19-15-26a15 15 0 0 1 30 0c0 7-4 13-15 26z" fill="#14213d"/><circle cx="48" cy="108" r="6" fill="#fff"/></g>
+     <g class="dpinB"><path d="M292 58 c-11-13-15-19-15-26a15 15 0 0 1 30 0c0 7-4 13-15 26z" fill="#FDC718" stroke="#14213d" stroke-width="2.5"/><rect x="287" y="27" width="10" height="10" rx="2" fill="#14213d"/></g>
+     <g class="dcar" opacity="0">
+      <g transform="translate(-12,-7)"><rect x="0" y="0" width="24" height="14" rx="5" fill="#FDC718" stroke="#14213d" stroke-width="2.2"/><rect x="14" y="2.5" width="6" height="9" rx="1.5" fill="#cfe3f5"/><rect x="5" y="3" width="5" height="8" rx="1" fill="#14213d"/></g>
+      <set attributeName="opacity" to="1" begin="2.3s" fill="freeze"/>
+      <animateMotion begin="2.3s" dur="2.2s" fill="freeze" rotate="auto" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines="0.45 0 0.3 1"><mpath href="#dPath"/></animateMotion>
+     </g>
+     <g class="dok"><circle cx="292" cy="92" r="15" fill="#0b6b2e"/><path d="M285 92.5l5 5 9-10" fill="none" stroke="#fff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    </svg>
+    <div class="dends"><span id="dFrom"></span><span id="dTo"></span></div>
+   </div>
+   <div class="dhero">
+    <h3 id="dTitle">Bedankt!</h3>
+    <p id="okMsg">Uw reservatie is goed ontvangen.</p>
+   </div>
+   <div class="dcard">
+    <div class="drow"><span class="dlbl">Wanneer</span><b id="dWhen"></b></div>
+    <div class="drow"><span class="dlbl">Prijs</span><b id="dPrice"></b></div>
+    <div class="drow"><span class="dlbl">Reservatienummer</span><b class="nr" id="doneNr"></b></div>
+   </div>
+   <p class="dsub" id="dStep2"></p>
+   <p class="dpay" id="donePay" hidden><b>Betaling vooraf:</b> wij sturen u een betaallink. Uw rit is bevestigd na ontvangst van de betaling.</p>
+   <a class="btn nx dcal" id="dCal" href="#" download="vlaamsgotaxi-rit.ics">
+    <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="2.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M3.5 10h17M8 3v4M16 3v4M12 13v5M9.5 15.5h5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span>Zet in agenda</span></a>
+   <a class="dgcal" id="dGcal" href="#" target="_blank" rel="noopener">Of voeg toe aan Google Agenda</a>
+   <a class="btn dhome" href="/">Naar de homepage</a>
+   <p class="dnote">Wijzigen of annuleren kan gratis tot 2 uur voor vertrek via <a id="dChg" href="/rezervatie-wijzigen">Reservatie wijzigen</a>.</p>
+   <span id="doneTel" hidden></span>
   </div>
  </div>
  <aside class="mapcol" id="mapCol"><div class="mapbox" id="mapBox"><div id="map"></div><div class="mapnote" id="mapNote">Uw route verschijnt hier zodra beide adressen zijn ingevuld.</div><div class="mapprice" id="mapP" hidden></div></div></aside>
@@ -941,7 +1010,27 @@ function update(){
 $("tm").addEventListener("input",show);$("tm").addEventListener("change",show);
 placeMap();getMap().catch(function(){$("mapNote").textContent="De kaart kon niet geladen worden."});
 
-$("doneTel").textContent=TEL;
+$("doneTel").textContent=TEL;$("dChg").href=CHANGE_URL;
+/* agenda: .ics (iPhone, Outlook, Mac) en Google Agenda */
+function calLinks(nr){
+  var d=$("dt").value,t=$("tm").value;if(!d||!t)return;
+  var x=d.split("-"),y=t.split(":"),st0=new Date(+x[0],+x[1]-1,+x[2],+y[0],+y[1]);
+  var dur=Math.max(30,Math.round(15+(km||10)*1.3)),en=new Date(st0.getTime()+dur*60000);
+  var f=function(z){return z.getFullYear()+p2(z.getMonth()+1)+p2(z.getDate())+"T"+p2(z.getHours())+p2(z.getMinutes())+"00"};
+  var from=st.a?lbl(st.a):"",to=st.b?lbl(st.b):"";
+  var title="Taxi VlaamsGoTaxi ("+nr+")";
+  var desc="Reservatienummer: "+nr+"\nVan: "+from+"\nNaar: "+to+"\nGeschatte prijs: "+$("pV").textContent+"\nVragen: "+TEL+"\nWijzigen of annuleren (tot 2 uur voor vertrek): https://vlaamsgotaxi.be/rezervatie-wijzigen";
+  var esc2=function(v){return String(v).replace(/\\/g,"\\\\").replace(/;/g,"\\;").replace(/,/g,"\\,").replace(/\n/g,"\\n")};
+  var ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//VlaamsGoTaxi//Reservatie//NL","CALSCALE:GREGORIAN","BEGIN:VEVENT",
+    "UID:"+nr+"@vlaamsgotaxi.be","DTSTAMP:"+f(new Date()),"DTSTART:"+f(st0),"DTEND:"+f(en),
+    "SUMMARY:"+esc2(title),"LOCATION:"+esc2(from),"DESCRIPTION:"+esc2(desc),
+    "BEGIN:VALARM","TRIGGER:-PT1H","ACTION:DISPLAY","DESCRIPTION:"+esc2("Uw taxi komt over 1 uur"),"END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  $("dCal").href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics);
+  $("dCal").setAttribute("download","vlaamsgotaxi-"+nr+".ics");
+  $("dGcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title)+"&dates="+f(st0)+"/"+f(en)+"&ctz=Europe/Brussels&location="+encodeURIComponent(from)+"&details="+encodeURIComponent(desc.replace(/\\n/g,"\n"));
+  if(/Android/i.test(navigator.userAgent)){var a=$("dCal");a.href=$("dGcal").href;a.removeAttribute("download");a.target="_blank";a.rel="noopener";$("dGcal").hidden=true}
+}
 var SCRIPT_URL=window.VGT_SCRIPT_URL||"";var listOk=!SCRIPT_URL; /* <-- Apps Script web app-adres (optioneel): chauffeurslijst uit de Google Sheet */
 if(SCRIPT_URL){
   fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"publicDrivers"})})
@@ -964,7 +1053,10 @@ function whenTs(){var a=$("dt").value,b=$("tm").value;if(!a||!b)return null;var 
 function tooSoon(){if(!RULE45)return false;var w=whenTs();return w!==null&&w<Date.now()+MINV*60000-60000}
 var SOONMSG="Reserveer minstens 45 minuten vooraf. Dringend? Bel ons: "+TEL+".";
 function whenCheck(){var I=$("whI");if(!I)return;var bad=tooSoon();I.className=bad?"info err":"info";I.innerHTML=bad?'Reserveer minstens 45 minuten vooraf. Dringend? <a href="tel:+32470248686">Bel ons: '+esc(TEL)+'</a>':"";$("dt").classList.toggle("bad",bad);$("tm").classList.toggle("bad",bad);var h=I.parentNode.querySelector(".hint");if(h)h.hidden=bad}
-if(RULE45&&!$("dt").value&&!$("tm").value)setSlot();
+/* standaard: vandaag en het eerste volle uur dat minstens 1 uur na nu ligt (02:24 -> 04:00) */
+function defaultSlot(){var t=new Date(Date.now()+60*60000);if(t.getMinutes()||t.getSeconds())t.setHours(t.getHours()+1,0,0,0);else t.setMinutes(0,0,0);
+  $("dt").value=t.getFullYear()+"-"+p2(t.getMonth()+1)+"-"+p2(t.getDate());$("tm").value=p2(t.getHours())+":00"}
+if(!$("dt").value&&!$("tm").value){if(RULE45)setSlot();else defaultSlot()}
 ["dt","tm"].forEach(function(id){$(id).addEventListener("change",whenCheck);$(id).addEventListener("blur",whenCheck)});
 
 /* versturen */
@@ -1144,8 +1236,17 @@ $("sendMail").onclick=function(){
   if(!ok())return;
   var b=this,m=$("msg"),L=b.querySelector(".lbl");m.style.color="";m.textContent="";
   b.disabled=true;L.textContent="Bezig met versturen…";
-  var done=function(nr,mailed,sms){$("doneNr").textContent=nr;$("donePay").hidden=!far;$("wiz").hidden=true;$("done").hidden=false;
-    $("okMsg").textContent="✓ Bedankt! Uw reservatie is verzonden."+((mailed||sms)?" Een bevestiging is verstuurd per "+(mailed&&sms?"e-mail en SMS":sms?"SMS":"e-mail")+".":" Wij bevestigen telefonisch.");
+  var done=function(nr,mailed,sms){$("doneNr").textContent=nr;$("donePay").hidden=!far;$("wiz").hidden=true;$("done").hidden=false;$("card").classList.add("isdone");
+    var vn=($("nm").value.trim().split(/\s+/)[0]||"");
+    $("dTitle").textContent="Bedankt"+(vn?", "+vn:"")+"!";
+    $("okMsg").textContent="Uw reservatie is goed ontvangen.";
+    var via=(mailed||sms)?(mailed&&sms?"e-mail en SMS":sms?"SMS":"e-mail"):"";
+    $("dStep2").textContent="Wij bellen u om uw rit en de prijs te bevestigen."+(via?" U krijgt ook een bevestiging per "+via+".":"");
+    var dd=$("dt").value?$("dt").value.split("-").reverse().join("/"):"";
+    $("dWhen").textContent=dd+" · "+($("tm").value||"");$("dPrice").textContent=$("pV").textContent+" · "+payLbl();
+    $("dFrom").textContent=st.a?st.a.s:"";$("dTo").textContent=st.b?st.b.s:"";
+    calLinks(nr);
+    try{var sv=$("dSvg");if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){var c=sv.querySelector(".dcar");c.querySelectorAll("animateMotion,set").forEach(function(x){x.remove()});c.setAttribute("opacity","1");c.setAttribute("transform","translate(292,56)")}else if(sv.setCurrentTime)sv.setCurrentTime(0)}catch(e){}
     var r=$("card").getBoundingClientRect();if(r.top<0)window.scrollTo({top:window.pageYOffset+r.top-70,behavior:"smooth"})};
   var fail=function(e){b.disabled=false;L.textContent="Reservatie versturen →";
     m.textContent="Verzenden mislukt"+DET(e)+". Probeer opnieuw of bel ons."};
